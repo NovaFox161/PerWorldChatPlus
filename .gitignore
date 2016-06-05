@@ -110,3 +110,13 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea/artifacts/
+.idea/compiler.xml
+.idea/copyright/
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+src/main/resources/
+src/test/
+target/
