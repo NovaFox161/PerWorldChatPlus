@@ -1,0 +1,63 @@
+package com.cloudcraftgaming.perworldchatplus.commands;
+
+import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import com.cloudcraftgaming.perworldchatplus.Main;
+
+/**
+ * Created by: NovaFox161
+ * Website: www.cloudcraftgaming.com
+ * For Project: PerWorldChatPlus
+ *
+ * Just the global chat command class. Nothing important here.
+ */
+public class GlobalChatCommand implements CommandExecutor {
+	public GlobalChatCommand(Main instance) {
+		plugin = instance;
+	}
+	Main plugin;
+	
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (command.getName().equalsIgnoreCase("global") || command.getName().equalsIgnoreCase("GlobalChat")) {
+			String prefix = MessageManager.getPrefix();
+			if (sender instanceof Player) {
+				if (sender.hasPermission("pwcp.global")) {
+					Player player = (Player) sender;
+					if (args.length < 1) {
+						String msgOr = MessageManager.getMessageYml().getString("Command.Global.AddMessage");
+						player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', msgOr));
+					}
+					else if (args.length == 1 || args.length > 1) {
+						String gPrefix = plugin.getConfig().getString("Global.Prefix");
+						String worldName = player.getWorld().getName();
+						String playerName = player.getDisplayName();
+						String format = ChatColor.translateAlternateColorCodes('&', gPrefix) + " " + ChatColor.GOLD + "[" + worldName + "]" + " "
+								+ playerName + ChatColor.RESET;
+						String msg1 = "";
+						for (int i =0; i < args.length; i++) {
+							String arg =args[i] + " ";
+							msg1 = msg1 + arg;
+						}
+						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());
+					}
+				}
+				else {
+					sender.sendMessage(prefix + MessageManager.getNoPermMessage());
+					return false;
+				}
+			}
+			else {
+				sender.sendMessage(prefix + MessageManager.getPlayerOnlyMessage());
+				return false;
+			}
+		}
+		return false;
+	}
+}

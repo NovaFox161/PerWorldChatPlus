@@ -1,0 +1,41 @@
+name: PerWorldChatPlus
+version: 5.0.0
+description: Makes chat per world and handles other chat related things. Also servers as an API for developers.
+author: Shades161
+website: http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/
+
+main: com.cloudcraftgaming.perworldchatplus.Main
+
+commands:
+  perworldchatplus:
+    description: Base command for PerWorldChatPlus.
+  perworldchat:
+    description: Base command for PerWorldChatPlus.
+  pwcp:
+    description: Base command for PerWorldChatPlus.
+  pwc:
+    description: Base command for PerWorldChatPlus.
+  global:
+    description: Short version to make a global chat message.
+  globalchat:
+    description: Command to make a global chat message.
+
+permissions:
+  pwcp.bypass:
+    description: Allows a player to chat globally.
+    default: op
+  pwcp.spy:
+    description: Allows players to see chats from all worlds.
+    default: op
+  pwcp.notify.update:
+    description: Notifies the player of an update for PerWorldChatPlus.
+    default: op
+  pwcp.alert:
+    description: Allows players to set alert words and see messages with them in it.
+    default: op
+  pwcp.global:
+    description: Allows use of the gc or GlobalChat command.
+    default: op
+  pwcp.timedglobal:
+    description: Allows turning on and off Timed Global Chat.
+    default: op
