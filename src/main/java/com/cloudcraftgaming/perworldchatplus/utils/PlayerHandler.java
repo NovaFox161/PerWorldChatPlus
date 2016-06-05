@@ -31,6 +31,23 @@ public class PlayerHandler {
     }
 
     /**
+     * This function checks if the player should be kicked if they have advertised on the server.
+     * @param player The player who is being checked.
+     */
+    public static void doStuffOnAdvertise(final Player player) {
+        if (Main.plugin.getConfig().getString("Chat.Ad.Kick").equalsIgnoreCase("True")) {
+            final String msgOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick");
+
+            Bukkit.getScheduler().runTask(Main.plugin, new Runnable() {
+                @Override
+                public void run() {
+                    player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
+                }
+            });
+        }
+    }
+
+    /**
      * Sends a notice to the player telling them they were mentioned in a chat message.
      * @param player The player that was mentioned.
      * @param sender The sender of the message.

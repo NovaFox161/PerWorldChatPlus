@@ -72,6 +72,7 @@ public class MessageManager {
             en.addDefault("Messages Version", Main.plugin.messageVersion);
 
             en.addDefault("Chat.Swear.Kick", "&4Kicked automatically for swearing!");
+            en.addDefault("Chat.Ad.Kick", "&4Kicked automatically for advertising!");
 
             en.addDefault("Command.Global.AddMessage", "&4You need to add in the message you want to broadcast!");
             en.addDefault("Command.Spy.Enabled", "&2Global Chat Spy enabled! You can now see all messages!");

@@ -45,12 +45,24 @@ public class FileManager {
 			Main.plugin.getConfig().set("SharesList", sharesList);
 
 			Main.plugin.getConfig().addDefault("Chat.Swear.Block", true);
+			Main.plugin.getConfig().addDefault("Chat.Swear.BlockEntireMessage", false);
 			Main.plugin.getConfig().addDefault("Chat.Swear.Replace", "***");
 			Main.plugin.getConfig().addDefault("Chat.Swear.Kick", false);
 			List<String> blockedSwears = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
 			blockedSwears.add("Crap");
 			blockedSwears.add("Shit");
 			Main.plugin.getConfig().set("Chat.Swear.Blocked", blockedSwears);
+			Main.plugin.getConfig().addDefault("Chat.Ad.Block", true);
+			Main.plugin.getConfig().addDefault("Chat.Ad.BlockEntireMessage", false);
+			Main.plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
+			Main.plugin.getConfig().addDefault("Chat.Ad.Kick", false);
+			List<String> blockedAds = Main.plugin.getConfig().getStringList("Chat.Ad.Blocked");
+			blockedAds.add(".com");
+			blockedAds.add(".net");
+			blockedAds.add(".org");
+			blockedAds.add(".gov");
+			blockedAds.add(".io");
+			Main.plugin.getConfig().set("Chat.Ad.Blocked", blockedAds);
 
 
 			Main.plugin.getConfig().options().copyDefaults(true);

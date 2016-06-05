@@ -77,6 +77,7 @@ public class PlayerChatManager {
     public static String determineMessageContents(String originalMessage, Player sender) {
         String newMessage = originalMessage;
         newMessage = filterSwears(newMessage, sender);
+        newMessage = filterAds(newMessage, sender);
         newMessage = removeGlobalBypassString(newMessage);
 
         return newMessage;
@@ -217,14 +218,53 @@ public class PlayerChatManager {
             String replacer = Main.plugin.getConfig().getString("Chat.Swear.Replace");
             List<String> blockedWords = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
             for (String blockedWord : blockedWords) {
-                if (message.toLowerCase().contains(blockedWord.toLowerCase())) {
-                    newMessage = newMessage.replaceAll("(?i)" + blockedWord, replacer);
-                    hasSworn = true;
+                if (newMessage.toLowerCase().contains(blockedWord.toLowerCase())) {
+                    if (Main.plugin.getConfig().getString("Chat.Swear.BlockEntireMessage").equalsIgnoreCase("True")) {
+                        newMessage = replacer;
+                        hasSworn = true;
+                        break;
+                    } else {
+                        newMessage = newMessage.replaceAll("(?i)" + blockedWord, replacer);
+                        hasSworn = true;
+                    }
                 }
             }
         }
         if (hasSworn) {
             PlayerHandler.doStuffOnSwear(sender);
+        }
+        return newMessage;
+    }
+
+    /**
+     * Gets a new message that is cleaned of all blocked ads (except for exempt ads) if enabled (Case insensitive).
+     * This is still in beta so it may not work fully or at all (Sorry).
+     * @param message The original message to be sent (unfiltered).
+     * @param sender The sender of the message (to be used if they did advertise because action may be taken).
+     * @return A new message that is clean of all blocked ads.
+     */
+    public static String filterAds(String message, Player sender) {
+        String newMessage = message;
+        boolean hasAdvertised = false;
+
+        if (Main.plugin.getConfig().getString("Chat.Ad.Block").equalsIgnoreCase("True")) {
+            String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
+            List<String> blockedAds = Main.plugin.getConfig().getStringList("Chat.Ad.Blocked");
+            for (String blockedAd : blockedAds) {
+                if (newMessage.toLowerCase().contains(blockedAd.toLowerCase())) {
+                    if (Main.plugin.getConfig().getString("Chat.Ad.BlockEntireMessage").equalsIgnoreCase("True")) {
+                        newMessage = replacer;
+                        hasAdvertised = true;
+                        break;
+                    } else {
+                        newMessage = newMessage.replaceAll("(?i)" + blockedAd, replacer);
+                        hasAdvertised = true;
+                    }
+                }
+            }
+        }
+        if (hasAdvertised) {
+            PlayerHandler.doStuffOnAdvertise(sender);
         }
         return newMessage;
     }
