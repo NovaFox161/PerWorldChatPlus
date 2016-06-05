@@ -74,7 +74,7 @@ public class PerWorldChat implements CommandExecutor {
 						if (player.hasPermission("pwcp.timedglobal")) {
 							if (Main.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
 								if (Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-									TimedGlobalChatManager.TurnOffTimedGlobal(player);
+									TimedGlobalChatManager.getManager().turnOffTimedGlobal(player);
 								} else {
 									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
 									player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -141,7 +141,7 @@ public class PerWorldChat implements CommandExecutor {
 									String timeString = args[1];
 									try {
 										Integer time = Integer.valueOf(timeString);
-										TimedGlobalChatManager.TurnOnTimedGlobal(player, time);
+										TimedGlobalChatManager.getManager().turnOnTimedGlobal(player, time);
 
 									} catch (NumberFormatException e) {
 										String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
@@ -198,7 +198,7 @@ public class PerWorldChat implements CommandExecutor {
 					if (sender.hasPermission("pwcp.timedglobal")) {
 						if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
 							if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-								TimedGlobalChatManager.TurnOffTimedGlobal(sender);
+								TimedGlobalChatManager.getManager().turnOffTimedGlobal(sender);
 							} else {
 								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
 								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -225,7 +225,7 @@ public class PerWorldChat implements CommandExecutor {
 								String timeString = args[1];
 								try {
 									Integer time = Integer.valueOf(timeString);
-									TimedGlobalChatManager.TurnOnTimedGlobal(sender, time);
+									TimedGlobalChatManager.getManager().turnOnTimedGlobal(sender, time);
 
 								} catch (NumberFormatException e) {
 									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");

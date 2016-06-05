@@ -22,7 +22,6 @@ import java.io.IOException;
 public class Main extends JavaPlugin {
 	public static Main plugin;
 
-	public Integer timedRequest;
 	public String conVersion = "5.0";
 	public Double messageVersion = 2.0;
 	public UpdateChecker updateChecker;
@@ -36,7 +35,6 @@ public class Main extends JavaPlugin {
 	}
 	public void onEnable() {
 		plugin = this;
-		timedRequest = 0;
 
 		//Register listeners
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);

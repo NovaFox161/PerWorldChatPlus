@@ -18,19 +18,36 @@ import java.util.Random;
  * The manager class for Timed Global Chat. This class contains the functions for everything Timed Global chat related.
  */
 public class TimedGlobalChatManager {
+    private int timedRequest = 0;
+
+    private static TimedGlobalChatManager instance;
+
+    private TimedGlobalChatManager() {} //Stop initialization
+
+    /**
+     * Gets the instance of the TimedGlobalChatManager
+     * @return The TimedGlobalChatManager
+     */
+    public static TimedGlobalChatManager getManager() {
+        if (instance == null) {
+            instance = new TimedGlobalChatManager();
+        }
+        return instance;
+    }
+
     /**
      * Turns on Timed Global Chat for the specified amount of time.
      * @param sender sender of the command
      * @param time (int) amount of time for the Timed Global Chat to be on.
      */
-    public static void TurnOnTimedGlobal(final CommandSender sender, Integer time) {
+    public void turnOnTimedGlobal(final CommandSender sender, Integer time) {
         final String prefix = MessageManager.getPrefix();
         BukkitScheduler scheduler = Main.plugin.getServer().getScheduler();
         Main.plugin.getConfig().set("Global.TimedGlobal.On", true);
         Main.plugin.saveConfig();
         Random random = new Random(999999999);
         final Integer requestNumber = random.nextInt();
-        Main.plugin.timedRequest = requestNumber;
+        timedRequest = requestNumber;
         String turnedOnMsgOr = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurnedOn");
         String turnedOnMsg = turnedOnMsgOr.replaceAll("%time%", time.toString());
         sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', turnedOnMsg));
@@ -44,10 +61,10 @@ public class TimedGlobalChatManager {
         scheduler.scheduleSyncDelayedTask(Main.plugin, new Runnable() {
             @Override
             public void run() {
-                if (Main.plugin.timedRequest.equals(requestNumber)) {
+                if (timedRequest == requestNumber) {
                     Main.plugin.getConfig().set("Global.TimedGlobal.On", false);
                     Main.plugin.saveConfig();
-                    Main.plugin.timedRequest = 0;
+                    timedRequest = 0;
                     String offMsg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurningOff");
                     sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', offMsg));
                     if (Main.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
@@ -65,11 +82,11 @@ public class TimedGlobalChatManager {
      * Turns off Timed Global Chat.
      * @param sender the sender of the command.
      */
-    public static void TurnOffTimedGlobal(CommandSender sender) {
+    public void turnOffTimedGlobal(CommandSender sender) {
         String prefix = MessageManager.getPrefix();
         Main.plugin.getConfig().set("Global.TimedGlobal.On", false);
         Main.plugin.saveConfig();
-        Main.plugin.timedRequest = 0;
+        timedRequest = 0;
         String offMsg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurnedOff");
         sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', offMsg));
         if (Main.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
