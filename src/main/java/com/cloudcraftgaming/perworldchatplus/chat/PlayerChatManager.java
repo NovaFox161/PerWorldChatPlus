@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Created by Nova Fox on 1/30/2016.
@@ -116,9 +115,8 @@ public class PlayerChatManager {
      */
     public static Set<Player> getAllAlertReceivers(Set<Player> recipients, String message) {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            UUID pId = p.getUniqueId();
-            if (Main.plugin.alerts.contains("Alerts." + pId)) {
-                for (String word : Main.plugin.alerts.getStringList("Alerts." + pId)) {
+            if (PlayerDataManager.getPlayerDataYml(p).contains("Alerts")) {
+                for (String word : PlayerDataManager.getPlayerDataYml(p).getStringList("Alerts")) {
                     if (message.contains(word)) {
                         if (!(recipients.contains(p))) {
                             recipients.add(p);
@@ -351,9 +349,8 @@ public class PlayerChatManager {
      * @return True if the player has the word as an alert word, else false.
      */
     public static boolean hasAlertWord(Player player, String word) {
-        UUID id = player.getUniqueId();
-        if (Main.plugin.alerts.contains("Alerts." + id)) {
-            return Main.plugin.alerts.getStringList("Alerts." + id).contains(word);
+        if (PlayerDataManager.getPlayerDataYml(player).contains("Alerts")) {
+            return PlayerDataManager.getPlayerDataYml(player).getStringList("Alerts").contains(word);
         }
         return false;
     }

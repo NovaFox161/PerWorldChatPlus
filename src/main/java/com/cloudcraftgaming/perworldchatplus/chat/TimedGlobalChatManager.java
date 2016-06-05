@@ -17,7 +17,7 @@ import java.util.Random;
  *
  * The manager class for Timed Global Chat. This class contains the functions for everything Timed Global chat related.
  */
-public class TimedGlobalManager {
+public class TimedGlobalChatManager {
     /**
      * Turns on Timed Global Chat for the specified amount of time.
      * @param sender sender of the command

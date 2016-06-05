@@ -20,7 +20,12 @@ public class UpdateChecker {
   private URL filesFeed;
   private String version;
   private String link;
-  
+
+  /**
+   * Constructor for UpdateChecker. This creates a new update checker object that will check for updates.
+   * @param plugin Reference to the plugin
+   * @param url Where to check for updates (Currently only supports dev bukkit rss feeds).
+     */
   public UpdateChecker(Main plugin, String url) {
     this.plugin = plugin;
     try {
@@ -52,11 +57,19 @@ public class UpdateChecker {
     }
     return false;
   }
-  
+
+  /**
+   * Gets the version of the newest update.
+   * @return The version of the newest update.
+     */
   public String getVersion() {
     return this.version;
   }
-  
+
+  /**
+   * Gets the link to where the new update can be downloaded.
+   * @return The link to download the new update.
+     */
   public String getLink() {
     return this.link;
   }

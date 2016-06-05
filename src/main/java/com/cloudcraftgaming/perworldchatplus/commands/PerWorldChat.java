@@ -4,7 +4,7 @@ import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.DataSetter;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
-import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalManager;
+import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalChatManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -74,7 +74,7 @@ public class PerWorldChat implements CommandExecutor {
 						if (player.hasPermission("pwcp.timedglobal")) {
 							if (Main.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
 								if (Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-									TimedGlobalManager.TurnOffTimedGlobal(player);
+									TimedGlobalChatManager.TurnOffTimedGlobal(player);
 								} else {
 									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
 									player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -141,7 +141,7 @@ public class PerWorldChat implements CommandExecutor {
 									String timeString = args[1];
 									try {
 										Integer time = Integer.valueOf(timeString);
-										TimedGlobalManager.TurnOnTimedGlobal(player, time);
+										TimedGlobalChatManager.TurnOnTimedGlobal(player, time);
 
 									} catch (NumberFormatException e) {
 										String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
@@ -198,7 +198,7 @@ public class PerWorldChat implements CommandExecutor {
 					if (sender.hasPermission("pwcp.timedglobal")) {
 						if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
 							if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-								TimedGlobalManager.TurnOffTimedGlobal(sender);
+								TimedGlobalChatManager.TurnOffTimedGlobal(sender);
 							} else {
 								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
 								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -225,7 +225,7 @@ public class PerWorldChat implements CommandExecutor {
 								String timeString = args[1];
 								try {
 									Integer time = Integer.valueOf(timeString);
-									TimedGlobalManager.TurnOnTimedGlobal(sender, time);
+									TimedGlobalChatManager.TurnOnTimedGlobal(sender, time);
 
 								} catch (NumberFormatException e) {
 									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");

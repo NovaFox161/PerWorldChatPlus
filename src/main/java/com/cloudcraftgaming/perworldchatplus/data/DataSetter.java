@@ -54,10 +54,11 @@ public class DataSetter {
      * @param word The word to add to the player's alert list.
      */
     public static void addAlertWord(Player player, String word) {
-        List<String> list = Main.plugin.alerts.getStringList("Alerts." + player.getUniqueId());
+        YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+        List<String> list = data.getStringList("Alerts");
         list.add(word);
-        Main.plugin.alerts.set("Alerts." + player.getUniqueId(), list);
-        Main.plugin.saveCustomConfig(Main.plugin.alerts, Main.plugin.alertFile);
+        data.set("Alerts", list);
+        PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
     }
 
     /**
@@ -67,10 +68,11 @@ public class DataSetter {
      */
     public static void removeAlertWord(Player player, String word) {
         if (PlayerChatManager.hasAlertWord(player, word)) {
-            List<String> list = Main.plugin.alerts.getStringList("Alerts." + player.getUniqueId());
+            YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+            List<String> list = data.getStringList("Alerts." + player.getUniqueId());
             list.remove(word);
-            Main.plugin.alerts.set("Alerts." + player.getUniqueId(), list);
-            Main.plugin.saveCustomConfig(Main.plugin.alerts, Main.plugin.alertFile);
+            data.set("Alerts", list);
+            Main.plugin.saveCustomConfig(data, PlayerDataManager.getPlayerDataFile(player));
         }
     }
 }
