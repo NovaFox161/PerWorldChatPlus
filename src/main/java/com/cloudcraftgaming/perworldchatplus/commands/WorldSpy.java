@@ -1,6 +1,5 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import org.bukkit.ChatColor;
@@ -28,8 +27,8 @@ public class WorldSpy {
                 PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
                 String msgOr = MessageManager.getMessageYml().getString("Command.WorldSpy.TurnOn");
                 String worldListOr = "";
-                if (Main.plugin.worldSpyYml.contains("Players." + uuid)) {
-                    worldListOr = Main.plugin.worldSpyYml.getString("Players." + uuid);
+                if (PlayerDataManager.getPlayerDataYml(player).contains("WorldSpies")) {
+                    worldListOr = PlayerDataManager.getPlayerDataYml(player).getString("WorldSpies");
                 }
                 String msg = msgOr.replaceAll("%worlds%", worldListOr.replace("[", "").replace("]", ""));
                 player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
@@ -49,19 +48,20 @@ public class WorldSpy {
                 player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
             }
         } else {
-            List<String> list = Main.plugin.worldSpyYml.getStringList("Players." + uuid);
+            YamlConfiguration playerData =PlayerDataManager.getPlayerDataYml(player);
+            List<String> list = playerData.getStringList("WorldSpies");
             if (player.hasPermission("pwcp.worldspy." + type)) {
                 if (list.contains(type.toLowerCase())) {
                     list.remove(type.toLowerCase());
-                    Main.plugin.worldSpyYml.set("Players." + uuid, list);
-                    Main.plugin.saveCustomConfig(Main.plugin.worldSpyYml, Main.plugin.worldSpyFile);
+                    playerData.set("WorldSpies", list);
+                    PlayerDataManager.savePlayerData(playerData, PlayerDataManager.getPlayerDataFile(player));
                     String msgOr = MessageManager.getMessageYml().getString("Command.WorldSpy.RemoveWorld");
                     String msg = msgOr.replaceAll("%world%", type);
                     player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
                 } else {
                     list.add(type.toLowerCase());
-                    Main.plugin.worldSpyYml.set("Players." + uuid, list);
-                    Main.plugin.saveCustomConfig(Main.plugin.worldSpyYml, Main.plugin.worldSpyFile);
+                    playerData.set("WorldSpies", list);
+                    PlayerDataManager.savePlayerData(playerData, PlayerDataManager.getPlayerDataFile(player));
                     String msgOr = MessageManager.getMessageYml().getString("Command.WorldSpy.AddWorld");
                     String msg = msgOr.replaceAll("%world%", type);
                     player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));

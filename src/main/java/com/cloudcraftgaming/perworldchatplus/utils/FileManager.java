@@ -89,15 +89,6 @@ public class FileManager {
 			Main.plugin.shares.options().copyDefaults(true);
 			Main.plugin.saveCustomConfig(Main.plugin.shares, Main.plugin.sharesFile);
 		}
-		if (!(Main.plugin.worldSpyFile.exists())) {
-			Main.plugin.getLogger().info("Generating worldSpy.yml in folder /PerWorldChatPlus/Data/");
-			Main.plugin.worldSpyYml.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
-			Main.plugin.worldSpyYml.options().copyDefaults(true);
-			Main.plugin.saveCustomConfig(Main.plugin.worldSpyYml, Main.plugin.worldSpyFile);
-
-			Main.plugin.worldSpyYml.options().copyDefaults(true);
-			Main.plugin.saveCustomConfig(Main.plugin.worldSpyYml, Main.plugin.worldSpyFile);
-		}
 	}
 
 	/**

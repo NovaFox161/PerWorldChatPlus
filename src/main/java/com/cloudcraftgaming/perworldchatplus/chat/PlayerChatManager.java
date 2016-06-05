@@ -322,12 +322,8 @@ public class PlayerChatManager {
      */
     public static boolean isSpyingOnWorld(Player player, String worldName) {
         if (hasWorldChatSpyEnabled(player)) {
-            if (Main.plugin.worldSpyYml.contains("Players." + player.getUniqueId())) {
-                for (String spiedWorld : Main.plugin.worldSpyYml.getStringList("Players." + player.getUniqueId())) {
-                    if (worldName.equalsIgnoreCase(spiedWorld)) {
-                        return true;
-                    }
-                }
+            if (PlayerDataManager.getPlayerDataYml(player).contains("WorldSpies")) {
+                return PlayerDataManager.getPlayerDataYml(player).getStringList("WorldSpies").contains(worldName.toLowerCase());
             }
         }
         return false;
