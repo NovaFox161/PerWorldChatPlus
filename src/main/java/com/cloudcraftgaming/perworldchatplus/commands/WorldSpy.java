@@ -1,8 +1,10 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -20,9 +22,10 @@ public class WorldSpy {
     protected static void worldSpy(Player player, String type) {
         UUID uuid = player.getUniqueId();
         if (type.equalsIgnoreCase("on")) {
-            if (Main.plugin.data.getString("Players." + uuid + ".WorldSpy").equalsIgnoreCase("False")) {
-                Main.plugin.data.set("Players." + uuid + ".WorldSpy", true);
-                Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
+            if (PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("False")) {
+                YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+                data.set("WorldSpy", true);
+                PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
                 String msgOr = MessageManager.getMessageYml().getString("Command.WorldSpy.TurnOn");
                 String worldListOr = "";
                 if (Main.plugin.worldSpyYml.contains("Players." + uuid)) {
@@ -35,9 +38,10 @@ public class WorldSpy {
                 player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
             }
         } else if (type.equalsIgnoreCase("off")) {
-            if (Main.plugin.data.getString("Players." + uuid + ".WorldSpy").equalsIgnoreCase("True")) {
-                Main.plugin.data.set("Players." + uuid + ".WorldSpy", false);
-                Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
+            if (PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("True")) {
+                YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+                data.set("WorldSpy", false);
+                PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
                 String msg = MessageManager.getMessageYml().getString("Command.WorldSpy.TurnOff");
                 player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
             } else {

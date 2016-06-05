@@ -2,6 +2,7 @@ package com.cloudcraftgaming.perworldchatplus.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
+import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,7 +37,7 @@ public class ChatListener implements Listener {
 				//Send message
 				event.setFormat(prefix + event.getFormat());
 				event.setMessage(message);
-			} else if (plugin.data.getString("Players." + player.getUniqueId() + ".Bypass").equalsIgnoreCase("True")
+			} else if (PlayerDataManager.getPlayerDataYml(player).getString("Bypass").equalsIgnoreCase("True")
 					|| plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")
 					|| plugin.getConfig().getString("Global.Always Global").equalsIgnoreCase("True")) {
 

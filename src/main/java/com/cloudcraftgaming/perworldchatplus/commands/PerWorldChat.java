@@ -1,7 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
-import com.cloudcraftgaming.perworldchatplus.utils.DataSetter;
+import com.cloudcraftgaming.perworldchatplus.data.DataSetter;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
 import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalManager;

@@ -1,6 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -11,8 +12,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.UUID;
-
 public class JoinListener implements Listener {
 	public JoinListener(Main instance) {
 		plugin = instance;
@@ -20,22 +19,11 @@ public class JoinListener implements Listener {
 	Main plugin;
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoinUpdateFiles(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
-		UUID Id = player.getUniqueId();
-		if (!(plugin.data.contains("Players." + Id + ".Spy"))) {
-			plugin.data.set("Players." + Id + ".Spy", false);
-			plugin.saveCustomConfig(plugin.data, plugin.dataFile);
+		if (PlayerDataManager.hasDataFile(event.getPlayer())) {
+			PlayerDataManager.updatePlayerDataFile(event.getPlayer());
+		} else {
+			PlayerDataManager.createPlayerDataFile(event.getPlayer());
 		}
-		if (!(plugin.data.contains("Players." + Id + ".Bypass"))) {
-			plugin.data.set("Players." + Id + ".Bypass", false);
-			plugin.saveCustomConfig(plugin.data, plugin.dataFile);
-		}
-		if (!(plugin.data.contains("Players." + Id + ".WorldSpy"))) {
-			plugin.data.set("Players." + Id + ".WorldSpy", false);
-			plugin.saveCustomConfig(plugin.data, plugin.dataFile);
-		}
-		plugin.data.set("Players." + Id + ".ChatMute", false);
-		plugin.saveCustomConfig(plugin.data, plugin.dataFile);
 	}
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void updateCheckOnJoin(PlayerJoinEvent event) {

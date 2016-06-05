@@ -1,6 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.chat;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.ListManager;
 import com.cloudcraftgaming.perworldchatplus.utils.PlayerHandler;
 import org.bukkit.Bukkit;
@@ -293,11 +294,7 @@ public class PlayerChatManager {
      * @return True if the player has their chat muted, else false.
      */
     public static boolean hasChatMuted(Player player) {
-        UUID id = player.getUniqueId();
-        if (Main.plugin.data.contains("Players." + id + ".ChatMute")) {
-            return Main.plugin.data.getString("Players." + id + ".ChatMute").equalsIgnoreCase("True");
-        }
-        return false;
+        return PlayerDataManager.getPlayerDataYml(player).getString("ChatMute").equalsIgnoreCase("True");
     }
 
     /**
@@ -306,11 +303,7 @@ public class PlayerChatManager {
      * @return True if the player is currently spying on chat, else false.
      */
     public static boolean hasGlobalChatSpyEnabled(Player player) {
-        UUID id = player.getUniqueId();
-        if (Main.plugin.data.contains("Players." + id + ".Spy")) {
-            return Main.plugin.data.getString("Players." + id + ".Spy").equalsIgnoreCase("True");
-        }
-        return false;
+        return PlayerDataManager.getPlayerDataYml(player).getString("Spy").equalsIgnoreCase("True");
     }
 
     /**
@@ -320,7 +313,7 @@ public class PlayerChatManager {
      * @return True if the player currently has World Chat Spy enabled, else false.
      */
     public static boolean hasWorldChatSpyEnabled(Player player) {
-        return Main.plugin.data.getString("Players." + player.getUniqueId() + ".WorldSpy").equalsIgnoreCase("True");
+        return PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("True");
     }
 
     /**
@@ -348,11 +341,7 @@ public class PlayerChatManager {
      * @return True if the player currently has Global Chat Bypass enabled, else false.
      */
     public static boolean hasGlobalBypassEnabled(Player player) {
-        UUID id = player.getUniqueId();
-        if (Main.plugin.data.contains("Players." + id + ".Bypass")) {
-            return Main.plugin.data.getString("Players." + id + ".Bypass").equalsIgnoreCase("True");
-        }
-        return false;
+            return PlayerDataManager.getPlayerDataYml(player).getString("Bypass").equalsIgnoreCase("True");
     }
 
     /**

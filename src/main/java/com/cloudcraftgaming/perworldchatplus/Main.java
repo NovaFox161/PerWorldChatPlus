@@ -28,8 +28,6 @@ public class Main extends JavaPlugin {
 	public UpdateChecker updateChecker;
 	public File sharesFile = new File(this.getDataFolder() + "/shares.yml");
 	public FileConfiguration shares = (YamlConfiguration.loadConfiguration(sharesFile));
-	public File dataFile = new File(this.getDataFolder() + "/Data/data.yml");
-	public FileConfiguration data = (YamlConfiguration.loadConfiguration(dataFile));
 	public File alertFile = new File(this.getDataFolder() + "/Data/alerts.yml");
 	public FileConfiguration alerts = (YamlConfiguration.loadConfiguration(alertFile));
 	public File worldSpyFile = new File(this.getDataFolder() + "/Data/worldSpy.yml");

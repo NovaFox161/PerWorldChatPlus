@@ -1,7 +1,8 @@
-package com.cloudcraftgaming.perworldchatplus.utils;
+package com.cloudcraftgaming.perworldchatplus.data;
 
 import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
 import com.cloudcraftgaming.perworldchatplus.Main;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -20,8 +21,9 @@ public class DataSetter {
      * @param mute True or False if should have chat muted.
      */
     public static void setChatMute(Player player, boolean mute) {
-        Main.plugin.data.set("Players." + player.getUniqueId() + ".ChatMute", mute);
-        Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
+        YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+        data.set("ChatMute", mute);
+        PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
     }
 
     /**
@@ -30,8 +32,9 @@ public class DataSetter {
      * @param spy True or False if should have shat spy enabled.
      */
     public static void setChatSpy(Player player, boolean spy) {
-        Main.plugin.data.set("Players." + player.getUniqueId() + ".Spy", spy);
-        Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
+        YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+        data.set("Spy", spy);
+        PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
     }
 
     /**
@@ -40,8 +43,9 @@ public class DataSetter {
      * @param bypass True or False if should have Global Chat Bypass enabled.
      */
     public static void setGlobalBypass(Player player, boolean bypass) {
-        Main.plugin.data.set("Players." + player.getUniqueId() + ".Bypass", bypass);
-        Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
+        YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
+        data.set("Bypass", bypass);
+        PlayerDataManager.savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
     }
 
     /**

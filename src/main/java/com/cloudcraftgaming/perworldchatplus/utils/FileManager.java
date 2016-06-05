@@ -89,15 +89,6 @@ public class FileManager {
 			Main.plugin.shares.options().copyDefaults(true);
 			Main.plugin.saveCustomConfig(Main.plugin.shares, Main.plugin.sharesFile);
 		}
-		if (!(Main.plugin.dataFile.exists())) {
-			Main.plugin.getLogger().info("Generating data.yml in folder /PerWorldChatPlus/");
-			Main.plugin.data.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
-			Main.plugin.data.options().copyDefaults(true);
-			Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
-			
-			Main.plugin.data.options().copyDefaults(true);
-			Main.plugin.saveCustomConfig(Main.plugin.data, Main.plugin.dataFile);
-		}
 		if (!(Main.plugin.alertFile.exists())) {
 			Main.plugin.getLogger().info("Generating alerts.yml in folder /PerWorldChatPlus/Data/");
 			Main.plugin.alerts.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
