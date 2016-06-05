@@ -1,0 +1,1 @@
+PerWorldChatPlus is a Bukkit plugin that makes chat per world, handles various other chat functions and servers as an API for developers.
