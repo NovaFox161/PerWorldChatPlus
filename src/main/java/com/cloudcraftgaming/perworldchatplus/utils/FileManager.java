@@ -13,6 +13,9 @@ import java.util.List;
  * This class handles several file related functions and methods.
  */
 public class FileManager {
+	protected static String conVersion = "5.0";
+	protected static Double messageVersion = 2.0;
+
 	/**
 	 * Creates the default config.yml file (Really only used on startup by PerWorldChatPlus).
 	 */
@@ -22,7 +25,7 @@ public class FileManager {
 			Main.plugin.getLogger().info("Generating config.yml in folder /PerWorldChatPlus/");
 			
 			Main.plugin.getConfig().addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
-			Main.plugin.getConfig().addDefault("Config Version", Main.plugin.conVersion);
+			Main.plugin.getConfig().addDefault("Config Version", conVersion);
 			Main.plugin.getConfig().addDefault("Check for Updates", true);
 			Main.plugin.getConfig().addDefault("Lang", "En");
 			Main.plugin.getConfig().addDefault("Announce Dev Join", true);
@@ -96,12 +99,12 @@ public class FileManager {
 	 * If they are out of date, this will automatically disable the plugin.
 	 */
 	public static void checkFileVersion() {
-		if (!(Main.plugin.getConfig().getString("Config Version").equalsIgnoreCase(Main.plugin.conVersion))) {
+		if (!(Main.plugin.getConfig().getString("Config Version").equalsIgnoreCase(conVersion))) {
 			Main.plugin.getLogger().severe("Config.yml outdated! Plugin will not work properly! "
 					+ "Delete the file and restart the server to update it!");
 			Main.plugin.getLogger().info("Shutting down plugin to prevent further errors....");
 			Main.plugin.getServer().getPluginManager().disablePlugin(Main.plugin);
-		} else if (!(MessageManager.getMessageYml().getDouble("Messages Version") == Main.plugin.messageVersion)) {
+		} else if (!(MessageManager.getMessageYml().getDouble("Messages Version") == messageVersion)) {
 			Main.plugin.getLogger().severe("Your messages files are outdated! Plugin will not work properly! "
 					+ "Delete the messages folder and restart the server to update it!");
 			Main.plugin.getLogger().info("Shutting down plugin to prevent further errors....");

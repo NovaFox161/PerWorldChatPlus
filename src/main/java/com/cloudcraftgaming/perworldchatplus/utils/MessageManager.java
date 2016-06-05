@@ -69,7 +69,7 @@ public class MessageManager {
             Main.plugin.getLogger().info("Generating En.yml messages file...");
             YamlConfiguration en = YamlConfiguration.loadConfiguration(enFile);
             en.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
-            en.addDefault("Messages Version", Main.plugin.messageVersion);
+            en.addDefault("Messages Version", FileManager.messageVersion);
 
             en.addDefault("Chat.Swear.Kick", "&4Kicked automatically for swearing!");
             en.addDefault("Chat.Ad.Kick", "&4Kicked automatically for advertising!");

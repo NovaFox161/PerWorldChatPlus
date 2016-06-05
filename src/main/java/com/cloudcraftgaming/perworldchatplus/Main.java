@@ -22,8 +22,6 @@ import java.io.IOException;
 public class Main extends JavaPlugin {
 	public static Main plugin;
 
-	public String conVersion = "5.0";
-	public Double messageVersion = 2.0;
 	public UpdateChecker updateChecker;
 	public File sharesFile = new File(this.getDataFolder() + "/shares.yml");
 	public FileConfiguration shares = (YamlConfiguration.loadConfiguration(sharesFile));
