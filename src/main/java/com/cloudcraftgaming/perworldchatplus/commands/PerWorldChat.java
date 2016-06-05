@@ -92,14 +92,18 @@ public class PerWorldChat implements CommandExecutor {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.TooFew");
 						player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
 					} else if (type.equalsIgnoreCase("mute")) {
-						if (PlayerChatManager.hasChatMuted(player)) {
-							DataSetter.setChatMute(player, false);
-							String msg = MessageManager.getMessageYml().getString("Command.Mute.Disable");
-							player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
+						if (player.hasPermission("pwcp.mute")) {
+							if (PlayerChatManager.hasChatMuted(player)) {
+								DataSetter.setChatMute(player, false);
+								String msg = MessageManager.getMessageYml().getString("Command.Mute.Disable");
+								player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
+							} else {
+								DataSetter.setChatMute(player, true);
+								String msg = MessageManager.getMessageYml().getString("Command.Mute.Enable");
+								player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
+							}
 						} else {
-							DataSetter.setChatMute(player, true);
-							String msg = MessageManager.getMessageYml().getString("Command.Mute.Enable");
-							player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
+							player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
 						}
 					} else {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
