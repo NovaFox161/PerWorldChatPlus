@@ -121,17 +121,10 @@ public class ChatMessage {
      * @return True if the chat message should be global, else false.
      */
     public static boolean shouldBeGlobal(String message, Player sender) {
-        if (Main.plugin.getConfig().getString("Global.Always Global").equalsIgnoreCase("True")) {
-            return true;
-        } else if (Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-            return true;
-        } else if (PlayerDataManager.hasGlobalBypassEnabled(sender)) {
-            return true;
-        } else if (message.contains(Main.plugin.getConfig().getString("Global.Override")) && sender.hasPermission("pwcp.bypass")) {
-            return true;
-        } else {
-            return false;
-        }
+        return Main.plugin.getConfig().getString("Global.Always Global").equalsIgnoreCase("True")
+                || Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")
+                || PlayerDataManager.hasGlobalBypassEnabled(sender)
+                || (message.contains(Main.plugin.getConfig().getString("Global.Override")) && sender.hasPermission("pwcp.bypass"));
     }
     /**
      * Checks if the player's name was mentioned in the chat message (Only if requirements were met).

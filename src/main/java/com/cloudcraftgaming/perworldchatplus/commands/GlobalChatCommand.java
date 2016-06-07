@@ -41,8 +41,8 @@ public class GlobalChatCommand implements CommandExecutor {
 						String format = ChatColor.translateAlternateColorCodes('&', gPrefix) + " " + ChatColor.GOLD + "[" + worldName + "]" + " "
 								+ playerName + ChatColor.RESET;
 						String msg1 = "";
-						for (int i =0; i < args.length; i++) {
-							String arg =args[i] + " ";
+						for (String arg : args) {
+							arg = arg + " ";
 							msg1 = msg1 + arg;
 						}
 						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());

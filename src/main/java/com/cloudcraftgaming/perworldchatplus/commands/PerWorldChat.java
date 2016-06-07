@@ -1,7 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
-import com.cloudcraftgaming.perworldchatplus.data.DataSetter;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalChatManager;
@@ -40,11 +39,11 @@ public class PerWorldChat implements CommandExecutor {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
 							if (PlayerDataManager.hasGlobalChatSpyEnabled(player)) {
-								DataSetter.setChatSpy(player, false);
+								PlayerDataManager.setChatSpy(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Spy.Disabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							} else {
-								DataSetter.setChatSpy(player, true);
+								PlayerDataManager.setChatSpy(player, true);
 								String msg = MessageManager.getMessageYml().getString("Command.Spy.Enabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							}
@@ -54,11 +53,11 @@ public class PerWorldChat implements CommandExecutor {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
 							if (PlayerDataManager.hasGlobalBypassEnabled(player)) {
-								DataSetter.setGlobalBypass(player, false);
+								PlayerDataManager.setGlobalBypass(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Bypass.Disabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							} else {
-								DataSetter.setGlobalBypass(player, true);
+								PlayerDataManager.setGlobalBypass(player, true);
 								String msg = MessageManager.getMessageYml().getString("Command.Bypass.Enabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							}
@@ -94,11 +93,11 @@ public class PerWorldChat implements CommandExecutor {
 					} else if (type.equalsIgnoreCase("mute")) {
 						if (player.hasPermission("pwcp.mute")) {
 							if (PlayerDataManager.hasChatMuted(player)) {
-								DataSetter.setChatMute(player, false);
+								PlayerDataManager.setChatMute(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Mute.Disable");
 								player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
 							} else {
-								DataSetter.setChatMute(player, true);
+								PlayerDataManager.setChatMute(player, true);
 								String msg = MessageManager.getMessageYml().getString("Command.Mute.Enable");
 								player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
 							}
@@ -117,12 +116,12 @@ public class PerWorldChat implements CommandExecutor {
 						} else {
 							String word = args[1];
 							if (PlayerDataManager.hasAlertWord(player, word)) {
-								DataSetter.removeAlertWord(player, word);
+								PlayerDataManager.removeAlertWord(player, word);
 								String msgOr = MessageManager.getMessageYml().getString("Command.Alert.Removed");
 								String msg = msgOr.replaceAll("%word%", word);
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							} else {
-								DataSetter.addAlertWord(player, word);
+								PlayerDataManager.addAlertWord(player, word);
 								String msgOr = MessageManager.getMessageYml().getString("Command.Alert.Added");
 								String msg = msgOr.replaceAll("%word%", word);
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));

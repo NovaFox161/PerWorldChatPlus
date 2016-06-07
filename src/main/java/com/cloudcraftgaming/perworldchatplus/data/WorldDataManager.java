@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Nova Fox on 6/5/2016.
@@ -68,7 +69,11 @@ public class WorldDataManager {
      * @param dataFile The world data file to save.
      */
     public static void saveWorldDataFile(YamlConfiguration dataYml, File dataFile) {
-        Main.plugin.saveCustomConfig(dataYml, dataFile);
+        try {
+            dataYml.save(dataFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     //Getters

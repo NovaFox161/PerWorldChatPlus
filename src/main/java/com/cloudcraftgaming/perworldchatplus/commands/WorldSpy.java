@@ -7,7 +7,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by Nova Fox on 2/1/2016.
@@ -19,7 +18,6 @@ import java.util.UUID;
  */
 public class WorldSpy {
     protected static void worldSpy(Player player, String type) {
-        UUID uuid = player.getUniqueId();
         if (type.equalsIgnoreCase("on")) {
             if (PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("False")) {
                 YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
