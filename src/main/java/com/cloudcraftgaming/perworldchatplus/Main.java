@@ -1,5 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus;
 
+import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.commands.GlobalChatCommand;
 import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChat;
 import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
@@ -7,6 +8,8 @@ import com.cloudcraftgaming.perworldchatplus.listeners.JoinListener;
 import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,11 +37,10 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 
-		//Register listeners
+		//Register things
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
-		//Register commands.
 		getCommand("perworldchatplus").setExecutor(new PerWorldChat(this));
 		getCommand("perworldchat").setExecutor(new PerWorldChat(this));
 		getCommand("pwcp").setExecutor(new PerWorldChat(this));
@@ -46,21 +48,21 @@ public class Main extends JavaPlugin {
 		getCommand("globalchat").setExecutor(new GlobalChatCommand(this));
 		getCommand("global").setExecutor(new GlobalChatCommand(this));
 
-
-		//Create files
+		//Do file stuff
 		FileManager.createConfig();
 		FileManager.createFiles();
 		MessageManager.createEnglishMessagesFile();
 
-		//Check file versions
 		FileManager.checkFileVersion();
 
 		//Make sure timed global didn't stay on somehow.
 		getConfig().set("Global.TimedGlobal.On", false);
 		saveConfig();
-		
-		 //Check for plugin updates
+
 		checkUpdatesOnStart();
+
+		//Do some other stuff
+		generateWorldDataFilesOnStart();
 	}
 	private void checkUpdatesOnStart() {
 		if (getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
@@ -74,6 +76,17 @@ public class Main extends JavaPlugin {
 				getLogger().info("No updates found, will check again later.");
 			}
 		}
+	}
+
+	private void generateWorldDataFilesOnStart() {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			@Override
+			public void run() {
+				for (World world : Bukkit.getWorlds()) {
+					WorldDataManager.createWorldDataFile(world.getName());
+				}
+			}
+		}, 20L * 2);
 	}
 
 

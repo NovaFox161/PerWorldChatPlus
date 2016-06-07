@@ -2,8 +2,8 @@ package com.cloudcraftgaming.perworldchatplus.commands;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.DataSetter;
+import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
 import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalChatManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -39,7 +39,7 @@ public class PerWorldChat implements CommandExecutor {
 						if (!(player.hasPermission("pwcp.spy"))) {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
-							if (PlayerChatManager.hasGlobalChatSpyEnabled(player)) {
+							if (PlayerDataManager.hasGlobalChatSpyEnabled(player)) {
 								DataSetter.setChatSpy(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Spy.Disabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -53,7 +53,7 @@ public class PerWorldChat implements CommandExecutor {
 						if (!(player.hasPermission("pwcp.bypass"))) {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
-							if (PlayerChatManager.hasGlobalBypassEnabled(player)) {
+							if (PlayerDataManager.hasGlobalBypassEnabled(player)) {
 								DataSetter.setGlobalBypass(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Bypass.Disabled");
 								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -93,7 +93,7 @@ public class PerWorldChat implements CommandExecutor {
 						player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
 					} else if (type.equalsIgnoreCase("mute")) {
 						if (player.hasPermission("pwcp.mute")) {
-							if (PlayerChatManager.hasChatMuted(player)) {
+							if (PlayerDataManager.hasChatMuted(player)) {
 								DataSetter.setChatMute(player, false);
 								String msg = MessageManager.getMessageYml().getString("Command.Mute.Disable");
 								player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
@@ -116,7 +116,7 @@ public class PerWorldChat implements CommandExecutor {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
 							String word = args[1];
-							if (PlayerChatManager.hasAlertWord(player, word)) {
+							if (PlayerDataManager.hasAlertWord(player, word)) {
 								DataSetter.removeAlertWord(player, word);
 								String msgOr = MessageManager.getMessageYml().getString("Command.Alert.Removed");
 								String msg = msgOr.replaceAll("%word%", word);

@@ -1,6 +1,5 @@
 package com.cloudcraftgaming.perworldchatplus.data;
 
-import com.cloudcraftgaming.perworldchatplus.chat.PlayerChatManager;
 import com.cloudcraftgaming.perworldchatplus.Main;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -67,7 +66,7 @@ public class DataSetter {
      * @param word The word to remove from the player's alert list.
      */
     public static void removeAlertWord(Player player, String word) {
-        if (PlayerChatManager.hasAlertWord(player, word)) {
+        if (PlayerDataManager.hasAlertWord(player, word)) {
             YamlConfiguration data = PlayerDataManager.getPlayerDataYml(player);
             List<String> list = data.getStringList("Alerts." + player.getUniqueId());
             list.remove(word);

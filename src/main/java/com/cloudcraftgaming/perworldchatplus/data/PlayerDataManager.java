@@ -39,6 +39,11 @@ public class PlayerDataManager {
             Main.plugin.saveCustomConfig(data, file);
         }
     }
+
+    /**
+     * Updates the specified player's data file.
+     * @param player the player whose data file is to be updated.
+     */
     public static void updatePlayerDataFile(Player player) {
         YamlConfiguration data = getPlayerDataYml(player);
         if (!data.getString("Name").equals(player.getName())) {
@@ -89,5 +94,65 @@ public class PlayerDataManager {
     public static boolean hasDataFile(Player player) {
         File file = new File(Main.plugin.getDataFolder() + "/Data/PlayerData/" + player.getUniqueId() + ".yml");
         return file.exists();
+    }
+
+    /**
+     * Checks if the player currently has Global Chat Bypass enabled. (Sending all chat messages globally by default).
+     * @param player The player to check.
+     * @return True if the player currently has Global Chat Bypass enabled, else false.
+     */
+    public static boolean hasGlobalBypassEnabled(Player player) {
+        return PlayerDataManager.getPlayerDataYml(player).getString("Bypass").equalsIgnoreCase("True");
+    }
+    /**
+     * Checks if the player is currently spying on all chat (seeing chat for all worlds, ignoring sharing).
+     * @param player The player to check.
+     * @return True if the player is currently spying on chat, else false.
+     */
+    public static boolean hasGlobalChatSpyEnabled(Player player) {
+        return PlayerDataManager.getPlayerDataYml(player).getString("Spy").equalsIgnoreCase("True");
+    }
+    /**
+     * Checks if the specified player has WorldChatSpy Enabled.
+     * Check PlayerChatManager#isSpyingOnWorld(Player player, String worldName) to see if they are spying on the particular world.
+     * @param player The player to check.
+     * @return True if the player currently has World Chat Spy enabled, else false.
+     */
+    public static boolean hasWorldChatSpyEnabled(Player player) {
+        return PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("True");
+    }
+    /**
+     * Checks if the specified player is currently spying on the specific world.
+     * @param player The player to check.
+     * @param worldName The name of the world the chat message came from.
+     * @return True if the player is currently spying on that world, else false.
+     */
+    public static boolean isSpyingOnWorld(Player player, String worldName) {
+        if (hasWorldChatSpyEnabled(player)) {
+            if (PlayerDataManager.getPlayerDataYml(player).contains("WorldSpies")) {
+                return PlayerDataManager.getPlayerDataYml(player).getStringList("WorldSpies").contains(worldName.toLowerCase());
+            }
+        }
+        return false;
+    }
+    /**
+     * Checks if the player has the specified word defined in their alerts.
+     * @param player The player to check.
+     * @param word The alert word to check.
+     * @return True if the player has the word as an alert word, else false.
+     */
+    public static boolean hasAlertWord(Player player, String word) {
+        if (PlayerDataManager.getPlayerDataYml(player).contains("Alerts")) {
+            return PlayerDataManager.getPlayerDataYml(player).getStringList("Alerts").contains(word);
+        }
+        return false;
+    }
+    /**
+     * Checks if the player has their chat muted (Not receiving any chat messages).
+     * @param player The player to check.
+     * @return True if the player has their chat muted, else false.
+     */
+    public static boolean hasChatMuted(Player player) {
+        return PlayerDataManager.getPlayerDataYml(player).getString("ChatMute").equalsIgnoreCase("True");
     }
 }

@@ -25,6 +25,7 @@ public class HelpCommand {
             sender.sendMessage(ChatColor.GREEN + "/pwc worldspy <on/off/world>" + ChatColor.LIGHT_PURPLE + " - Allows you to spy on a specific world.");
             sender.sendMessage(ChatColor.GREEN + "/pwc bypass" + ChatColor.LIGHT_PURPLE + " - Allows you to send global chat messages.");
             sender.sendMessage(ChatColor.GREEN + "/pwc alert <word>" + ChatColor.LIGHT_PURPLE + " - Adds/Removes a word from your alert list.");
+            sender.sendMessage(ChatColor.GREEN + "/pwc mute" + ChatColor.LIGHT_PURPLE + " - Mutes/Unmutes your chat.");
             sender.sendMessage(ChatColor.GREEN + "/pwc timedglobal (time)" + ChatColor.LIGHT_PURPLE + " - Turns on/off Timed Global Chat.");
             sender.sendMessage(ChatColor.GREEN + "/global (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single global message.");
             sender.sendMessage(ChatColor.GREEN + "/globalChat (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single Global Message.");

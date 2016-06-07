@@ -43,9 +43,10 @@ public class FileManager {
 			Main.plugin.getConfig().addDefault("Alert.Mention.RequireAtSymbol", false);
 			Main.plugin.getConfig().addDefault("Alert.Mention.SendNotice", false);
 
-			List<String> sharesList = Main.plugin.getConfig().getStringList("SharesList");
-			sharesList.add("world");
-			Main.plugin.getConfig().set("SharesList", sharesList);
+			Main.plugin.getConfig().addDefault("Format.Enabled", true);
+			Main.plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% : %message%");
+			Main.plugin.getConfig().addDefault("Format.Format.Global", "%global% [%world%] %player% : %message%");
+
 
 			Main.plugin.getConfig().addDefault("Chat.Swear.Block", true);
 			Main.plugin.getConfig().addDefault("Chat.Swear.BlockEntireMessage", false);
@@ -66,6 +67,10 @@ public class FileManager {
 			blockedAds.add(".gov");
 			blockedAds.add(".io");
 			Main.plugin.getConfig().set("Chat.Ad.Blocked", blockedAds);
+
+			List<String> sharesList = Main.plugin.getConfig().getStringList("SharesList");
+			sharesList.add("world");
+			Main.plugin.getConfig().set("SharesList", sharesList);
 
 
 			Main.plugin.getConfig().options().copyDefaults(true);

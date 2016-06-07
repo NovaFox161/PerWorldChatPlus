@@ -1,11 +1,13 @@
 package com.cloudcraftgaming.perworldchatplus.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -46,6 +48,14 @@ public class JoinListener implements Listener {
 				|| player.getUniqueId().toString().equals("7ee45311-338a-45ee-aeeb-7e7a4d4a083e")) {
 			if (plugin.getConfig().getString("Announce Dev Join").equalsIgnoreCase("True")) {
 				Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.GREEN + "The developer of PerWorldChatPlus has joined this server!");
+			}
+		}
+	}
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void checkWorldFilesOnJoin(PlayerJoinEvent event) {
+		for (World world : Bukkit.getWorlds()) {
+			if (!WorldDataManager.hasWorldData(world.getName())) {
+				WorldDataManager.createWorldDataFile(world.getName());
 			}
 		}
 	}
