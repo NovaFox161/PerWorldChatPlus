@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
  *
  * Just the base command. Nothing else to see here.
  */
-public class PerWorldChat implements CommandExecutor {
-	public PerWorldChat(Main instance) {
+public class PerWorldChatCommand implements CommandExecutor {
+	public PerWorldChatCommand(Main instance) {
 		plugin = instance;
 	}
 	Main plugin;

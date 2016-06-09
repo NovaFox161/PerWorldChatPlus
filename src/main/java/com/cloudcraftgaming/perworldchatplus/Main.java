@@ -2,7 +2,7 @@ package com.cloudcraftgaming.perworldchatplus;
 
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.commands.GlobalChatCommand;
-import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChat;
+import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChatCommand;
 import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
 import com.cloudcraftgaming.perworldchatplus.listeners.JoinListener;
 import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
@@ -41,10 +41,10 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
-		getCommand("perworldchatplus").setExecutor(new PerWorldChat(this));
-		getCommand("perworldchat").setExecutor(new PerWorldChat(this));
-		getCommand("pwcp").setExecutor(new PerWorldChat(this));
-		getCommand("pwc").setExecutor(new PerWorldChat(this));
+		getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand(this));
+		getCommand("perworldchat").setExecutor(new PerWorldChatCommand(this));
+		getCommand("pwcp").setExecutor(new PerWorldChatCommand(this));
+		getCommand("pwc").setExecutor(new PerWorldChatCommand(this));
 		getCommand("globalchat").setExecutor(new GlobalChatCommand(this));
 		getCommand("global").setExecutor(new GlobalChatCommand(this));
 

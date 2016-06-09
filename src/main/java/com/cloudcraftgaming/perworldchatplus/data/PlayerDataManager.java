@@ -1,6 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.data;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -32,6 +33,7 @@ public class PlayerDataManager {
             data.addDefault("Bypass", false);
             data.addDefault("WorldSpy", false);
             data.addDefault("ChatMute", false);
+            data.addDefault("ChatColor", ChatColor.WHITE.name());
 
 
             data.options().copyDefaults(true);
@@ -110,6 +112,7 @@ public class PlayerDataManager {
     public static boolean hasGlobalBypassEnabled(Player player) {
         return PlayerDataManager.getPlayerDataYml(player).getString("Bypass").equalsIgnoreCase("True");
     }
+
     /**
      * Checks if the player is currently spying on all chat (seeing chat for all worlds, ignoring sharing).
      * @param player The player to check.
@@ -118,6 +121,7 @@ public class PlayerDataManager {
     public static boolean hasGlobalChatSpyEnabled(Player player) {
         return PlayerDataManager.getPlayerDataYml(player).getString("Spy").equalsIgnoreCase("True");
     }
+
     /**
      * Checks if the specified player has WorldChatSpy Enabled.
      * Check PlayerChatManager#isSpyingOnWorld(Player player, String worldName) to see if they are spying on the particular world.
@@ -127,6 +131,7 @@ public class PlayerDataManager {
     public static boolean hasWorldChatSpyEnabled(Player player) {
         return PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("True");
     }
+
     /**
      * Checks if the specified player is currently spying on the specific world.
      * @param player The player to check.
@@ -141,6 +146,7 @@ public class PlayerDataManager {
         }
         return false;
     }
+
     /**
      * Checks if the player has the specified word defined in their alerts.
      * @param player The player to check.
@@ -151,6 +157,7 @@ public class PlayerDataManager {
         return PlayerDataManager.getPlayerDataYml(player).contains("Alerts") &&
                 PlayerDataManager.getPlayerDataYml(player).getStringList("Alerts").contains(word);
     }
+
     /**
      * Checks if the player has their chat muted (Not receiving any chat messages).
      * @param player The player to check.
@@ -158,6 +165,18 @@ public class PlayerDataManager {
      */
     public static boolean hasChatMuted(Player player) {
         return PlayerDataManager.getPlayerDataYml(player).getString("ChatMute").equalsIgnoreCase("True");
+    }
+
+
+    //Getters
+
+    /**
+     * Gets the player's chat color (Default White).
+     * @param player The player to get.
+     * @return The player's chat color.
+     */
+    public static ChatColor getChatColor(Player player) {
+        return ChatColor.valueOf(getPlayerDataYml(player).getString("ChatColor"));
     }
 
     //Setters
@@ -221,5 +240,16 @@ public class PlayerDataManager {
             data.set("Alerts", list);
             savePlayerData(data, PlayerDataManager.getPlayerDataFile(player));
         }
+    }
+
+    /**
+     * Sets the player's default chat color.
+     * @param player The player to set.
+     * @param color The new default color.
+     */
+    public static void setChatColor(Player player, ChatColor color) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        data.set("ChatColor", color.name());
+        savePlayerData(data, getPlayerDataFile(player));
     }
 }

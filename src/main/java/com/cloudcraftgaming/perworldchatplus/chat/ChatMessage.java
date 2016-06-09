@@ -3,6 +3,7 @@ package com.cloudcraftgaming.perworldchatplus.chat;
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.PlayerHandler;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ChatMessage {
         newMessage = filterSwears(newMessage, sender);
         newMessage = filterAds(newMessage, sender);
         newMessage = removeGlobalBypassString(newMessage);
+        newMessage = makeMessageColorful(newMessage, sender);
 
         return newMessage;
     }
@@ -112,6 +114,20 @@ public class ChatMessage {
         return message;
     }
 
+    /**
+     * Prefixes the chat message with the player's default chat color,
+     * and if they have permission, will translate color codes in their message.
+     * @param message The original message to be sent.
+     * @param sender The sender of the message.
+     * @return A new message with colors.
+     */
+    public static String makeMessageColorful(String message, Player sender) {
+        message = PlayerDataManager.getChatColor(sender) + message;
+        if (sender.hasPermission("pwcp.chat.color")) {
+            message = ChatColor.translateAlternateColorCodes('&', message);
+        }
+        return message;
+    }
 
     //Checks/Booleans
     /**
@@ -126,6 +142,7 @@ public class ChatMessage {
                 || PlayerDataManager.hasGlobalBypassEnabled(sender)
                 || (message.contains(Main.plugin.getConfig().getString("Global.Override")) && sender.hasPermission("pwcp.bypass"));
     }
+
     /**
      * Checks if the player's name was mentioned in the chat message (Only if requirements were met).
      * @param player The player to check.
