@@ -104,6 +104,8 @@ public class PerWorldChatCommand implements CommandExecutor {
 						} else {
 							player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
 						}
+					} else if (type.equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
 					} else {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -159,100 +161,134 @@ public class PerWorldChatCommand implements CommandExecutor {
 						}
 					} else if (type.equalsIgnoreCase("help")) {
 						HelpCommand.helpCommand(sender, args[1]);
+					} else if (type.equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
 					} else {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 					}
-				} else if (args.length > 2) {
+				} else if (args.length == 3) {
+					if (args[0].equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
+					} else {
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+					}
+				} else if (args.length == 4) {
+					if (args[0].equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
+					} else {
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+					}
+				} else if (args.length  > 4) {
 					String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 					player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-			}
-		} else {
-			if (args.length < 1) {
-				String msg = MessageManager.getMessageYml().getString("Notification.Args.TooFew");
-				sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-			} else if (args.length == 1) {
-				String type = args[0];
-				if (type.equalsIgnoreCase("Bypass")) {
-					if (sender.hasPermission("pwcp.bypass")) {
-						sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
-					} else {
-						sender.sendMessage(pr + MessageManager.getNoPermMessage());
-					}
-				} else if (type.equalsIgnoreCase("worldSpy")) {
-					sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
-				} else if (type.equalsIgnoreCase("Spy")) {
-					if (sender.hasPermission("pwcp.spy")) {
-						sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
-					} else {
-						sender.sendMessage(pr + MessageManager.getNoPermMessage());
-					}
-				} else if (type.equalsIgnoreCase("Alert")) {
-					if (sender.hasPermission("pwcp.alert")) {
-						sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
-					} else {
-						sender.sendMessage(pr + MessageManager.getNoPermMessage());
-					}
-				} else if (type.equalsIgnoreCase("timedGlobal")) {
-					if (sender.hasPermission("pwcp.timedglobal")) {
-						if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-							if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-								TimedGlobalChatManager.getManager().turnOffTimedGlobal(sender);
-							} else {
-								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
-								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-							}
-						} else {
-							String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.Disabled");
-							sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-						}
-					} else {
-						sender.sendMessage(pr + MessageManager.getNoPermMessage());
-					}
-				} else if (type.equalsIgnoreCase("help")) {
-					HelpCommand.helpCommand(sender, "1");
-				} else {
-					String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
-					sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 				}
-			} else if (args.length == 2) {
-				String type = args[0];
-				if (type.equalsIgnoreCase("timedGlobal")) {
-					if (sender.hasPermission("pwcp.timedglobal")) {
-						if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-							if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("False")) {
-								String timeString = args[1];
-								try {
-									Integer time = Integer.valueOf(timeString);
-									TimedGlobalChatManager.getManager().turnOnTimedGlobal(sender, time);
-
-								} catch (NumberFormatException e) {
-									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
+			} else {
+				if (args.length < 1) {
+					String msg = MessageManager.getMessageYml().getString("Notification.Args.TooFew");
+					sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+				} else if (args.length == 1) {
+					String type = args[0];
+					if (type.equalsIgnoreCase("Bypass")) {
+						if (sender.hasPermission("pwcp.bypass")) {
+							sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
+						} else {
+							sender.sendMessage(pr + MessageManager.getNoPermMessage());
+						}
+					} else if (type.equalsIgnoreCase("worldSpy")) {
+						sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
+					} else if (type.equalsIgnoreCase("Spy")) {
+						if (sender.hasPermission("pwcp.spy")) {
+							sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
+						} else {
+							sender.sendMessage(pr + MessageManager.getNoPermMessage());
+						}
+					} else if (type.equalsIgnoreCase("Alert")) {
+						if (sender.hasPermission("pwcp.alert")) {
+							sender.sendMessage(pr + MessageManager.getPlayerOnlyMessage());
+						} else {
+							sender.sendMessage(pr + MessageManager.getNoPermMessage());
+						}
+					} else if (type.equalsIgnoreCase("timedGlobal")) {
+						if (sender.hasPermission("pwcp.timedglobal")) {
+							if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
+								if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
+									TimedGlobalChatManager.getManager().turnOffTimedGlobal(sender);
+								} else {
+									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");
 									sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 								}
 							} else {
-								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOn");
+								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.Disabled");
 								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 							}
 						} else {
-							String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.Disabled");
-							sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+							sender.sendMessage(pr + MessageManager.getNoPermMessage());
 						}
+					} else if (type.equalsIgnoreCase("help")) {
+						HelpCommand.helpCommand(sender, "1");
+					} else if (type.equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
 					} else {
-						sender.sendMessage(pr + MessageManager.getNoPermMessage());
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 					}
-				} else if (type.equalsIgnoreCase("help")) {
-					HelpCommand.helpCommand(sender, args[1]);
+				} else if (args.length == 2) {
+					String type = args[0];
+					if (type.equalsIgnoreCase("timedGlobal")) {
+						if (sender.hasPermission("pwcp.timedglobal")) {
+							if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
+								if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("False")) {
+									String timeString = args[1];
+									try {
+										Integer time = Integer.valueOf(timeString);
+										TimedGlobalChatManager.getManager().turnOnTimedGlobal(sender, time);
+
+									} catch (NumberFormatException e) {
+										String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
+										sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+									}
+								} else {
+									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOn");
+									sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+								}
+							} else {
+								String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.Disabled");
+								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+							}
+						} else {
+							sender.sendMessage(pr + MessageManager.getNoPermMessage());
+						}
+					} else if (type.equalsIgnoreCase("help")) {
+						HelpCommand.helpCommand(sender, args[1]);
+					} else if (type.equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
+					} else {
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+					}
+				} else if (args.length == 3) {
+					if (args[0].equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
+					} else {
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+					}
+				} else if (args.length == 4) {
+					if (args[0].equalsIgnoreCase("set")) {
+						SetCommand.setCommand(sender, args);
+					} else {
+						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+						sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
+					}
 				} else {
-					String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
+					String msg = MessageManager.getMessageYml().getString("Notification.Args.TooMany");
 					sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 				}
-			} else {
-				String msg = MessageManager.getMessageYml().getString("Notification.Args.TooMany");
-				sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 			}
 		}
-	}
-	return false;
+		return false;
 	}
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class FileManager {
 	protected static String conVersion = "5.0";
-	protected static Double messageVersion = 2.0;
+	protected static Double messageVersion = 2.1;
 
 	/**
 	 * Creates the default config.yml file (Really only used on startup by PerWorldChatPlus).

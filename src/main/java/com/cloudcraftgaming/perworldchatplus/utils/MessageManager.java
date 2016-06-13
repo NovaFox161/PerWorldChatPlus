@@ -100,6 +100,8 @@ public class MessageManager {
             en.addDefault("Command.Mute.Enable", "&4You have muted your chat! You will not see any chat message until you unmute or log off!");
             en.addDefault("Command.Mute.Disable", "&2You have unmuted your chat! You will now see chat messages again!");
 
+            en.addDefault("Command.Set.Alias", "&5World alias for world: &6%world% &5 is now &6%alias%&5!");
+
             en.addDefault("Mention.Notice", "&2You were mentioned by: &6%sender%");
 
             en.addDefault("Notification.NoPerm", "&4You do not have permission to do that!");
@@ -107,6 +109,7 @@ public class MessageManager {
             en.addDefault("Notification.Args.Invalid", "&4Invalid arguments! &2Use: &6/pwc help &2for a list of commands!");
             en.addDefault("Notification.Args.TooFew", "&4Too few arguments! &2Use: &6/pwc help &2for a list of commands!");
             en.addDefault("Notification.Args.TooMany", "&4Too many arguments! &2Use: &6/pwc help &2for a list of commands!");
+            en.addDefault("Notification.World.DoesNotExist", "&4The specified world does not exist or is spelled incorrectly!");
             en.options().copyDefaults(true);
             Main.plugin.saveCustomConfig(en, enFile);
 

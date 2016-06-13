@@ -20,15 +20,20 @@ public class HelpCommand {
      */
     protected static void helpCommand(CommandSender sender, String page) {
         if (page.equals("1")) {
-            sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 1/1" + ChatColor.GOLD + "-~-");
+            sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 1/2" + ChatColor.GOLD + "-~-");
             sender.sendMessage(ChatColor.GREEN + "/pwc spy" + ChatColor.LIGHT_PURPLE + " - Allows you to see all chat messages.");
             sender.sendMessage(ChatColor.GREEN + "/pwc worldspy <on/off/world>" + ChatColor.LIGHT_PURPLE + " - Allows you to spy on a specific world.");
             sender.sendMessage(ChatColor.GREEN + "/pwc bypass" + ChatColor.LIGHT_PURPLE + " - Allows you to send global chat messages.");
             sender.sendMessage(ChatColor.GREEN + "/pwc alert <word>" + ChatColor.LIGHT_PURPLE + " - Adds/Removes a word from your alert list.");
             sender.sendMessage(ChatColor.GREEN + "/pwc mute" + ChatColor.LIGHT_PURPLE + " - Mutes/Unmutes your chat.");
+            sender.sendMessage(ChatColor.GOLD + "Use: '/pwc help 2' for more commands");
+        } else if (page.equalsIgnoreCase("2")) {
+            sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 2/2" + ChatColor.GOLD + "-~-");
             sender.sendMessage(ChatColor.GREEN + "/pwc timedglobal (time)" + ChatColor.LIGHT_PURPLE + " - Turns on/off Timed Global Chat.");
+            sender.sendMessage(ChatColor.GREEN + "/pwc set alias <world> <alias>" + ChatColor.LIGHT_PURPLE + " - Sets the alias for the world.");
             sender.sendMessage(ChatColor.GREEN + "/global (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single global message.");
             sender.sendMessage(ChatColor.GREEN + "/globalChat (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single Global Message.");
+            sender.sendMessage(ChatColor.GOLD + "End of PerWorldChatPlus Help");
         } else {
             String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
             sender.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
