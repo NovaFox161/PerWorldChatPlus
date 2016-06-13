@@ -89,6 +89,16 @@ public class Main extends JavaPlugin {
 		}, 20L * 2);
 	}
 
+	/**
+	 * A simple method for checking if the versions are compatible.
+	 * This is to help reduce updates needed when a patch comes out.
+	 * @param targetVersion The version you are specifically looking for.
+	 * @return True if the versions are compatible, else false.
+     */
+	public Boolean checkVersionCompatibility(String targetVersion) {
+		return targetVersion.equals(getDescription().getVersion()) || targetVersion.startsWith("5");
+	}
+
 
 	 public void saveCustomConfig(FileConfiguration ymlConfig, File ymlFile) {
 		 try {
