@@ -26,7 +26,7 @@ public class SetCommand {
                 //pwc set <var> <var2> <value>
                 String type = args[1];
                 String type2 = args[2];
-                String value = args[4];
+                String value = args[3];
 
                 if (type.equalsIgnoreCase("alias")) {
                     if (WorldDataManager.hasWorldData(type2)) {
