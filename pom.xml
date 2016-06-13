@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cloudcraftgaming</groupId>
   <artifactId>PerWorldChatPlus</artifactId>
-  <version>5.0.0</version>
+  <version>5.0.1</version>
     <build>
       <plugins>
           <plugin>

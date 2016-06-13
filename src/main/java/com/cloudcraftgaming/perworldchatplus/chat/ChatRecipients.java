@@ -190,6 +190,9 @@ public class ChatRecipients {
      * @return True if the message should be shared to the possible receiver, else false.
      */
     public static boolean isShared(String worldFrom, String worldTo) {
+        if (worldFrom.equals(worldTo)) {
+            return true;
+        }
         String sharesListName = ListManager.getWorldShareListName(worldFrom);
         List<String> sharesList = ListManager.getWorldShareList(worldFrom);
         if (sharesList != null && sharesListName != null) {
