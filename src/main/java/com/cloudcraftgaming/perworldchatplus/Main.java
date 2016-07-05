@@ -29,11 +29,7 @@ public class Main extends JavaPlugin {
 	public File sharesFile = new File(this.getDataFolder() + "/shares.yml");
 	public FileConfiguration shares = (YamlConfiguration.loadConfiguration(sharesFile));
 	
-	public void onDisable() {
-		//Make sure timed global is turned off.
-		getConfig().set("Global.TimedGlobal.On", false);
-		saveConfig();
-	}
+	public void onDisable() {}
 	public void onEnable() {
 		plugin = this;
 
