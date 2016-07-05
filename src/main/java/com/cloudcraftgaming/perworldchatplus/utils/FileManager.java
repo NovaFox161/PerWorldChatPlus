@@ -13,8 +13,8 @@ import java.util.List;
  * This class handles several file related functions and methods.
  */
 public class FileManager {
-	protected static String conVersion = "5.0";
-	protected static Double messageVersion = 2.1;
+	private static String conVersion = "5.0";
+	static Double messageVersion = 2.2;
 
 	/**
 	 * Creates the default config.yml file (Really only used on startup by PerWorldChatPlus).

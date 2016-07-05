@@ -46,7 +46,7 @@ public class MessageManager {
      * Gets the messages file depending on the language.
      * @return the file in which messages are stored depending on the language set in the config.
      */
-    public static File getMessageFile() {
+    private static File getMessageFile() {
         String fileName = Main.plugin.getConfig().getString("Lang");
         return new File(Main.plugin.getDataFolder() + "/Messages/" + fileName + ".yml");
     }
@@ -101,6 +101,8 @@ public class MessageManager {
             en.addDefault("Command.Mute.Disable", "&2You have unmuted your chat! You will now see chat messages again!");
 
             en.addDefault("Command.Set.Alias", "&5World alias for world: &6%world% &5 is now &6%alias%&5!");
+            en.addDefault("Command.Set.Color.Self", "&2You have changed your chat color to &6%color%&2!");
+            en.addDefault("Command.Set.Color.Other", "&2Color for player &5%Player% &2 is now &6%color%&1!");
 
             en.addDefault("Mention.Notice", "&2You were mentioned by: &6%sender%");
 
@@ -109,6 +111,8 @@ public class MessageManager {
             en.addDefault("Notification.Args.Invalid", "&4Invalid arguments! &2Use: &6/pwc help &2for a list of commands!");
             en.addDefault("Notification.Args.TooFew", "&4Too few arguments! &2Use: &6/pwc help &2for a list of commands!");
             en.addDefault("Notification.Args.TooMany", "&4Too many arguments! &2Use: &6/pwc help &2for a list of commands!");
+            en.addDefault("Notification.Color.Invalid", "&4That is not a valid ChatColor!");
+            en.addDefault("Notifications.Player.Offline", "&4That player is not online or does not exist!");
             en.addDefault("Notification.World.DoesNotExist", "&4The specified world does not exist or is spelled incorrectly!");
             en.options().copyDefaults(true);
             Main.plugin.saveCustomConfig(en, enFile);
