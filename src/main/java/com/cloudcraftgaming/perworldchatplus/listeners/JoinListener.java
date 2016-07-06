@@ -18,7 +18,7 @@ public class JoinListener implements Listener {
 	public JoinListener(Main instance) {
 		plugin = instance;
 	}
-	Main plugin;
+	private Main plugin;
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoinUpdateFiles(PlayerJoinEvent event) {
 		if (PlayerDataManager.hasDataFile(event.getPlayer())) {

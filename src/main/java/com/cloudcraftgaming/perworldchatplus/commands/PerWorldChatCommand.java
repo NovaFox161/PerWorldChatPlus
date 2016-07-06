@@ -1,14 +1,15 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalChatManager;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.chat.TimedGlobalChatManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
 
 /**
  * Created by: NovaFox161
@@ -18,10 +19,6 @@ import org.bukkit.entity.Player;
  * Just the base command. Nothing else to see here.
  */
 public class PerWorldChatCommand implements CommandExecutor {
-	public PerWorldChatCommand(Main instance) {
-		plugin = instance;
-	}
-	Main plugin;
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (command.getName().equalsIgnoreCase("pwc") || command.getName().equalsIgnoreCase("pwcp")
@@ -71,8 +68,8 @@ public class PerWorldChatCommand implements CommandExecutor {
 						}
 					} else if (type.equalsIgnoreCase("timedGlobal")) {
 						if (player.hasPermission("pwcp.timedglobal")) {
-							if (Main.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-								if (Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
+							if (plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
+								if (plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
 									TimedGlobalChatManager.getManager().turnOffTimedGlobal(player);
 								} else {
 									String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.AlreadyOff");

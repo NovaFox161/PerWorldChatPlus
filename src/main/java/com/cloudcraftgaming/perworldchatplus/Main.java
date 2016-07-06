@@ -1,10 +1,13 @@
 package com.cloudcraftgaming.perworldchatplus;
 
+import com.cloudcraftgaming.perworldchatplus.commands.ChatColorCommand;
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.commands.GlobalChatCommand;
 import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChatCommand;
 import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
+import com.cloudcraftgaming.perworldchatplus.listeners.InventoryClickListener;
 import com.cloudcraftgaming.perworldchatplus.listeners.JoinListener;
+import com.cloudcraftgaming.perworldchatplus.utils.ChatColorInventory;
 import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
@@ -34,15 +37,18 @@ public class Main extends JavaPlugin {
 		plugin = this;
 
 		//Register things
-		getServer().getPluginManager().registerEvents(new ChatListener(this), this);
+		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 
-		getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand(this));
-		getCommand("perworldchat").setExecutor(new PerWorldChatCommand(this));
-		getCommand("pwcp").setExecutor(new PerWorldChatCommand(this));
-		getCommand("pwc").setExecutor(new PerWorldChatCommand(this));
-		getCommand("globalchat").setExecutor(new GlobalChatCommand(this));
-		getCommand("global").setExecutor(new GlobalChatCommand(this));
+		getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand());
+		getCommand("perworldchat").setExecutor(new PerWorldChatCommand());
+		getCommand("pwcp").setExecutor(new PerWorldChatCommand());
+		getCommand("pwc").setExecutor(new PerWorldChatCommand());
+		getCommand("globalchat").setExecutor(new GlobalChatCommand());
+		getCommand("global").setExecutor(new GlobalChatCommand());
+		getCommand("chatcolor").setExecutor(new ChatColorCommand());
+		getCommand("cc").setExecutor(new ChatColorCommand());
 
 		//Do file stuff
 		FileManager.createConfig();
@@ -58,6 +64,7 @@ public class Main extends JavaPlugin {
 		checkUpdatesOnStart();
 
 		//Do some other stuff
+		ChatColorInventory.createChatColorInventory();
 		generateWorldDataFilesOnStart();
 	}
 	private void checkUpdatesOnStart() {

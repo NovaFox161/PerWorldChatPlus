@@ -1,6 +1,5 @@
 package com.cloudcraftgaming.perworldchatplus.listeners;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatFormat;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatMessage;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatRecipients;
@@ -13,10 +12,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.util.Set;
 
 public class ChatListener implements Listener {
-	public ChatListener(Main instance) {
-		plugin = instance;
-	}
-	Main plugin;
 	@EventHandler(priority = EventPriority.HIGH)
 	public void onChat(AsyncPlayerChatEvent event) {
 		Player sender = event.getPlayer();

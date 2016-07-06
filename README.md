@@ -8,6 +8,8 @@ Current Features:
 - Timed Global chat. Make chat global for a limited period of time.
 - Alert System (add a word to your list and get notified of when it is said in chat).
 - Mention system (get a notice when you are mentioned in chat).
+- Integrated ChatColor support. Make your messages colorful without needing to use codes every time!
+- Along with the integrated ChatColor support, PerWorldChatPlus supports a GUI selector for ChatColors!
 - Anti-Swear system. Block those bad words!
 - Anti-Ad System (Beta). Block all the unwanted advertisements!
 - And much much more!

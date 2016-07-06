@@ -15,10 +15,18 @@ commands:
     description: Base command for PerWorldChatPlus.
   pwc:
     description: Base command for PerWorldChatPlus.
+  chatcolor:
+    description: Command to change chat color and open ChatColor GUI.
+    permission: pwcp.chat.color
+  cc:
+    description: Command(Alias) to change chat color and open ChatColor GUI.
+    permission: pwcp.chat.color
   global:
     description: Short version to make a global chat message.
+    permission: pwcp.global
   globalchat:
     description: Command to make a global chat message.
+    permission: pwcp.global
 
 permissions:
   pwcp.bypass:
@@ -42,3 +50,9 @@ permissions:
   pwcp.mute:
     description: Allows use of muting your own chat as to reduce spam (also useful for recording videos).
     default: true
+  pwcp.chat.color:
+     description: Allows use of changing your own default ChatColor.
+     default: op
+  pwcp.chat.color.other:
+    description: Allows use of changing another player's default ChatColor.
+    default: op

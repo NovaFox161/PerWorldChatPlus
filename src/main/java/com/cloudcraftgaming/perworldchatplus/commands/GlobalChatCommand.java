@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
 
 /**
  * Created by: NovaFox161
@@ -18,10 +18,6 @@ import com.cloudcraftgaming.perworldchatplus.Main;
  * Just the global chat command class. Nothing important here.
  */
 public class GlobalChatCommand implements CommandExecutor {
-	public GlobalChatCommand(Main instance) {
-		plugin = instance;
-	}
-	Main plugin;
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

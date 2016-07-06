@@ -104,6 +104,8 @@ public class MessageManager {
             en.addDefault("Command.Set.Color.Self", "&2You have changed your chat color to &6%color%&2!");
             en.addDefault("Command.Set.Color.Other", "&2Color for player &5%Player% &2 is now &6%color%&1!");
 
+            en.addDefault("Command.ChatColor.Open", "&6Opened ChatColor GUI!");
+
             en.addDefault("Mention.Notice", "&2You were mentioned by: &6%sender%");
 
             en.addDefault("Notification.NoPerm", "&4You do not have permission to do that!");
