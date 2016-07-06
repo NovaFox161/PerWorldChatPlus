@@ -98,8 +98,8 @@ public class Main extends JavaPlugin {
 	 * @param targetVersion The version you are specifically looking for.
 	 * @return True if the versions are compatible, else false.
      */
-	public Boolean checkVersionCompatibility(String targetVersion) {
-		return targetVersion.equals(getDescription().getVersion()) || targetVersion.startsWith("5");
+	public static Boolean checkVersionCompatibility(String targetVersion) {
+		return targetVersion.equals(plugin.getDescription().getVersion()) || targetVersion.startsWith("5");
 	}
 
 
