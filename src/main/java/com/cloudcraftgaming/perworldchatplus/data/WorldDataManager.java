@@ -17,7 +17,6 @@ import java.io.IOException;
 public class WorldDataManager {
 
     //File stuffs
-
     /**
      * Creates a default world data file for the specified world.
      * @param worldName The world to create a data file for.
@@ -77,7 +76,6 @@ public class WorldDataManager {
     }
 
     //Getters
-
     /**
      * Gets the world's alias if one exists.
      * @param worldName The world you want the alias of.
@@ -92,9 +90,7 @@ public class WorldDataManager {
         }
     }
 
-
     //Setters
-
     /**
      * Sets the world's alias for chat messages
      * @param worldName The world to set
@@ -102,6 +98,12 @@ public class WorldDataManager {
      */
     public static void setAlias(String worldName, String newAlias) {
         if (hasWorldData(worldName)) {
+            YamlConfiguration data = getWorldDataYml(worldName);
+            data.set("Alias", newAlias);
+            saveWorldDataFile(data, getWorldDataFile(worldName));
+        } else {
+            createWorldDataFile(worldName);
+
             YamlConfiguration data = getWorldDataYml(worldName);
             data.set("Alias", newAlias);
             saveWorldDataFile(data, getWorldDataFile(worldName));
