@@ -1,9 +1,9 @@
 package com.cloudcraftgaming.perworldchatplus;
 
 import com.cloudcraftgaming.perworldchatplus.commands.ChatColorCommand;
-import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.commands.GlobalChatCommand;
 import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChatCommand;
+import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
 import com.cloudcraftgaming.perworldchatplus.listeners.InventoryClickListener;
 import com.cloudcraftgaming.perworldchatplus.listeners.JoinListener;
@@ -13,12 +13,7 @@ import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Create by: NovaFox161
@@ -29,8 +24,6 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 
 	public UpdateChecker updateChecker;
-	public File sharesFile = new File(this.getDataFolder() + "/shares.yml");
-	public FileConfiguration shares = (YamlConfiguration.loadConfiguration(sharesFile));
 	
 	public void onDisable() {}
 	public void onEnable() {
@@ -52,7 +45,7 @@ public class Main extends JavaPlugin {
 
 		//Do file stuff
 		FileManager.createConfig();
-		FileManager.createFiles();
+		FileManager.createSharesFile();
 		MessageManager.createEnglishMessagesFile();
 
 		FileManager.checkFileVersion();
@@ -98,16 +91,8 @@ public class Main extends JavaPlugin {
 	 * @param targetVersion The version you are specifically looking for.
 	 * @return True if the versions are compatible, else false.
      */
+	@SuppressWarnings("unused")
 	public static Boolean checkVersionCompatibility(String targetVersion) {
 		return targetVersion.equals(plugin.getDescription().getVersion()) || targetVersion.startsWith("5");
-	}
-
-
-	 public void saveCustomConfig(FileConfiguration ymlConfig, File ymlFile) {
-		 try {
-			 ymlConfig.save(ymlFile);
-		 } catch (IOException e) {
-			e.printStackTrace();
-		 }
 	}
 }

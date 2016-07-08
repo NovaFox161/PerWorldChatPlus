@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Nova Fox on 1/30/2016.
@@ -117,10 +118,22 @@ public class MessageManager {
             en.addDefault("Notifications.Player.Offline", "&4That player is not online or does not exist!");
             en.addDefault("Notification.World.DoesNotExist", "&4The specified world does not exist or is spelled incorrectly!");
             en.options().copyDefaults(true);
-            Main.plugin.saveCustomConfig(en, enFile);
+            saveLangFile(en);
 
             en.options().copyDefaults(true);
-            Main.plugin.saveCustomConfig(en, enFile);
+            saveLangFile(en);
+        }
+    }
+
+    /**
+     * Saves the language file.
+     * @param lang The instance of the language yml to save.
+     */
+    private static void saveLangFile(YamlConfiguration lang) {
+        try {
+            lang.save(getMessageFile());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

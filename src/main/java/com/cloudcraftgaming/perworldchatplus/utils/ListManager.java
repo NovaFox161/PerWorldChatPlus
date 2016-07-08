@@ -23,7 +23,7 @@ public class ListManager {
 			if (list.equalsIgnoreCase(worldName)) {
 				return list;
 			}
-			else if (Main.plugin.shares.getStringList(list).contains(worldName)) {
+			else if (FileManager.getSharesYml().getStringList(list).contains(worldName)) {
 				return list;
 			}
 		}
@@ -37,7 +37,7 @@ public class ListManager {
      */
 	public static List<String> getWorldShareList(String worldName) {
 		if (getWorldShareListName(worldName) != null) {
-			return Main.plugin.shares.getStringList(getWorldShareListName(worldName));
+			return FileManager.getSharesYml().getStringList(getWorldShareListName(worldName));
 		}
 		return null;
 	}

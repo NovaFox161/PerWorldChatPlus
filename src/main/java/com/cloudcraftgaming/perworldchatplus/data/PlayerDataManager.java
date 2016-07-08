@@ -37,10 +37,10 @@ public class PlayerDataManager {
 
 
             data.options().copyDefaults(true);
-            Main.plugin.saveCustomConfig(data, file);
+            savePlayerData(data, file);
 
             data.options().copyDefaults(true);
-            Main.plugin.saveCustomConfig(data, file);
+            savePlayerData(data, file);
         }
     }
 
