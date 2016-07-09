@@ -33,7 +33,8 @@ public class PlayerDataManager {
             data.addDefault("Bypass", false);
             data.addDefault("WorldSpy", false);
             data.addDefault("ChatMute", false);
-            data.addDefault("ChatColor", ChatColor.WHITE.name());
+            String chatColorString = Main.plugin.getConfig().getString("Chat.Color.Default");
+            data.addDefault("ChatColor", ChatColor.valueOf(chatColorString));
 
 
             data.options().copyDefaults(true);

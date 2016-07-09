@@ -122,8 +122,15 @@ public class ChatMessage {
      * @return A new message with colors.
      */
     public static String makeMessageColorful(String message, Player sender) {
-        message = PlayerDataManager.getChatColor(sender) + message;
-        if (sender.hasPermission("pwcp.chat.color")) {
+        if (Main.plugin.getConfig().getString("Chat.Color.RequirePermission").equalsIgnoreCase("True")) {
+            if (!sender.hasPermission("pwcp.chat.color")) {
+                return message;
+            }
+        }
+        if (Main.plugin.getConfig().getString("Chat.Color.Auto").equalsIgnoreCase("True")) {
+            message = PlayerDataManager.getChatColor(sender) + message;
+        }
+        if (Main.plugin.getConfig().getString("Chat.Color.Translate").equalsIgnoreCase("True")) {
             message = ChatColor.translateAlternateColorCodes('&', message);
         }
         return message;

@@ -1,6 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.utils;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -52,6 +53,10 @@ public class FileManager {
 			plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% : %message%");
 			plugin.getConfig().addDefault("Format.Format.Global", "%global% [%world%] %player% : %message%");
 
+			plugin.getConfig().addDefault("Chat.Color.Translate", true);
+			plugin.getConfig().addDefault("Chat.Color.Auto", true);
+			plugin.getConfig().addDefault("Chat.Color.Default", ChatColor.WHITE.name());
+			plugin.getConfig().addDefault("Chat.Color.RequirePermission", true);
 
 			plugin.getConfig().addDefault("Chat.Swear.Block", true);
 			plugin.getConfig().addDefault("Chat.Swear.BlockEntireMessage", false);
@@ -153,5 +158,4 @@ public class FileManager {
 	public static YamlConfiguration getSharesYml() {
 		return YamlConfiguration.loadConfiguration(getSharesFile());
 	}
-
 }
