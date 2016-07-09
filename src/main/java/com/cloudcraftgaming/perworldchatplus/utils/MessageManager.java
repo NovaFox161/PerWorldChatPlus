@@ -72,8 +72,10 @@ public class MessageManager {
             en.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
             en.addDefault("Messages Version", FileManager.messageVersion);
 
-            en.addDefault("Chat.Swear.Kick", "&4Kicked automatically for swearing!");
-            en.addDefault("Chat.Ad.Kick", "&4Kicked automatically for advertising!");
+            en.addDefault("Chat.Swear.Kick.Player", "&4Kicked automatically for swearing!");
+            en.addDefault("Chat.Swear.Kick.Announcement", "&6%player% &6was automatically kicked for swearing!");
+            en.addDefault("Chat.Ad.Kick.Player", "&4Kicked automatically for advertising!");
+            en.addDefault("Chat.Ad.Kick.Announcement", "&6%player% &6was automatically kicked for advertising!");
 
             en.addDefault("Command.Global.AddMessage", "&4You need to add in the message you want to broadcast!");
             en.addDefault("Command.Spy.Enabled", "&2Global Chat Spy enabled! You can now see all messages!");

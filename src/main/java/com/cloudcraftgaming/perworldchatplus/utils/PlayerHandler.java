@@ -18,13 +18,18 @@ public class PlayerHandler {
      * @param player The player who is being checked.
      */
     public static void doStuffOnSwear(final Player player) {
-        if (Main.plugin.getConfig().getString("Chat.Swear.Kick").equalsIgnoreCase("True")) {
-            final String msgOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick");
+        if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Enabled").equalsIgnoreCase("True")) {
+            final String msgOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.PLayer");
 
             Bukkit.getScheduler().runTask(Main.plugin, new Runnable() {
                 @Override
                 public void run() {
                     player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
+                    if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Announce").equalsIgnoreCase("True")) {
+                        String anOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.Announcement");
+                        String announcement = anOr.replaceAll("%player%", player.getDisplayName());
+                        Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
+                    }
                 }
             });
         }
@@ -35,13 +40,19 @@ public class PlayerHandler {
      * @param player The player who is being checked.
      */
     public static void doStuffOnAdvertise(final Player player) {
-        if (Main.plugin.getConfig().getString("Chat.Ad.Kick").equalsIgnoreCase("True")) {
-            final String msgOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick");
+        if (Main.plugin.getConfig().getString("Chat.Ad.Kick.Enabled").equalsIgnoreCase("True")) {
+            final String msgOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick.Player");
 
             Bukkit.getScheduler().runTask(Main.plugin, new Runnable() {
                 @Override
                 public void run() {
                     player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
+                    if (Main.plugin.getConfig().getString("Chat.Swear.Ad.Announce").equalsIgnoreCase("True")) {
+                        String anOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick.Announcement");
+                        String announcement = anOr.replaceAll("%player%", player.getDisplayName());
+                        Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
+                    }
+
                 }
             });
         }

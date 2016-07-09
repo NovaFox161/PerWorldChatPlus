@@ -56,7 +56,8 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Swear.Block", true);
 			plugin.getConfig().addDefault("Chat.Swear.BlockEntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Swear.Replace", "***");
-			plugin.getConfig().addDefault("Chat.Swear.Kick", false);
+			plugin.getConfig().addDefault("Chat.Swear.Kick.Enabled", false);
+			plugin.getConfig().addDefault("Chat.Swear.Kick.Announce", true);
 			List<String> blockedSwears = plugin.getConfig().getStringList("Chat.Swear.Blocked");
 			blockedSwears.add("Crap");
 			blockedSwears.add("Shit");
@@ -64,7 +65,8 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Ad.Block", true);
 			plugin.getConfig().addDefault("Chat.Ad.BlockEntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
-			plugin.getConfig().addDefault("Chat.Ad.Kick", false);
+			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
+			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);
 			List<String> blockedAds = plugin.getConfig().getStringList("Chat.Ad.Blocked");
 			blockedAds.add(".com");
 			blockedAds.add(".net");
