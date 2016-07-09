@@ -18,7 +18,7 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  * This class handles several file related functions and methods.
  */
 public class FileManager {
-	private static String conVersion = "5.0";
+	private static String conVersion = "6.0";
 	static Double messageVersion = 2.2;
 
 	//Functionals
