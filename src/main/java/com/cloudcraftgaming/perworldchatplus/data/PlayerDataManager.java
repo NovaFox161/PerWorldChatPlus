@@ -34,7 +34,7 @@ public class PlayerDataManager {
             data.addDefault("WorldSpy", false);
             data.addDefault("ChatMute", false);
             String chatColorString = Main.plugin.getConfig().getString("Chat.Color.Default");
-            data.addDefault("ChatColor", ChatColor.valueOf(chatColorString));
+            data.addDefault("ChatColor", ChatColor.valueOf(chatColorString).name());
 
 
             data.options().copyDefaults(true);
