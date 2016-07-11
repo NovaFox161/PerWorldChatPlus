@@ -70,6 +70,7 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Ad.Block.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Ad.Block.EntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Ad.Block.Ip-Addresses", true);
+			plugin.getConfig().addDefault("Chat.Ad.Block.Websites", true);
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);

@@ -109,6 +109,20 @@ public class ChatMessage {
                     }
                 }
             }
+            if (Main.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
+                String[] words = newMessage.split(" ");
+                for (String word : words) {
+                    if (IPUtility.isURL(word)) {
+                        if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
+                            newMessage = replacer;
+                            hasAdvertised = true;
+                            break;
+                        } else {
+                            newMessage = newMessage.replaceAll("(?i)", replacer);
+                        }
+                    }
+                }
+            }
         }
         if (hasAdvertised) {
             PlayerHandler.doStuffOnAdvertise(sender);

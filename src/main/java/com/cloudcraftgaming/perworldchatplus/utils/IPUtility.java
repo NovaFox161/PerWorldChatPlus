@@ -12,13 +12,16 @@ import java.util.regex.PatternSyntaxException;
 public class IPUtility {
     private static Pattern VALID_IPV4_PATTERN = null;
     private static Pattern VALID_IPV6_PATTERN = null;
+    private static Pattern VALID_URL_PATTERN = null;
     private static final String ipv4Pattern = "(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])";
     private static final String ipv6Pattern = "([0-9a-f]{1,4}:){7}([0-9a-f]){1,4}";
+    private static final String urlPattern = "^((https?|ftp)://|(www|ftp)\\.)?[a-z0-9-]+(\\.[a-z0-9-]+)+([/?].*)?$";
 
     static {
         try {
             VALID_IPV4_PATTERN = Pattern.compile(ipv4Pattern, Pattern.CASE_INSENSITIVE);
             VALID_IPV6_PATTERN = Pattern.compile(ipv6Pattern, Pattern.CASE_INSENSITIVE);
+            VALID_URL_PATTERN = Pattern.compile(urlPattern, Pattern.CASE_INSENSITIVE);
         } catch (PatternSyntaxException e) {
             //logger.severe("Unable to compile pattern", e);
         }
@@ -34,7 +37,6 @@ public class IPUtility {
      *  <code>false</code> otherwise.
      */
     public static boolean isIpAddress(String ipAddress) {
-
         Matcher m1 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddress);
         if (m1.matches()) {
             return true;
@@ -54,5 +56,19 @@ public class IPUtility {
             }
         }
         return false;
+    }
+
+    /**
+     * Determine if the given string is a valid URL. This method uses pattern
+     * matching to see if the given string could be a valid URL.
+     *
+     * @param url A string that is to be examined to verify whether or not it
+     *            it could be a valid URL.
+     * @return <code>true</code> if the string is a value that is a valid URL.
+     * <code>false</code> otherwise.
+     */
+    public static boolean isURL(String url) {
+        Matcher m1 = IPUtility.VALID_URL_PATTERN.matcher(url);
+        return m1.matches();
     }
 }
