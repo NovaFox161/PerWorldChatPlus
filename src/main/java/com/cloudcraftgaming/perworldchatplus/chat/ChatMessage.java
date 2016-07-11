@@ -46,12 +46,12 @@ public class ChatMessage {
         String newMessage = message;
         boolean hasSworn = false;
 
-        if (Main.plugin.getConfig().getString("Chat.Swear.Block").equalsIgnoreCase("True")) {
+        if (Main.plugin.getConfig().getString("Chat.Swear.Block.Enabled").equalsIgnoreCase("True")) {
             String replacer = Main.plugin.getConfig().getString("Chat.Swear.Replace");
             List<String> blockedWords = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
             for (String blockedWord : blockedWords) {
                 if (newMessage.toLowerCase().contains(blockedWord.toLowerCase())) {
-                    if (Main.plugin.getConfig().getString("Chat.Swear.BlockEntireMessage").equalsIgnoreCase("True")) {
+                    if (Main.plugin.getConfig().getString("Chat.Swear.Block.EntireMessage").equalsIgnoreCase("True")) {
                         newMessage = replacer;
                         hasSworn = true;
                         break;
@@ -79,12 +79,12 @@ public class ChatMessage {
         String newMessage = message;
         boolean hasAdvertised = false;
 
-        if (Main.plugin.getConfig().getString("Chat.Ad.Block").equalsIgnoreCase("True")) {
+        if (Main.plugin.getConfig().getString("Chat.Ad.Block.Enabled").equalsIgnoreCase("True")) {
             String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
             List<String> blockedAds = Main.plugin.getConfig().getStringList("Chat.Ad.Blocked");
             for (String blockedAd : blockedAds) {
                 if (newMessage.toLowerCase().contains(blockedAd.toLowerCase())) {
-                    if (Main.plugin.getConfig().getString("Chat.Ad.BlockEntireMessage").equalsIgnoreCase("True")) {
+                    if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
                         newMessage = replacer;
                         hasAdvertised = true;
                         break;

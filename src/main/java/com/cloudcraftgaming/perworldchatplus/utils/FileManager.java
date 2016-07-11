@@ -58,8 +58,8 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Color.Default", ChatColor.WHITE.name());
 			plugin.getConfig().addDefault("Chat.Color.RequirePermission", true);
 
-			plugin.getConfig().addDefault("Chat.Swear.Block", true);
-			plugin.getConfig().addDefault("Chat.Swear.BlockEntireMessage", false);
+			plugin.getConfig().addDefault("Chat.Swear.Block.Enabled", true);
+			plugin.getConfig().addDefault("Chat.Swear.Block.EntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Swear.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Swear.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Swear.Kick.Announce", true);
@@ -67,8 +67,8 @@ public class FileManager {
 			blockedSwears.add("Crap");
 			blockedSwears.add("Shit");
 			plugin.getConfig().set("Chat.Swear.Blocked", blockedSwears);
-			plugin.getConfig().addDefault("Chat.Ad.Block", true);
-			plugin.getConfig().addDefault("Chat.Ad.BlockEntireMessage", false);
+			plugin.getConfig().addDefault("Chat.Ad.Block.Enabled", true);
+			plugin.getConfig().addDefault("Chat.Ad.Block.EntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);
