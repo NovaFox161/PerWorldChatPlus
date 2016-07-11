@@ -40,6 +40,19 @@ public class IPUtility {
             return true;
         }
         Matcher m2 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddress);
-        return m2.matches();
+        if (m2.matches()) {
+            return true;
+        } else if (ipAddress.contains(":")) {
+            String[] ipAddressSplit = ipAddress.split(":");
+            Matcher m3 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
+            if (m3.matches()) {
+                return true;
+            }
+            Matcher m4 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
+            if (m4.matches()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
