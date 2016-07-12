@@ -118,7 +118,7 @@ public class ChatMessage {
                             hasAdvertised = true;
                             break;
                         } else {
-                            newMessage = newMessage.replaceAll("(?i)", replacer);
+                            newMessage = newMessage.replaceAll("(?i)" + word, replacer);
                         }
                     }
                 }
