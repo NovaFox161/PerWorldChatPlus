@@ -105,6 +105,7 @@ public class ChatMessage {
                             break;
                         } else {
                             newMessage = newMessage.replaceAll("(?i)" + word, replacer);
+                            hasAdvertised = true;
                         }
                     }
                 }
@@ -119,6 +120,7 @@ public class ChatMessage {
                             break;
                         } else {
                             newMessage = newMessage.replaceAll("(?i)" + word, replacer);
+                            hasAdvertised = true;
                         }
                     }
                 }
