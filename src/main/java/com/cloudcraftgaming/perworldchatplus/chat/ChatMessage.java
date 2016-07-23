@@ -34,9 +34,7 @@ public class ChatMessage {
         return newMessage;
     }
 
-
     //Chat message filtering.
-
     /**
      * Gets a new message that is cleaned of all blocked swear/curse words if enabled (Case insensitive).
      * @param message The original message to be sent (unfiltered).
@@ -82,19 +80,6 @@ public class ChatMessage {
 
         if (Main.plugin.getConfig().getString("Chat.Ad.Block.Enabled").equalsIgnoreCase("True")) {
             String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
-            List<String> blockedAds = Main.plugin.getConfig().getStringList("Chat.Ad.Blocked");
-            for (String blockedAd : blockedAds) {
-                if (newMessage.toLowerCase().contains(blockedAd.toLowerCase())) {
-                    if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
-                        newMessage = replacer;
-                        hasAdvertised = true;
-                        break;
-                    } else {
-                        newMessage = newMessage.replaceAll("(?i)" + blockedAd, replacer);
-                        hasAdvertised = true;
-                    }
-                }
-            }
             if (Main.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
                 String[] words = newMessage.split(" ");
                 for (String word : words) {

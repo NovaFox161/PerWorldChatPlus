@@ -52,7 +52,6 @@ public class PlayerHandler {
                         String announcement = anOr.replaceAll("%player%", player.getDisplayName());
                         Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
                     }
-
                 }
             });
         }

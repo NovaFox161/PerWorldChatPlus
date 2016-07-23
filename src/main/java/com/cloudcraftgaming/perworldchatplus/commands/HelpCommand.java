@@ -12,7 +12,6 @@ import org.bukkit.command.CommandSender;
  * This is just a util class that handles the help command and nothing more.
  */
 class HelpCommand {
-
     /**
      * Sends the help command page to the sender.
      * @param sender The sender of the help command and receiver of the help messages.

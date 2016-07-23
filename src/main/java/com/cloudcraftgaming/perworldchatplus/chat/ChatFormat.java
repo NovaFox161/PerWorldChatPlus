@@ -37,10 +37,7 @@ public class ChatFormat {
         }
     }
 
-
-
     //Format template getters
-
     /**
      * Gets the default chat format template from file.
      * @return The default chat format template.
@@ -57,9 +54,7 @@ public class ChatFormat {
         return Main.plugin.getConfig().getString("Format.Format.Global");
     }
 
-
     //Format variable replacers
-
     /**
      * Replaces the player variable with Bukkit's '%s' identifier.
      * ('%s' is Bukkit's default and recognized pattern, this also allows other plugins to change the message).

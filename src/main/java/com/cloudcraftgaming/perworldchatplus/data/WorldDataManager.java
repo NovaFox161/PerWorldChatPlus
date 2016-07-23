@@ -37,6 +37,7 @@ public class WorldDataManager {
             saveWorldDataFile(data, file);
         }
     }
+
     /**
      * Checks if the specified world has a data file.
      * @param worldName The world to check.
@@ -46,6 +47,7 @@ public class WorldDataManager {
         File file = new File(Main.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
         return file.exists();
     }
+
     /**
      * Gets the world data file for the specified world.
      * @param worldName The world whose data file  you wish to get.
@@ -54,6 +56,7 @@ public class WorldDataManager {
     public static File getWorldDataFile(String worldName) {
         return new File(Main.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
     }
+
     /**
      * Gets the world data yml for the specified world.
      * @param worldName The world whose data yml you wish to get.
@@ -62,6 +65,7 @@ public class WorldDataManager {
     public static YamlConfiguration getWorldDataYml(String worldName) {
         return YamlConfiguration.loadConfiguration(getWorldDataFile(worldName));
     }
+
     /**
      * Saves the specified data files.
      * @param dataYml The world data yml to save.

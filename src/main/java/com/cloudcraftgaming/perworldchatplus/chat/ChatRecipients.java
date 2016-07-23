@@ -66,7 +66,6 @@ public class ChatRecipients {
 
 
     //Chat receiver filtering.
-
     /**
      * Gets a set of players that were mentioned in the chat message.
      * @param recipients The current recipients of the message. (Important that this is current to avoid duplicates.
@@ -88,6 +87,7 @@ public class ChatRecipients {
         }
         return recipients;
     }
+
     /**
      * Gets a set of players that will receive the chat message based on it's contents (if they have an alert word that appears in the message.
      * @param recipients The current recipients of the message (Important that this is current to avoid duplicates).
@@ -109,6 +109,7 @@ public class ChatRecipients {
         }
         return  recipients;
     }
+
     /**
      * Gets a set of players that will receive the message if they are spying on all chat globally or for sender's world.
      * @param recipients The current recipients of the message (Important that this is current to avoid duplicates).
@@ -131,6 +132,7 @@ public class ChatRecipients {
         }
         return recipients;
     }
+
     /**
      * Gets a set of players that will receive the message if the recipients are a world that shares its chat with the sender.
      * @param recipients The current recipients of the message (Important that this is current to avoid duplicates).
@@ -148,6 +150,7 @@ public class ChatRecipients {
         }
         return recipients;
     }
+
     /**
      * Gets a set of all players online if the message is supposed to be global (excluding players that are already receiving the message).
      * @param recipients The current recipients of the message (Important that this is current to avoid duplicates).
@@ -165,6 +168,7 @@ public class ChatRecipients {
         }
         return recipients;
     }
+
     /**
      * Gets a set of players that SHOULD NOT receive the message because their chat is muted.
      * @return A set of players that SHOULD NOT receive the chat message.
@@ -180,7 +184,6 @@ public class ChatRecipients {
         }
         return muted;
     }
-
 
     //Checkers/Booleans
     /**

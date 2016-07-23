@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
  * For Project: PerWorldChatPlus
  */
 public class ChatColorCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("ChatColor") || command.getName().equalsIgnoreCase("CC")) {

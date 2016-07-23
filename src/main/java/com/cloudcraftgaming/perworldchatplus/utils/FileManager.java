@@ -74,18 +74,10 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);
-			List<String> blockedAds = plugin.getConfig().getStringList("Chat.Ad.Blocked");
-			blockedAds.add(".com");
-			blockedAds.add(".net");
-			blockedAds.add(".org");
-			blockedAds.add(".gov");
-			blockedAds.add(".io");
-			plugin.getConfig().set("Chat.Ad.Blocked", blockedAds);
 
 			List<String> sharesList = plugin.getConfig().getStringList("SharesList");
 			sharesList.add("world");
 			plugin.getConfig().set("SharesList", sharesList);
-
 
 			plugin.getConfig().options().copyDefaults(true);
 			plugin.saveConfig();

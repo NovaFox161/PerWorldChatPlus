@@ -43,6 +43,7 @@ public class MessageManager {
         String msgOr = getMessageYml().getString("Notification.PlayerOnly");
         return ChatColor.translateAlternateColorCodes('&', msgOr);
     }
+
     /**
      * Gets the messages file depending on the language.
      * @return the file in which messages are stored depending on the language set in the config.

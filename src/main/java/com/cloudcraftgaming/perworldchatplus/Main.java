@@ -26,6 +26,7 @@ public class Main extends JavaPlugin {
 	public UpdateChecker updateChecker;
 	
 	public void onDisable() {}
+	
 	public void onEnable() {
 		plugin = this;
 
@@ -60,6 +61,7 @@ public class Main extends JavaPlugin {
 		ChatColorInventory.createChatColorInventory();
 		generateWorldDataFilesOnStart();
 	}
+
 	private void checkUpdatesOnStart() {
 		if (getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
 			getLogger().info("Checking for updates...");

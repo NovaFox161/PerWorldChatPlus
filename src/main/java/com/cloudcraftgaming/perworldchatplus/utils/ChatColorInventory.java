@@ -249,6 +249,7 @@ public class ChatColorInventory {
 
         setChatColorInventory(inv);
     }
+
     /**
      * Sets the player's default chat color based on the clicked item.
      * @param player The player to set color for.

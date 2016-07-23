@@ -92,9 +92,7 @@ public class PlayerDataManager {
         }
     }
 
-
     //Booleans/checkers
-
     /**
      * Checks if the player currently has a data file.
      * @param player The player to check
@@ -168,9 +166,7 @@ public class PlayerDataManager {
         return PlayerDataManager.getPlayerDataYml(player).getString("ChatMute").equalsIgnoreCase("True");
     }
 
-
     //Getters
-
     /**
      * Gets the player's chat color (Default White).
      * @param player The player to get.
@@ -181,7 +177,6 @@ public class PlayerDataManager {
     }
 
     //Setters
-
     /**
      * Sets the player's chat mute status. If true, they will not see any chat messages. False if they should see chat messages.
      * @param player The player who's chat mute setting is to be set.

@@ -22,8 +22,7 @@ public class ListManager {
 		for (String list : Main.plugin.getConfig().getStringList("SharesList")) {
 			if (list.equalsIgnoreCase(worldName)) {
 				return list;
-			}
-			else if (FileManager.getSharesYml().getStringList(list).contains(worldName)) {
+			} else if (FileManager.getSharesYml().getStringList(list).contains(worldName)) {
 				return list;
 			}
 		}
