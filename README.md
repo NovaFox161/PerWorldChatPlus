@@ -11,5 +11,12 @@ Current Features:
 - Integrated ChatColor support. Make your messages colorful without needing to use codes every time!
 - Along with the integrated ChatColor support, PerWorldChatPlus supports a GUI selector for ChatColors!
 - Anti-Swear system. Block those bad words!
-- Anti-Ad System (Beta). Block all the unwanted advertisements!
+- Anti-Ad System. Block all the unwanted advertisements!
 - And much much more!
+
+Planned Features:
+- Anti-spam
+- More variables in format.
+- Better detection of IP Addresses.
+- Better detection of websites.
+- And more!!

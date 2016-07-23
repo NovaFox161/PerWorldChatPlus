@@ -26,7 +26,7 @@ public class Main extends JavaPlugin {
 	public UpdateChecker updateChecker;
 	
 	public void onDisable() {}
-	
+
 	public void onEnable() {
 		plugin = this;
 
