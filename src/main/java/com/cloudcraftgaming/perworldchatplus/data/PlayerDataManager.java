@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -166,6 +167,16 @@ public class PlayerDataManager {
         return PlayerDataManager.getPlayerDataYml(player).getString("ChatMute").equalsIgnoreCase("True");
     }
 
+    /**
+     * Checks if the specified player is ignoring the other player.
+     * @param player The player who to check.
+     * @param playerIgnored The player that may be ignored.
+     * @return <code>true</code> if ignored, else <code>false</code>.
+     */
+    public static boolean isIgnoringPlayer(Player player, Player playerIgnored) {
+        return getIgnoredPlayers(player).contains(playerIgnored.getUniqueId());
+    }
+
     //Getters
     /**
      * Gets the player's chat color (Default White).
@@ -174,6 +185,21 @@ public class PlayerDataManager {
      */
     public static ChatColor getChatColor(Player player) {
         return ChatColor.valueOf(getPlayerDataYml(player).getString("ChatColor"));
+    }
+
+    /**
+     * Gets a list of all players that are being ignored by the specified player.
+     * @param player The player to get.
+     * @return An ArrayList of UUIDs of ignored players.
+     */
+    public static ArrayList<UUID> getIgnoredPlayers(Player player) {
+        ArrayList<UUID> ignored = new ArrayList<>();
+        if (getPlayerDataYml(player).contains("Ignored")) {
+            for (String uuidString : getPlayerDataYml(player).getStringList("Ignored")) {
+                ignored.add(UUID.fromString(uuidString));
+            }
+        }
+        return ignored;
     }
 
     //Setters
@@ -247,5 +273,41 @@ public class PlayerDataManager {
         YamlConfiguration data = getPlayerDataYml(player);
         data.set("ChatColor", color.name());
         savePlayerData(data, getPlayerDataFile(player));
+    }
+
+    /**
+     * Ignores the specified player.
+     * @param player The player who wants to ignore someone.
+     * @param playerToIgnore The player to ignore.
+     * @return <code>true</code> if successful, else <code>false</code>.
+     */
+    public static Boolean ignorePlayer(Player player, Player playerToIgnore) {
+        YamlConfiguration playerData = getPlayerDataYml(player);
+        List<String> ignoredPlayers = playerData.getStringList("Ignored");
+        if (!ignoredPlayers.contains(playerToIgnore.getUniqueId().toString())) {
+            ignoredPlayers.add(playerToIgnore.getUniqueId().toString());
+            playerData.set("Ignored", ignoredPlayers);
+            savePlayerData(playerData, getPlayerDataFile(player));
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Stops ignoring the specified player.
+     * @param player The player who wants to stop ignoring someone.
+     * @param toStopIgnoring The player to stop ignoring.
+     * @return <code>true</code> if successful, else <code>false</code>.
+     */
+    public static Boolean unignorePlayer(Player player, Player toStopIgnoring) {
+        YamlConfiguration playerData = getPlayerDataYml(player);
+        List<String> ignoredPlayers = playerData.getStringList("Ignored");
+        if (ignoredPlayers.contains(toStopIgnoring.getUniqueId().toString())) {
+            ignoredPlayers.remove(toStopIgnoring.getUniqueId().toString());
+            playerData.set("Ignored", ignoredPlayers);
+            savePlayerData(playerData, getPlayerDataFile(player));
+            return true;
+        }
+        return false;
     }
 }
