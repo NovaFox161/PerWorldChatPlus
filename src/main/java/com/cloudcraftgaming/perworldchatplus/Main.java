@@ -65,7 +65,7 @@ public class Main extends JavaPlugin {
 	private void checkUpdatesOnStart() {
 		if (getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
 			getLogger().info("Checking for updates...");
-			this.updateChecker = new UpdateChecker(this, "http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/files.rss");
+			this.updateChecker = new UpdateChecker(this, "https://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/files.rss");
 			if (this.updateChecker.UpdateNeeded()) {
 				getLogger().info("A new update for PerWorldChatPlus is available! Version: " + updateChecker.getVersion());
 				getLogger().info("Download it from: " + updateChecker.getLink());

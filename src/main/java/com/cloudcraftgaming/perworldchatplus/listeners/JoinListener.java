@@ -33,7 +33,7 @@ public class JoinListener implements Listener {
 		if (plugin.getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
 			Player player = event.getPlayer();
 			if (player.hasPermission("pwcp.notify.update")) {
-				plugin.updateChecker = new UpdateChecker(plugin, "http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/files.rss");
+				plugin.updateChecker = new UpdateChecker(plugin, "https://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/files.rss");
 				if (plugin.updateChecker.UpdateNeeded()) {
 					player.sendMessage(ChatColor.GREEN + "A new update for PerWorldChatPlus is available! Version: "
 							+ ChatColor.BLUE + plugin.updateChecker.getVersion());
