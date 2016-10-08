@@ -6,6 +6,8 @@ website: http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/
 
 main: com.cloudcraftgaming.perworldchatplus.Main
 
+softdepend: [Vault]
+
 commands:
   perworldchatplus:
     description: Base command for PerWorldChatPlus.

@@ -11,8 +11,10 @@ import com.cloudcraftgaming.perworldchatplus.utils.ChatColorInventory;
 import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -22,6 +24,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Main extends JavaPlugin {
 	public static Main plugin;
+
+	private static Chat chat = null;
 
 	public UpdateChecker updateChecker;
 	
@@ -60,6 +64,9 @@ public class Main extends JavaPlugin {
 		//Do some other stuff
 		ChatColorInventory.createChatColorInventory();
 		generateWorldDataFilesOnStart();
+
+		//Integrate dependencies
+		setupChat();
 	}
 
 	private void checkUpdatesOnStart() {
@@ -87,6 +94,12 @@ public class Main extends JavaPlugin {
 		}, 20L * 2);
 	}
 
+	private boolean setupChat() {
+		RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+		chat = rsp.getProvider();
+		return chat != null;
+	}
+
 	/**
 	 * A simple method for checking if the versions are compatible.
 	 * This is to help reduce updates needed when a patch comes out.
@@ -96,5 +109,15 @@ public class Main extends JavaPlugin {
 	@SuppressWarnings("unused")
 	public static Boolean checkVersionCompatibility(String targetVersion) {
 		return targetVersion.equals(plugin.getDescription().getVersion()) || targetVersion.startsWith("5");
+	}
+
+	//Public methods for stuffs
+
+	/**
+	 * Gets Vault Chat to grab player chat data from.
+	 * @return The vault chat.
+	 */
+	public Chat getChat() {
+		return chat;
 	}
 }

@@ -2,6 +2,7 @@ package com.cloudcraftgaming.perworldchatplus.chat;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -27,6 +28,9 @@ public class ChatFormat {
                 format = getGlobalTemplate();
             }
             format = replacePlayerVariable(format);
+            format = replacePlayerNameVariable(format, sender);
+            format = replacePrefixVariable(format, sender);
+            format = replaceSuffixVariable(format, sender);
             format = replaceMessageVariable(format, message);
             format = replaceWorldVariable(format, sender);
 
@@ -126,6 +130,36 @@ public class ChatFormat {
     public static String replaceWorldVariable(String format, Player sender) {
         if (format.contains("%world%")) {
             return format.replaceAll("%world%", WorldDataManager.getAlias(sender.getWorld().getName()));
+        } else {
+            return format;
+        }
+    }
+
+    /**
+     * Replaces the prefix variable with the sender's world specific prefix.
+     * @param format The current format of the message.
+     * @param sender The sender of the message.
+     * @return The message's format with the prefix variable replaced.
+     */
+    public static String replacePrefixVariable(String format, Player sender) {
+        if (format.contains("%prefix%") && Main.plugin.getChat() != null) {
+            String prefix = Main.plugin.getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+            return format.replaceAll("%prefix%", prefix);
+        } else {
+            return format;
+        }
+    }
+
+    /**
+     * Replaces the suffix variable with the sender's world specific suffix.
+     * @param format The current format of the message.
+     * @param sender The sender of the message.
+     * @return The message's format with the suffix variable replaced.
+     */
+    public static String replaceSuffixVariable(String format, Player sender) {
+        if (format.contains("%suffix%") && Main.plugin.getChat() != null) {
+            String suffix = Main.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+            return format.replaceAll("%suffix%", suffix);
         } else {
             return format;
         }
