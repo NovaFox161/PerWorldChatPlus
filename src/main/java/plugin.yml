@@ -6,7 +6,7 @@ website: http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/
 
 main: com.cloudcraftgaming.perworldchatplus.Main
 
-softdepend: [Vault]
+softdepend: [Vault, Factions]
 
 commands:
   perworldchatplus:

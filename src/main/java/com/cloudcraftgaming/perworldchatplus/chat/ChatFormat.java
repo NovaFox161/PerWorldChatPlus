@@ -2,6 +2,7 @@ package com.cloudcraftgaming.perworldchatplus.chat;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
+import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -33,6 +34,10 @@ public class ChatFormat {
             format = replaceSuffixVariable(format, sender);
             format = replaceMessageVariable(format, message);
             format = replaceWorldVariable(format, sender);
+
+            //Factions replacers
+            format = replaceFactionNameVariable(format, sender);
+            format = replaceFactionTagVariable(format, sender);
 
             return ChatColor.translateAlternateColorCodes('&', format);
         } else {
@@ -160,6 +165,30 @@ public class ChatFormat {
         if (format.contains("%suffix%") && Main.plugin.getChat() != null) {
             String suffix = Main.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
             return format.replaceAll("%suffix%", suffix);
+        } else {
+            return format;
+        }
+    }
+
+    /**
+     * Replaces the faction name variable with the name of the sender's faction.
+     * @param format The current format of the message.
+     * @param sender The sender of the message.
+     * @return The message's format with the faction name variable replaced.
+     */
+    public static String replaceFactionNameVariable(String format, Player sender) {
+        if (format.contains("%factionName%") && Main.plugin.hasFactions()) {
+            MPlayer mSender = MPlayer.get(sender.getUniqueId());
+            return format.replaceAll("%factionName%", mSender.getFaction().getName());
+        } else {
+            return format;
+        }
+    }
+
+    public static String replaceFactionTagVariable(String format, Player sender) {
+        if (format.contains("%factionTitle%") && Main.plugin.hasFactions()) {
+            MPlayer mSender = MPlayer.get(sender.getUniqueId());
+            return format.replaceAll("%factionTitle%", mSender.getTitle());
         } else {
             return format;
         }

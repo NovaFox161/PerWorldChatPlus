@@ -27,6 +27,8 @@ public class Main extends JavaPlugin {
 
 	private static Chat chat = null;
 
+	private boolean hasFactionsBool;
+
 	public UpdateChecker updateChecker;
 	
 	public void onDisable() {}
@@ -67,6 +69,7 @@ public class Main extends JavaPlugin {
 
 		//Integrate dependencies
 		setupChat();
+		setupFactionsIntegration();
 	}
 
 	private void checkUpdatesOnStart() {
@@ -106,6 +109,13 @@ public class Main extends JavaPlugin {
 		return false;
 	}
 
+	private boolean setupFactionsIntegration() {
+		if (getServer().getPluginManager().getPlugin("Factions") != null) {
+			hasFactionsBool = true;
+		}
+		return hasFactionsBool;
+	}
+
 	/**
 	 * A simple method for checking if the versions are compatible.
 	 * This is to help reduce updates needed when a patch comes out.
@@ -125,5 +135,13 @@ public class Main extends JavaPlugin {
 	 */
 	public Chat getChat() {
 		return chat;
+	}
+
+	/**
+	 * Checks if the server is using factions for Factions Chat Integration.
+	 * @return <code>true</code> if using factions, otherwise <code>false</code>.
+	 */
+	public Boolean hasFactions() {
+		return hasFactionsBool;
 	}
 }
