@@ -95,9 +95,15 @@ public class Main extends JavaPlugin {
 	}
 
 	private boolean setupChat() {
-		RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-		chat = rsp.getProvider();
-		return chat != null;
+		if (getServer().getPluginManager().getPlugin("Vault") != null) {
+			RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+			chat = rsp.getProvider();
+			return chat != null;
+		} else {
+			getServer().getLogger().warning("Vault not installed/found! Some of PerWorldChatPlus's functions may not work!" +
+					"Download Vault at: https://dev.bukkit.org/bukkit-plugins/vault/");
+		}
+		return false;
 	}
 
 	/**
