@@ -27,9 +27,8 @@ public class ChatFormat {
                 format = getGlobalTemplate();
             }
             format = replacePlayerVariable(format);
-            format = replaceMessageVariable(format);
+            format = replaceMessageVariable(format, message);
             format = replaceWorldVariable(format, sender);
-            format = replaceGlobalVariable(format);
 
             return ChatColor.translateAlternateColorCodes('&', format);
         } else {
@@ -55,6 +54,22 @@ public class ChatFormat {
     }
 
     //Format variable replacers
+
+    /**
+     * Replaces the specified variable in the text with a specified replacement.
+     * This is a general method for developers to use to replace variables not native to PerWorldChatPlus.
+     * @param format The current format of the message.
+     * @param _var The variable to look for within the format.
+     * @param replaceWith The string to replace the specified variable with.
+     * @return The message's format with the specified variable replaced with the specified text.
+     */
+    public static String replaceVariable(String format, String _var, String replaceWith) {
+        if (format.contains(_var)) {
+            return format.replaceAll(_var, replaceWith);
+        } else {
+            return format;
+        }
+    }
     /**
      * Replaces the player variable with Bukkit's '%s' identifier.
      * ('%s' is Bukkit's default and recognized pattern, this also allows other plugins to change the message).
@@ -70,14 +85,33 @@ public class ChatFormat {
     }
 
     /**
+     * Replaces the player name variable with the sender's username.
+     * @param format The current format of the message.
+     * @param sender The sender of the message.
+     * @return The message's format with the player variable replaced.
+     */
+    public static String replacePlayerNameVariable(String format, Player sender) {
+        if (format.contains("%playername%")) {
+            return format.replaceAll("%playername%", sender.getName());
+        } else {
+            return format;
+        }
+    }
+
+    /**
      * Replaces the message variable with Bukkit's '%s' identifier.
+     * Or the message if not using Bukkit's identifiers.
      * ('%s' is Bukkit's default and recognized pattern, this also allows other plugins to change the message).
      * @param format The current format of the message.
      * @return The message's format with the message variable replaced.
      */
-    public static String replaceMessageVariable(String format) {
+    public static String replaceMessageVariable(String format, String message) {
         if (format.contains("%message%")) {
-            return format.replaceAll("%message%", "%s");
+            if (format.contains("%player%") || format.contains("%s")) {
+                return format.replaceAll("%message%", "%s");
+            } else {
+                return format.replaceAll("%message%", message);
+            }
         } else {
             return format;
         }
@@ -92,21 +126,6 @@ public class ChatFormat {
     public static String replaceWorldVariable(String format, Player sender) {
         if (format.contains("%world%")) {
             return format.replaceAll("%world%", WorldDataManager.getAlias(sender.getWorld().getName()));
-        } else {
-            return format;
-        }
-    }
-
-    /**
-     * Replaces the global variable with the global prefix.
-     * @param format The current format of the message.
-     * @return The message's format with the global variable replaced.
-     */
-    public static String replaceGlobalVariable(String format) {
-        if (format.contains("%global%")) {
-            String gPrefixOr = Main.plugin.getConfig().getString("Global.Prefix");
-            String gPrefix = ChatColor.translateAlternateColorCodes('&', gPrefixOr) + ChatColor.RESET;
-            return format.replaceAll("%global%", gPrefix);
         } else {
             return format;
         }
