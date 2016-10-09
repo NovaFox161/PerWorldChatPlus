@@ -104,7 +104,7 @@ public class Main extends JavaPlugin {
 			return chat != null;
 		} else {
 			getServer().getLogger().warning("Vault not installed/found! Some of PerWorldChatPlus's functions may not work!" +
-					"Download Vault at: https://dev.bukkit.org/bukkit-plugins/vault/");
+					" Download Vault at: https://dev.bukkit.org/bukkit-plugins/vault/");
 		}
 		return false;
 	}
@@ -128,7 +128,6 @@ public class Main extends JavaPlugin {
 	}
 
 	//Public methods for stuffs
-
 	/**
 	 * Gets Vault Chat to grab player chat data from.
 	 * @return The vault chat.
