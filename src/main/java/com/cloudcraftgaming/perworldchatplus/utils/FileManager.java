@@ -50,8 +50,10 @@ public class FileManager {
 			plugin.getConfig().addDefault("Alert.Mention.SendNotice", false);
 
 			plugin.getConfig().addDefault("Format.Enabled", true);
+			plugin.getConfig().addDefault("Format.PerWorld", true);
 			plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% : %message%");
-			plugin.getConfig().addDefault("Format.Format.Global", "%global% [%world%] %player% : %message%");
+			plugin.getConfig().addDefault("Format.Format.Global", "&4[Global] [%world%] %player% : %message%");
+			plugin.getConfig().addDefault("Format.Format.ExampleWorld"," This is a a format for 'ExampleWorld'");
 
 			plugin.getConfig().addDefault("Chat.Color.Translate", true);
 			plugin.getConfig().addDefault("Chat.Color.Auto", true);

@@ -24,7 +24,7 @@ public class ChatFormat {
      */
     public static String determineMessageFormat(String originalFormat, String message, Player sender) {
         if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
-            String format = getDefaultTemplate();
+            String format = getFormatTemplate(sender);
             if (ChatMessage.shouldBeGlobal(message, sender)) {
                 format = getGlobalTemplate();
             }
@@ -50,7 +50,12 @@ public class ChatFormat {
      * Gets the default chat format template from file.
      * @return The default chat format template.
      */
-    public static String getDefaultTemplate() {
+    public static String getFormatTemplate(Player sender) {
+        if (Main.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+            if (Main.plugin.getConfig().contains("Format.Format." + sender.getWorld().getName())) {
+                return Main.plugin.getConfig().getString("Format.Format." + sender.getWorld().getName());
+            }
+        }
         return Main.plugin.getConfig().getString("Format.Format.Default");
     }
 
