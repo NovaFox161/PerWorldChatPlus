@@ -20,9 +20,6 @@ commands:
   chatcolor:
     description: Command to change chat color and open ChatColor GUI.
     permission: pwcp.chat.color
-  cc:
-    description: Command(Alias) to change chat color and open ChatColor GUI.
-    permission: pwcp.chat.color
   global:
     description: Short version to make a global chat message.
     permission: pwcp.global

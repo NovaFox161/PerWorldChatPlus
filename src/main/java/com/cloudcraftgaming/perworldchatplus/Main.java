@@ -48,7 +48,6 @@ public class Main extends JavaPlugin {
 		getCommand("globalchat").setExecutor(new GlobalChatCommand());
 		getCommand("global").setExecutor(new GlobalChatCommand());
 		getCommand("chatcolor").setExecutor(new ChatColorCommand());
-		getCommand("cc").setExecutor(new ChatColorCommand());
 
 		//Do file stuff
 		FileManager.createConfig();
