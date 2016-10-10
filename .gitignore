@@ -117,7 +117,7 @@ fabric.properties
 .idea/inspectionProfiles/
 .idea/misc.xml
 .idea/modules.xml
-src/main/resources/
 src/test/
 target/
 /PerWorldChatPlus.iml
+/.idea/
