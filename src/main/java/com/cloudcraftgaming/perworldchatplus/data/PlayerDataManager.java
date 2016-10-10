@@ -1,6 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.data;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -34,6 +35,7 @@ public class PlayerDataManager {
             data.addDefault("Bypass", false);
             data.addDefault("WorldSpy", false);
             data.addDefault("ChatMute", false);
+            data.addDefault("SocialSpy", false);
             String chatColorString = Main.plugin.getConfig().getString("Chat.Color.Default");
             data.addDefault("ChatColor", ChatColor.valueOf(chatColorString).name());
 
@@ -57,6 +59,12 @@ public class PlayerDataManager {
         }
         if (!data.getString("ChatMute").equalsIgnoreCase("False")) {
             data.set("ChatMute", false);
+        }
+        if (!data.contains("SocialSpy")) {
+            data.set("SocialSpy", false);
+        }
+        if (data.contains("Messaging")) {
+            data.set("Messaging", null);
         }
         savePlayerData(data, getPlayerDataFile(player));
     }
@@ -177,6 +185,33 @@ public class PlayerDataManager {
         return getIgnoredPlayers(player).contains(playerIgnored.getUniqueId());
     }
 
+    /**
+     * Checks whether or not the specified player is messaging with a another player.
+     * @param player The player whose file to check.
+     * @return <code>true</code> if messaging a player, otherwise <code>false</code>.
+     */
+    public static boolean isMessagingPlayer(Player player) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        if (data.contains("Messaging")) {
+            UUID mUUID = getMessagingWith(player);
+            if (Bukkit.getPlayer(mUUID) != null) {
+                return true;
+            } else {
+                removeMessagingPlayer(player);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the player has enabled SocialSpy (spying on private messages).
+     * @param player The player to check.
+     * @return <code>true</code> if enabled,else <code>false</code>.
+     */
+    public  static boolean hasSocialSpyEnabled(Player player) {
+        return getPlayerDataYml(player).getString("SocialSpy").equalsIgnoreCase("True");
+    }
+
     //Getters
     /**
      * Gets the player's chat color (Default White).
@@ -200,6 +235,17 @@ public class PlayerDataManager {
             }
         }
         return ignored;
+    }
+
+    /**
+     * Gets the UUID of the player that the specified player is messaging.
+     * Check that the player IS messaging someone or this will result in a null error.
+     * @param player The player whose messaging player to get.
+     * @return the UUID of the player that the specified player is messaging.
+     */
+    public static UUID getMessagingWith(Player player) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        return UUID.fromString(data.getString("Messaging"));
     }
 
     //Setters
@@ -272,6 +318,38 @@ public class PlayerDataManager {
     public static void setChatColor(Player player, ChatColor color) {
         YamlConfiguration data = getPlayerDataYml(player);
         data.set("ChatColor", color.name());
+        savePlayerData(data, getPlayerDataFile(player));
+    }
+
+    /**
+     * Updates the player's data file with the player they are messaging.
+     * @param player The player whose file is to be updated.
+     * @param messagingWith The player that the other is messaging.
+     */
+    public static void setMessagingPlayer(Player player, Player messagingWith) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        data.set("Messaging", messagingWith.getUniqueId());
+        savePlayerData(data, getPlayerDataFile(player));
+    }
+
+    /**
+     * Updates the player's data file to reflect that they are no longer messaging another player.
+     * @param player The player whose file is to be updated.
+     */
+    public static void removeMessagingPlayer(Player player) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        data.set("Messaging", null);
+        savePlayerData(data, getPlayerDataFile(player));
+    }
+
+    /**
+     * Sets whether or not the player has social spy on or off (Spying on private messages).
+     * @param player The player to set data for.
+     * @param spy Whether or not social spy is enabled.
+     */
+    public static void setSocialSpy(Player player, boolean spy) {
+        YamlConfiguration data = getPlayerDataYml(player);
+        data.set("SocialSpy", spy);
         savePlayerData(data, getPlayerDataFile(player));
     }
 

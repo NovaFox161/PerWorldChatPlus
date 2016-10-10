@@ -51,9 +51,9 @@ public class FileManager {
 
 			plugin.getConfig().addDefault("Format.Enabled", true);
 			plugin.getConfig().addDefault("Format.PerWorld", true);
-			plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% : %message%");
-			plugin.getConfig().addDefault("Format.Format.Global", "&4[Global] [%world%] %player% : %message%");
-			plugin.getConfig().addDefault("Format.Format.ExampleWorld"," This is a a format for 'ExampleWorld'");
+			plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% :&r %message%");
+			plugin.getConfig().addDefault("Format.Format.Global", "&4[Global] [%world%] %player% :&r %message%");
+			plugin.getConfig().addDefault("Format.Format.ExampleWorld","This is a a format for 'ExampleWorld'");
 
 			plugin.getConfig().addDefault("Chat.Color.Translate", true);
 			plugin.getConfig().addDefault("Chat.Color.Auto", true);
@@ -76,6 +76,14 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);
+
+			plugin.getConfig().addDefault("PM.Enabled", true);
+			plugin.getConfig().addDefault("PM.Format.Spy", "&4[SPY][&sendername%] &6-> &4[%receivername%]:&r %message%");
+			plugin.getConfig().addDefault("PM.Format.Default.From", "&4[You] &6-> [&4%receiver%]:&r %message%");
+			plugin.getConfig().addDefault("PM.Format.Default.To", "&4[%sender%] &6-> [&4You]:&r %message%");
+			plugin.getConfig().addDefault("PM.Format.ExampleWorld.From","This is a a format for 'ExampleWorld' for the sender");
+			plugin.getConfig().addDefault("PM.Format.ExampleWorld.To","This is a a format for 'ExampleWorld' for the receiver");
+
 
 			List<String> sharesList = plugin.getConfig().getStringList("SharesList");
 			sharesList.add("world");
