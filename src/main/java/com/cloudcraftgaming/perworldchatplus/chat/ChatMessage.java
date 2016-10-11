@@ -140,7 +140,11 @@ public class ChatMessage {
     public static String makeMessageColorful(String message, Player sender) {
         if (Main.plugin.getConfig().getString("Chat.Color.RequirePermission").equalsIgnoreCase("True")) {
             if (!sender.hasPermission("pwcp.chat.color")) {
-                return message;
+                if (Main.plugin.getConfig().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True")) {
+                    return ChatColor.stripColor(message);
+                } else {
+                    return message;
+                }
             }
         }
         if (Main.plugin.getConfig().getString("Chat.Color.Auto").equalsIgnoreCase("True")) {

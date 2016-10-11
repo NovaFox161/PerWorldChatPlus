@@ -59,6 +59,7 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Color.Auto", true);
 			plugin.getConfig().addDefault("Chat.Color.Default", ChatColor.WHITE.name());
 			plugin.getConfig().addDefault("Chat.Color.RequirePermission", true);
+			plugin.getConfig().addDefault("Chat.Color.StripWithoutPermission", true);
 
 			plugin.getConfig().addDefault("Chat.Swear.Block.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Swear.Block.EntireMessage", false);
