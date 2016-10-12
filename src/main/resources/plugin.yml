@@ -32,6 +32,12 @@ commands:
   pm:
     description: Command to private message another player.
     permission: pwcp.pm
+  message:
+    descripton: Command to private message another player.
+    permission: pwcp.pm
+  msg:
+    descripton: Command to private message another player.
+    permission: pwcp.pm
   whisper:
     description: Command to private message another player.
     permission: pwcp.pm

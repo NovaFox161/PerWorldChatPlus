@@ -48,6 +48,8 @@ public class Main extends JavaPlugin {
 		getCommand("chatcolor").setExecutor(new ChatColorCommand());
 		getCommand("privatemessage").setExecutor(new PrivateMessageCommand());
 		getCommand("pm").setExecutor(new PrivateMessageCommand());
+		getCommand("message").setExecutor(new PrivateMessageCommand());
+		getCommand("msg").setExecutor(new PrivateMessageCommand());
 		getCommand("whisper").setExecutor(new PrivateMessageCommand());
 		getCommand("reply").setExecutor(new PrivateReplyCommand());
 		getCommand("r").setExecutor(new PrivateReplyCommand());

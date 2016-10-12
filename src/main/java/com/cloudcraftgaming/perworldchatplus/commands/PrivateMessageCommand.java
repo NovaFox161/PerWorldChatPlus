@@ -19,7 +19,8 @@ public class PrivateMessageCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("privateMessage") || command.getName().equalsIgnoreCase("pm")
-            || command.getName().equalsIgnoreCase("whisper")) {
+            || command.getName().equalsIgnoreCase("message") || command.getName().equalsIgnoreCase("msg")
+				|| command.getName().equalsIgnoreCase("whisper")) {
 			if (Main.plugin.getConfig().getString("PM.Enabled").equalsIgnoreCase("True")) {
 				if (sender instanceof Player) {
 					if (sender.hasPermission("pwcp.pm")) {
