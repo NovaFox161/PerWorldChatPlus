@@ -1,8 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus;
 
-import com.cloudcraftgaming.perworldchatplus.commands.ChatColorCommand;
-import com.cloudcraftgaming.perworldchatplus.commands.GlobalChatCommand;
-import com.cloudcraftgaming.perworldchatplus.commands.PerWorldChatCommand;
+import com.cloudcraftgaming.perworldchatplus.commands.*;
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
 import com.cloudcraftgaming.perworldchatplus.listeners.InventoryClickListener;
@@ -48,6 +46,11 @@ public class Main extends JavaPlugin {
 		getCommand("globalchat").setExecutor(new GlobalChatCommand());
 		getCommand("global").setExecutor(new GlobalChatCommand());
 		getCommand("chatcolor").setExecutor(new ChatColorCommand());
+		getCommand("privatemessage").setExecutor(new PrivateMessageCommand());
+		getCommand("pm").setExecutor(new PrivateMessageCommand());
+		getCommand("whisper").setExecutor(new PrivateMessageCommand());
+		getCommand("reply").setExecutor(new PrivateReplyCommand());
+		getCommand("r").setExecutor(new PrivateReplyCommand());
 
 		//Do file stuff
 		FileManager.createConfig();

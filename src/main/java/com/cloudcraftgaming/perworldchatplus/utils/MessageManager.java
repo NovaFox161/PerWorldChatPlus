@@ -63,6 +63,16 @@ public class MessageManager {
     }
 
     /**
+     * Gets the message from the messages yml from the given path.
+     * @param path The path the message resides at.
+     * @return The message with ChatColors translated.
+     */
+    public static String getMessage(String path) {
+        return ChatColor.translateAlternateColorCodes('&', getMessageYml().getString(path));
+
+    }
+
+    /**
      * Creates the English Messages File. (Generally only used on startup).
      */
     public static void createEnglishMessagesFile() {
@@ -103,6 +113,9 @@ public class MessageManager {
             en.addDefault("Command.TimedGlobal.TimeNotNumber", "&4ERROR time is not a number!");
             en.addDefault("Command.Mute.Enable", "&4You have muted your chat! You will not see any chat message until you unmute or log off!");
             en.addDefault("Command.Mute.Disable", "&2You have unmuted your chat! You will now see chat messages again!");
+            en.addDefault("Command.pm.args.few", "&4Too few args! You need &6/pm <to> <message>");
+            en.addDefault("Command.reply.args.few", "&4Too few args! You need &6/r <message>");
+            en.addDefault("Command.reply.no one", "&4You have no one to reply to!");
 
             en.addDefault("Command.Set.Alias", "&5World alias for world: &6%world% &5 is now &6%alias%&5!");
             en.addDefault("Command.Set.Color.Self", "&2You have changed your chat color to &6%color%&2!");

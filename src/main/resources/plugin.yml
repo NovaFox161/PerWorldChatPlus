@@ -26,6 +26,15 @@ commands:
   globalchat:
     description: Command to make a global chat message.
     permission: pwcp.global
+  privatemessage:
+    descripton: Command to private message another player.
+    permission: pwcp.pm
+  pm:
+    description: Command to private message another player.
+    permission: pwcp.pm
+  whisper:
+    description: Command to private message another player.
+    permission: pwcp.pm
 
 permissions:
   pwcp.bypass:
@@ -55,3 +64,6 @@ permissions:
   pwcp.chat.color.other:
     description: Allows use of changing another player's default ChatColor.
     default: op
+  pwcp.pm:
+    description: Allows use of private messaging commands
+    default: true
