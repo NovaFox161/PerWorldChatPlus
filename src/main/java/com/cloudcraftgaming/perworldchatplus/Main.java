@@ -53,6 +53,7 @@ public class Main extends JavaPlugin {
 		getCommand("whisper").setExecutor(new PrivateMessageCommand());
 		getCommand("reply").setExecutor(new PrivateReplyCommand());
 		getCommand("r").setExecutor(new PrivateReplyCommand());
+		getCommand("socialspy").setExecutor(new SocialSpyCommand());
 
 		//Do file stuff
 		FileManager.createConfig();

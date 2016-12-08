@@ -98,6 +98,8 @@ public class MessageManager {
             en.addDefault("Command.WorldSpy.RemoveWorld", "&4Removed &6%world% &4from spy list!");
             en.addDefault("Command.WorldSpy.AddWorld", "&2Added &6%world% &2to spy list!");
             en.addDefault("Command.WorldSpy.NoPerm", "&4You eo not have permission to spy on that world!");
+            en.addDefault("Command.SocialSpy.Enabled", "&2Socialspy enabled! You will now see all PMs!");
+            en.addDefault("Command.SocialSpy.Disabled", "&4Socialspy disabled! You will no longer see all PMs!");
             en.addDefault("Command.Bypass.Enabled", "&2Global Chat Bypass enabled! All of your messages will be global until disabled!");
             en.addDefault("Command.Bypass.Disabled", "&4Global Chat Bypass disabled! Your messages are per world until enabled!");
             en.addDefault("Command.Alert.Added", "&6%word% &2has been added to your alert list!");

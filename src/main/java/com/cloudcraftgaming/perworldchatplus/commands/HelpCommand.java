@@ -38,6 +38,9 @@ class HelpCommand {
             sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 3/3" + ChatColor.GOLD + "-~-");
             sender.sendMessage(ChatColor.GREEN + "/global (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single global message.");
             sender.sendMessage(ChatColor.GREEN + "/globalChat (message)" + ChatColor.LIGHT_PURPLE + " - Sends a single Global Message.");
+            sender.sendMessage(ChatColor.GREEN + "/pm <player> <message>" + ChatColor.LIGHT_PURPLE + " - Sends the specified player a private message.");
+            sender.sendMessage(ChatColor.GREEN + "/r <message>" + ChatColor.LIGHT_PURPLE + " - Replies to the last player you private messaged.");
+            sender.sendMessage(ChatColor.GREEN + "/socialspy" + ChatColor.LIGHT_PURPLE + " - Allows you to see all private messages, even if they are not for you.");
             sender.sendMessage(ChatColor.GOLD + "End of PerWorldChatPlus Help");
         } else {
             String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
