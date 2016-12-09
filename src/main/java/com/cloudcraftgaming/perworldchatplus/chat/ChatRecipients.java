@@ -55,6 +55,12 @@ public class ChatRecipients {
                 recipients.remove(p);
             }
         }
+        List<Player> removeIgnoring = getIgnoredReceivers(sender);
+        for (Player p : removeIgnoring) {
+            if (recipients.contains(p)) {
+                recipients.remove(p);
+            }
+        }
 
 
         if (!recipients.contains(sender)) {
@@ -63,7 +69,6 @@ public class ChatRecipients {
 
         return recipients;
     }
-
 
     //Chat receiver filtering.
     /**
@@ -183,6 +188,23 @@ public class ChatRecipients {
             }
         }
         return muted;
+    }
+
+    /**
+     * Gets a set of players that SHOULD NOT receive the message because they are ignoring the sender.
+     * @param sender The sender of the chat message.
+     * @return A set of players that SHOULD NOT receive the chat message.
+     */
+    public static List<Player> getIgnoredReceivers(Player sender) {
+        List<Player> ignored = new ArrayList<>();
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (PlayerDataManager.isIgnoringPlayer(p, sender)) {
+                if (!ignored.contains(p)) {
+                    ignored.add(p);
+                }
+            }
+        }
+        return ignored;
     }
 
     //Checkers/Booleans
