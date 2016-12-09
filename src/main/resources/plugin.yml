@@ -49,6 +49,9 @@ permissions:
   pwcp.bypass:
     description: Allows a player to chat globally.
     default: op
+  pwcp.bypass.ignore:
+    descriptions: Prevents a player from being ignored.
+    default: op
   pwcp.spy:
     description: Allows players to see chats from all worlds.
     default: op

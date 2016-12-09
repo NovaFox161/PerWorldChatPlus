@@ -362,11 +362,13 @@ public class PlayerDataManager {
     public static Boolean ignorePlayer(Player player, Player playerToIgnore) {
         YamlConfiguration playerData = getPlayerDataYml(player);
         List<String> ignoredPlayers = playerData.getStringList("Ignored");
-        if (!ignoredPlayers.contains(playerToIgnore.getUniqueId().toString())) {
-            ignoredPlayers.add(playerToIgnore.getUniqueId().toString());
-            playerData.set("Ignored", ignoredPlayers);
-            savePlayerData(playerData, getPlayerDataFile(player));
-            return true;
+        if (!playerToIgnore.hasPermission("pwcp.bypass.ignore")) {
+            if (!ignoredPlayers.contains(playerToIgnore.getUniqueId().toString())) {
+                ignoredPlayers.add(playerToIgnore.getUniqueId().toString());
+                playerData.set("Ignored", ignoredPlayers);
+                savePlayerData(playerData, getPlayerDataFile(player));
+                return true;
+            }
         }
         return false;
     }
