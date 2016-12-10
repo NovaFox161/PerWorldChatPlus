@@ -125,6 +125,12 @@ public class MessageManager {
 
             en.addDefault("Command.ChatColor.Open", "&6Opened ChatColor GUI!");
 
+            en.addDefault("Command.Ignore.Self", "&4You cannot ignore yourself!");
+            en.addDefault("Command.Ignore.Start.Success", "&4You have ignored %player% &4and will no longer see their messages!");
+            en.addDefault("Command.Ignore.Start.Failure", "&4That player cannot be ignored or something went wrong!");
+            en.addDefault("Command.Ignore.Stop.Success", "&2You have stopped ignoring %player% &2and will now see their messages!");
+            en.addDefault("Command.Ignore.Stop.Failure", "&4Oops! Something went wrong and that operation did not work!");
+
             en.addDefault("Mention.Notice", "&2You were mentioned by: &6%sender%");
 
             en.addDefault("Notification.NoPerm", "&4You do not have permission to do that!");

@@ -54,6 +54,7 @@ public class Main extends JavaPlugin {
 		getCommand("reply").setExecutor(new PrivateReplyCommand());
 		getCommand("r").setExecutor(new PrivateReplyCommand());
 		getCommand("socialspy").setExecutor(new SocialSpyCommand());
+		getCommand("ignore").setExecutor(new IgnoreCommand());
 
 		//Do file stuff
 		FileManager.createConfig();

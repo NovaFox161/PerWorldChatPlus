@@ -82,3 +82,6 @@ permissions:
   pwcp.socialspy:
     description: Allows use of the socialspy command, to view PMs as they happen.
     default: op
+  pwcp.ignore:
+    description: Allows use of the ignore command.
+    default: true
