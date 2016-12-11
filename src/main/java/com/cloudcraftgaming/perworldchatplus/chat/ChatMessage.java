@@ -28,6 +28,7 @@ public class ChatMessage {
         String newMessage = originalMessage;
         newMessage = filterSwears(newMessage, sender);
         newMessage = filterAds(newMessage, sender);
+        newMessage = filterSpam(newMessage, sender);
         newMessage = removeGlobalBypassString(newMessage);
         newMessage = makeMessageColorful(newMessage, sender);
 
@@ -113,6 +114,39 @@ public class ChatMessage {
         }
         if (hasAdvertised) {
             PlayerHandler.doStuffOnAdvertise(sender);
+        }
+        return newMessage;
+    }
+
+    public static String filterSpam(String _message, Player sender) {
+        String newMessage = _message;
+        boolean hasSpammed = false;
+
+        if (Main.plugin.getConfig().getString("Chat.Spam.Block.Enabled").equalsIgnoreCase("True")) {
+            //Check if more caps than allowed
+            if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.Enabled").equalsIgnoreCase("True")) {
+                Double percentLimit = Main.plugin.getConfig().getDouble("Chat.Spam.Caps.Limit.Percent");
+                int caps = 0;
+                char[] chars = newMessage.toCharArray();
+                for (char aChar : chars) {
+                    if (Character.isUpperCase(aChar)) {
+                        caps++;
+                    }
+                }
+                //Check percent
+                double percentCaps = (caps / chars.length) * 100;
+                if (percentCaps >= percentLimit) {
+                    hasSpammed = true;
+                    if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.ToLower").equalsIgnoreCase("True")) {
+                        newMessage = newMessage.toLowerCase();
+                    }
+                }
+            }
+
+
+        }
+        if (hasSpammed) {
+            //PlayerHandler.doStuffOnSpam(sender);
         }
         return newMessage;
     }

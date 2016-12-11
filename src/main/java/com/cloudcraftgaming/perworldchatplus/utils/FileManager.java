@@ -77,6 +77,12 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Ad.Replace", "***");
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Enabled", false);
 			plugin.getConfig().addDefault("Chat.Ad.Kick.Announce", true);
+			plugin.getConfig().addDefault("Chat.Spam.Block.Enabled", true);
+			plugin.getConfig().addDefault("Chat.Spam.Block.EntireMessage", false);
+			plugin.getConfig().addDefault("Chat.Spam.Replace", "***");
+			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Enabled", true);
+			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Percent", 75.0);
+			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.ToLower", true);
 
 			plugin.getConfig().addDefault("PM.Enabled", true);
 			plugin.getConfig().addDefault("PM.Format.Spy", "&4[SPY][&sendername%] &6-> &4[%receivername%]:&r %message%");
