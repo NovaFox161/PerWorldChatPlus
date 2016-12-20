@@ -37,23 +37,27 @@ public class IPUtility {
      *  <code>false</code> otherwise.
      */
     public static boolean isIpAddress(String ipAddress) {
-        Matcher m1 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddress);
-        if (m1.matches()) {
-            return true;
-        }
-        Matcher m2 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddress);
-        if (m2.matches()) {
-            return true;
-        } else if (ipAddress.contains(":")) {
-            String[] ipAddressSplit = ipAddress.split(":");
-            Matcher m3 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
-            if (m3.matches()) {
+        try {
+            Matcher m1 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddress);
+            if (m1.matches()) {
                 return true;
             }
-            Matcher m4 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
-            if (m4.matches()) {
+            Matcher m2 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddress);
+            if (m2.matches()) {
                 return true;
+            } else if (ipAddress.contains(":")) {
+                String[] ipAddressSplit = ipAddress.split(":");
+                Matcher m3 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
+                if (m3.matches()) {
+                    return true;
+                }
+                Matcher m4 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
+                if (m4.matches()) {
+                    return true;
+                }
             }
+        } catch (Exception e) {
+            //Some issue, safe to ignore.
         }
         return false;
     }
