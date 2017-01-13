@@ -52,6 +52,9 @@ permissions:
   pwcp.bypass.ignore:
     descriptions: Prevents a player from being ignored.
     default: op
+  pwcp.bypass.swear:
+    description: Allows players to bypass swear filtering.
+    default op
   pwcp.spy:
     description: Allows players to see chats from all worlds.
     default: op

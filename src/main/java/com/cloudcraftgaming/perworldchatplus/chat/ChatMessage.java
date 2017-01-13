@@ -47,23 +47,25 @@ public class ChatMessage {
         boolean hasSworn = false;
 
         if (Main.plugin.getConfig().getString("Chat.Swear.Block.Enabled").equalsIgnoreCase("True")) {
-            String replacer = Main.plugin.getConfig().getString("Chat.Swear.Replace");
-            List<String> blockedWords = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
-            for (String blockedWord : blockedWords) {
-                if (newMessage.toLowerCase().contains(blockedWord.toLowerCase())) {
-                    if (Main.plugin.getConfig().getString("Chat.Swear.Block.EntireMessage").equalsIgnoreCase("True")) {
-                        newMessage = replacer;
-                        hasSworn = true;
-                        break;
-                    } else {
-                        newMessage = newMessage.replaceAll("(?i)" + blockedWord, replacer);
-                        hasSworn = true;
+            if (!sender.hasPermission("pwcp.bypass.swear")) {
+                String replacer = Main.plugin.getConfig().getString("Chat.Swear.Replace");
+                List<String> blockedWords = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
+                for (String blockedWord : blockedWords) {
+                    if (newMessage.toLowerCase().contains(blockedWord.toLowerCase())) {
+                        if (Main.plugin.getConfig().getString("Chat.Swear.Block.EntireMessage").equalsIgnoreCase("True")) {
+                            newMessage = replacer;
+                            hasSworn = true;
+                            break;
+                        } else {
+                            newMessage = newMessage.replaceAll("(?i)" + blockedWord, replacer);
+                            hasSworn = true;
+                        }
                     }
                 }
             }
-        }
-        if (hasSworn) {
-            PlayerHandler.doStuffOnSwear(sender);
+            if (hasSworn) {
+                PlayerHandler.doStuffOnSwear(sender);
+            }
         }
         return newMessage;
     }
