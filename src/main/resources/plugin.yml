@@ -58,6 +58,9 @@ permissions:
   pwcp.bypass.ad:
     description: Allows players to bypass ad filtering.
     default: op
+  pwcp.bypass.spam:
+    description: Allows player to bypass spam filtering.
+    default: op
   pwcp.spy:
     description: Allows players to see chats from all worlds.
     default: op
