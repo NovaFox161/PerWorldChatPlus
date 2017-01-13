@@ -82,33 +82,35 @@ public class ChatMessage {
         boolean hasAdvertised = false;
 
         if (Main.plugin.getConfig().getString("Chat.Ad.Block.Enabled").equalsIgnoreCase("True")) {
-            String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
-            if (Main.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
-                String[] words = newMessage.split(" ");
-                for (String word : words) {
-                    if (IPUtility.isIpAddress(word)) {
-                        if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
-                            newMessage = replacer;
-                            hasAdvertised = true;
-                            break;
-                        } else {
-                            newMessage = newMessage.replaceAll("(?i)" + word, replacer);
-                            hasAdvertised = true;
+            if (!sender.hasPermission("pwcp.bypass.ad")) {
+                String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
+                if (Main.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
+                    String[] words = newMessage.split(" ");
+                    for (String word : words) {
+                        if (IPUtility.isIpAddress(word)) {
+                            if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
+                                newMessage = replacer;
+                                hasAdvertised = true;
+                                break;
+                            } else {
+                                newMessage = newMessage.replaceAll("(?i)" + word, replacer);
+                                hasAdvertised = true;
+                            }
                         }
                     }
                 }
-            }
-            if (Main.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
-                String[] words = newMessage.split(" ");
-                for (String word : words) {
-                    if (IPUtility.isURL(word)) {
-                        if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
-                            newMessage = replacer;
-                            hasAdvertised = true;
-                            break;
-                        } else {
-                            newMessage = newMessage.replaceAll("(?i)" + word, replacer);
-                            hasAdvertised = true;
+                if (Main.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
+                    String[] words = newMessage.split(" ");
+                    for (String word : words) {
+                        if (IPUtility.isURL(word)) {
+                            if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
+                                newMessage = replacer;
+                                hasAdvertised = true;
+                                break;
+                            } else {
+                                newMessage = newMessage.replaceAll("(?i)" + word, replacer);
+                                hasAdvertised = true;
+                            }
                         }
                     }
                 }

@@ -54,7 +54,10 @@ permissions:
     default: op
   pwcp.bypass.swear:
     description: Allows players to bypass swear filtering.
-    default op
+    default: op
+  pwcp.bypass.ad:
+    description: Allows players to bypass ad filtering.
+    default: op
   pwcp.spy:
     description: Allows players to see chats from all worlds.
     default: op
