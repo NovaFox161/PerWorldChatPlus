@@ -72,7 +72,10 @@ public class IPUtility {
      * <code>false</code> otherwise.
      */
     public static boolean isURL(String url) {
-        Matcher m1 = IPUtility.VALID_URL_PATTERN.matcher(url);
-        return m1.matches();
+        if (url.length() > 7) {
+            Matcher m1 = IPUtility.VALID_URL_PATTERN.matcher(url);
+            return m1.matches();
+        }
+        return false;
     }
 }
