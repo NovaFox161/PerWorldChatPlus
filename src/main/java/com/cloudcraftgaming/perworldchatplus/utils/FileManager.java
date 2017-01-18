@@ -2,6 +2,7 @@ package com.cloudcraftgaming.perworldchatplus.utils;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -48,6 +49,7 @@ public class FileManager {
 			plugin.getConfig().addDefault("Alert.Mention.RequirePermission", false);
 			plugin.getConfig().addDefault("Alert.Mention.RequireAtSymbol", false);
 			plugin.getConfig().addDefault("Alert.Mention.SendNotice", false);
+			plugin.getConfig().addDefault("Alert.Mention.Sound", Sound.ENTITY_PLAYER_LEVELUP.name());
 
 			plugin.getConfig().addDefault("Format.Enabled", true);
 			plugin.getConfig().addDefault("Format.PerWorld", true);

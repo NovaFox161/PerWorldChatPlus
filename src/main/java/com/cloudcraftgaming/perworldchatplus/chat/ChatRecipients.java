@@ -17,6 +17,7 @@ import java.util.Set;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus.
  */
+@SuppressWarnings("WeakerAccess")
 public class ChatRecipients {
     /**
      * Determines what players will receive a message, based on the chat rules set in the config, or chat rules that are enabled per player.
@@ -84,7 +85,9 @@ public class ChatRecipients {
                 if (!recipients.contains(p)) {
                     recipients.add(p);
                 }
-                p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 0f);
+                String soundName = Main.plugin.getConfig().getString("Alert.Mention.Sound");
+                Sound sound = Sound.valueOf(soundName);
+                p.playSound(p.getLocation(), sound, 1f, 0f);
                 if (shouldSendMentionNotice()) {
                     PlayerHandler.sendMentionNotice(p, sender);
                 }

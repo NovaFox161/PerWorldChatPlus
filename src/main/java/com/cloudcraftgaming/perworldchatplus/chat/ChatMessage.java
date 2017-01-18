@@ -16,6 +16,7 @@ import java.util.List;
  *
  * This class is used to set a chat message's content and other related tasks.
  */
+@SuppressWarnings("Duplicates")
 public class ChatMessage {
     /**
      * Determines the message contents before it is sent based on settings and what the original message contained.
