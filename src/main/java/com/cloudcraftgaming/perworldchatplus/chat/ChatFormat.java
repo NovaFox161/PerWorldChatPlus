@@ -18,6 +18,7 @@ public class ChatFormat {
 
     /**
      * Determines the chat message format. This combines all formatting methods.
+     * Use {@link #determineMessageFormat(String, String, Player, Boolean)} to manually control use of the global prefix.
      * @param message The message to format.
      * @param sender The sender of the message.
      * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
@@ -26,6 +27,38 @@ public class ChatFormat {
         if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
             String format = getFormatTemplate(sender);
             if (ChatMessage.shouldBeGlobal(message, sender)) {
+                format = getGlobalTemplate();
+            }
+            format = replacePlayerVariable(format);
+            format = replacePlayerNameVariable(format, sender);
+            format = replacePrefixVariable(format, sender);
+            format = replaceSuffixVariable(format, sender);
+            format = replaceMessageVariable(format, message);
+            format = replaceWorldVariable(format, sender);
+
+            //Factions replacers
+            format = replaceFactionNameVariable(format, sender);
+            format = replaceFactionTagVariable(format, sender);
+
+            return ChatColor.translateAlternateColorCodes('&', format);
+        } else {
+            return originalFormat;
+        }
+    }
+
+    /**
+     * Determines the chat message format. This combines all formatting methods. This method allows direct control of using global formatting or not.
+     * Use {@link #determineMessageFormat(String, String, Player)} to automatically allow PWCP to determine which format to use.
+     * @param originalFormat The message to format.
+     * @param message The sender of the message.
+     * @param sender The sender of the message.
+     * @param global Whether or not to use the global formatting.
+     * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
+     */
+    public static String determineMessageFormat(String originalFormat, String message, Player sender, Boolean global) {
+        if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
+            String format = getFormatTemplate(sender);
+            if (global) {
                 format = getGlobalTemplate();
             }
             format = replacePlayerVariable(format);

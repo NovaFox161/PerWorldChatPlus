@@ -1,5 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.commands;
 
+import com.cloudcraftgaming.perworldchatplus.chat.ChatFormat;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -31,15 +32,13 @@ public class GlobalChatCommand implements CommandExecutor {
 					}
 					else if (args.length == 1 || args.length > 1) {
 						String gPrefix = plugin.getConfig().getString("Global.Prefix");
-						String worldName = player.getWorld().getName();
-						String playerName = player.getDisplayName();
-						String format = ChatColor.translateAlternateColorCodes('&', gPrefix) + " " + ChatColor.GOLD + "[" + worldName + "]" + " "
-								+ playerName + ChatColor.RESET;
 						String msg1 = "";
 						for (String arg : args) {
 							arg = arg + " ";
 							msg1 = msg1 + arg;
 						}
+						String format = ChatFormat.determineMessageFormat(gPrefix, msg1, player, true);
+
 						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());
 					}
 				}
