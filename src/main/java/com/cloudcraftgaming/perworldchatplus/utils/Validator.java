@@ -9,7 +9,7 @@ import java.util.regex.PatternSyntaxException;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
-public class IPUtility {
+public class Validator {
     private static Pattern VALID_IPV4_PATTERN = null;
     private static Pattern VALID_IPV6_PATTERN = null;
     private static Pattern VALID_URL_PATTERN = null;
@@ -38,20 +38,20 @@ public class IPUtility {
      */
     public static boolean isIpAddress(String ipAddress) {
         try {
-            Matcher m1 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddress);
+            Matcher m1 = Validator.VALID_IPV4_PATTERN.matcher(ipAddress);
             if (m1.matches()) {
                 return true;
             }
-            Matcher m2 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddress);
+            Matcher m2 = Validator.VALID_IPV6_PATTERN.matcher(ipAddress);
             if (m2.matches()) {
                 return true;
             } else if (ipAddress.contains(":")) {
                 String[] ipAddressSplit = ipAddress.split(":");
-                Matcher m3 = IPUtility.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
+                Matcher m3 = Validator.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
                 if (m3.matches()) {
                     return true;
                 }
-                Matcher m4 = IPUtility.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
+                Matcher m4 = Validator.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
                 if (m4.matches()) {
                     return true;
                 }
@@ -73,7 +73,7 @@ public class IPUtility {
      */
     public static boolean isURL(String url) {
         if (url.length() > 7) {
-            Matcher m1 = IPUtility.VALID_URL_PATTERN.matcher(url);
+            Matcher m1 = Validator.VALID_URL_PATTERN.matcher(url);
             return m1.matches();
         }
         return false;

@@ -2,8 +2,8 @@ package com.cloudcraftgaming.perworldchatplus.chat;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
-import com.cloudcraftgaming.perworldchatplus.utils.IPUtility;
 import com.cloudcraftgaming.perworldchatplus.utils.PlayerHandler;
+import com.cloudcraftgaming.perworldchatplus.utils.Validator;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -88,7 +88,7 @@ public class ChatMessage {
                 if (Main.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
                     String[] words = newMessage.split(" ");
                     for (String word : words) {
-                        if (IPUtility.isIpAddress(word)) {
+                        if (Validator.isIpAddress(word)) {
                             if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
                                 newMessage = replacer;
                                 hasAdvertised = true;
@@ -103,7 +103,7 @@ public class ChatMessage {
                 if (Main.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
                     String[] words = newMessage.split(" ");
                     for (String word : words) {
-                        if (IPUtility.isURL(word)) {
+                        if (Validator.isURL(word)) {
                             if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
                                 newMessage = replacer;
                                 hasAdvertised = true;
