@@ -20,9 +20,11 @@ PWCP handles chat in a unique way. Funnelling it through many validators, placeh
 - Anti-Ad System. Block all the unwanted advertisements!
 - And much much more!
 
-##Planned Features
-- Anti-spam (WIP)
+##Planned Features (in order of importance)
+- PerWorldChatPlus as standalone chat provider.
 - More variables in format.
+- Improvement to the developer API.
+- Anti-spam (WIP).
 - Better detection of IP Addresses.
 - Better detection of websites.
 - And more!!
