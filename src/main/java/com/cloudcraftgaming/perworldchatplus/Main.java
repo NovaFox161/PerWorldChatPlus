@@ -26,9 +26,11 @@ public class Main extends JavaPlugin {
 	private static Chat chat = null;
 
 	private boolean hasFactionsBool;
-	
+
+	@Override
 	public void onDisable() {}
 
+	@Override
 	public void onEnable() {
 		plugin = this;
 
@@ -99,6 +101,12 @@ public class Main extends JavaPlugin {
 	private boolean setupChat() {
 		if (getServer().getPluginManager().getPlugin("Vault") != null) {
 			RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+			if (rsp == null) {
+				//No chat provider registered.
+				getServer().getLogger().warning("Vault installed BUT a chat provider is missing! Some of PerWorldChatPlus's functions may not work!" +
+						" Sorry, this will be fixed in a future update!");
+				return false;
+			}
 			chat = rsp.getProvider();
 			return chat != null;
 		} else {
