@@ -34,6 +34,7 @@ public class FileManager {
 			plugin.getConfig().addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
 			plugin.getConfig().addDefault("Config Version", conVersion);
 			plugin.getConfig().addDefault("Check for Updates", true);
+			plugin.getConfig().addDefault("Download Updates", false);
 			plugin.getConfig().addDefault("Lang", "En");
 			plugin.getConfig().addDefault("Announce Dev Join", true);
 			plugin.getConfig().addDefault("Prefix", "&5[PerWorldChat]");

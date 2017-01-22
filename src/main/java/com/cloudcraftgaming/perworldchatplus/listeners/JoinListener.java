@@ -1,8 +1,8 @@
 package com.cloudcraftgaming.perworldchatplus.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
-import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
+import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
 import org.bukkit.Bukkit;
@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+@SuppressWarnings("unused")
 public class JoinListener implements Listener {
 	public JoinListener(Main instance) {
 		plugin = instance;
@@ -33,12 +34,7 @@ public class JoinListener implements Listener {
 		if (plugin.getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
 			Player player = event.getPlayer();
 			if (player.hasPermission("pwcp.notify.update")) {
-				plugin.updateChecker = new UpdateChecker(plugin, "https://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/files.rss");
-				if (plugin.updateChecker.UpdateNeeded()) {
-					player.sendMessage(ChatColor.GREEN + "A new update for PerWorldChatPlus is available! Version: "
-							+ ChatColor.BLUE + plugin.updateChecker.getVersion());
-					player.sendMessage(ChatColor.GREEN + "Download it from: " + ChatColor.BLUE + plugin.updateChecker.getLink());
-				}
+				UpdateChecker.checkForUpdates(player);
 			}
 		}
 	}
@@ -46,8 +42,7 @@ public class JoinListener implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void devJoinCheck(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		if (player.getUniqueId().toString().equals("2fff73e3-ddbb-48d5-90b9-e6d5342a6b3e")
-				|| player.getUniqueId().toString().equals("7ee45311-338a-45ee-aeeb-7e7a4d4a083e")) {
+		if (player.getUniqueId().toString().equals("2fff73e3-ddbb-48d5-90b9-e6d5342a6b3e") || player.getUniqueId().toString().equals("7ee45311-338a-45ee-aeeb-7e7a4d4a083e")) {
 			if (plugin.getConfig().getString("Announce Dev Join").equalsIgnoreCase("True")) {
 				Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.GREEN + "The developer of PerWorldChatPlus has joined this server!");
 			}
