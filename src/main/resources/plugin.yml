@@ -41,9 +41,18 @@ commands:
   whisper:
     description: Command to private message another player.
     permission: pwcp.pm
+  reply:
+    description: Command to reply to a private message.
+    permission: pwcp.pm
+  r:
+    description: Command to reply to a private message.
+    permission: pwcp.pm
   socialspy:
     description: Command to view private messages when they are sent.
     permission: pwcp.socialspy
+  ignore:
+    description: Command to ignore a specfic player.
+    permission: pwcp.ignore
 
 permissions:
   pwcp.bypass:
