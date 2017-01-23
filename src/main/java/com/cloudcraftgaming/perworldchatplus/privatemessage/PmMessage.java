@@ -3,8 +3,6 @@ package com.cloudcraftgaming.perworldchatplus.privatemessage;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatMessage;
 import org.bukkit.entity.Player;
 
-import static com.cloudcraftgaming.perworldchatplus.chat.ChatMessage.*;
-
 /**
  * Created by Nova Fox on 10/10/2016.
  * Website: www.cloudcraftgaming.com

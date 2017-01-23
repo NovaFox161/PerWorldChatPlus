@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 public class SocialSpyCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if (command.getName().contentEquals("SocialSpy")) {
+        if (command.getName().equalsIgnoreCase("SocialSpy")) {
             if (sender instanceof Player) {
                 Player player = (Player)sender;
                 if (player.hasPermission("pwcp.socialspy")) {
@@ -25,6 +25,7 @@ public class SocialSpyCommand implements CommandExecutor {
                         player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Disabled"));
                     } else {
                         //Enable social spy
+                        PlayerDataManager.setSocialSpy(player, true);
                         player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Enabled"));
                     }
                 } else {

@@ -328,7 +328,7 @@ public class PlayerDataManager {
      */
     public static void setMessagingPlayer(Player player, Player messagingWith) {
         YamlConfiguration data = getPlayerDataYml(player);
-        data.set("Messaging", messagingWith.getUniqueId());
+        data.set("Messaging", messagingWith.getUniqueId().toString());
         savePlayerData(data, getPlayerDataFile(player));
     }
 

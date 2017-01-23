@@ -24,7 +24,7 @@ public class PmFormat {
         String format = getFormatTemplateForSender(sender);
 
         //Replace general vars
-        replaceMessageVariable(format, message);
+        format = replaceMessageVariable(format, message);
 
         //Replace sender related vars
         format = replaceSenderVariable(format, sender);
@@ -61,7 +61,7 @@ public class PmFormat {
         String format = getFormatTemplateForReceiver(receiver);
 
         //Replace general vars
-        replaceMessageVariable(format, message);
+        format = replaceMessageVariable(format, message);
 
         //Replace sender related vars
         format = replaceSenderVariable(format, sender);
@@ -98,7 +98,7 @@ public class PmFormat {
         String format = getFormatTemplateForSocialSpy();
 
         //Replace general vars
-        replaceMessageVariable(format, message);
+        format = replaceMessageVariable(format, message);
 
         //Replace sender related vars
         format = replaceSenderVariable(format, sender);
