@@ -37,7 +37,7 @@ public class GlobalChatCommand implements CommandExecutor {
 							arg = arg + " ";
 							msg1 = msg1 + arg;
 						}
-						String format = ChatFormat.determineMessageFormat(gPrefix, msg1, player, true);
+						String format = ChatFormat.determineMessageFormat(gPrefix, msg1, player, true, true);
 
 						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());
 					}

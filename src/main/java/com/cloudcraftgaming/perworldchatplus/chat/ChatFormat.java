@@ -29,11 +29,11 @@ public class ChatFormat {
             if (ChatMessage.shouldBeGlobal(message, sender)) {
                 format = getGlobalTemplate();
             }
-            format = replacePlayerVariable(format);
+            format = replacePlayerVariable(format, sender, false);
             format = replacePlayerNameVariable(format, sender);
             format = replacePrefixVariable(format, sender);
             format = replaceSuffixVariable(format, sender);
-            format = replaceMessageVariable(format, message);
+            format = replaceMessageVariable(format, message, false);
             format = replaceWorldVariable(format, sender);
 
             //Factions replacers
@@ -61,11 +61,11 @@ public class ChatFormat {
             if (global) {
                 format = getGlobalTemplate();
             }
-            format = replacePlayerVariable(format);
+            format = replacePlayerVariable(format, sender, false);
             format = replacePlayerNameVariable(format, sender);
             format = replacePrefixVariable(format, sender);
             format = replaceSuffixVariable(format, sender);
-            format = replaceMessageVariable(format, message);
+            format = replaceMessageVariable(format, message, false);
             format = replaceWorldVariable(format, sender);
 
             //Factions replacers
@@ -77,6 +77,40 @@ public class ChatFormat {
             return originalFormat;
         }
     }
+
+    /**
+     * Determines the chat message format. This combines all formatting methods. This method allows direct control of using global formatting or not.
+     * Use {@link #determineMessageFormat(String, String, Player)} to automatically allow PWCP to determine which format to use.
+     * @param originalFormat The message to format.
+     * @param message The sender of the message.
+     * @param sender The sender of the message.
+     * @param global Whether or not to use the global formatting.
+     * @param ignoreBukkit Whether or not to support Bukkit's '%s' vars.
+     * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
+     */
+    public static String determineMessageFormat(String originalFormat, String message, Player sender, Boolean global, Boolean ignoreBukkit) {
+        if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
+            String format = getFormatTemplate(sender);
+            if (global) {
+                format = getGlobalTemplate();
+            }
+            format = replacePlayerVariable(format, sender, ignoreBukkit);
+            format = replacePlayerNameVariable(format, sender);
+            format = replacePrefixVariable(format, sender);
+            format = replaceSuffixVariable(format, sender);
+            format = replaceMessageVariable(format, message, ignoreBukkit);
+            format = replaceWorldVariable(format, sender);
+
+            //Factions replacers
+            format = replaceFactionNameVariable(format, sender);
+            format = replaceFactionTagVariable(format, sender);
+
+            return ChatColor.translateAlternateColorCodes('&', format);
+        } else {
+            return originalFormat;
+        }
+    }
+
 
     //Format template getters
     /**
@@ -117,15 +151,20 @@ public class ChatFormat {
             return format;
         }
     }
+
     /**
      * Replaces the player variable with Bukkit's '%s' identifier.
      * ('%s' is Bukkit's default and recognized pattern, this also allows other plugins to change the message).
      * @param format The current format of the message.
      * @return The message's format with the player variable replaced.
      */
-    public static String replacePlayerVariable(String format) {
+    public static String replacePlayerVariable(String format, Player sender, Boolean ignoreBukkit) {
         if (format.contains("%player%")) {
-            return format.replaceAll("%player%", "%s");
+            if (!ignoreBukkit) {
+                return format.replaceAll("%player%", "%s");
+            } else {
+                return format.replaceAll("%player%", sender.getName());
+            }
         } else {
             return format;
         }
@@ -152,10 +191,14 @@ public class ChatFormat {
      * @param format The current format of the message.
      * @return The message's format with the message variable replaced.
      */
-    public static String replaceMessageVariable(String format, String message) {
+    public static String replaceMessageVariable(String format, String message, Boolean ignoreBukkit) {
         if (format.contains("%message%")) {
             if (format.contains("%player%") || format.contains("%s")) {
-                return format.replaceAll("%message%", "%s");
+                if (!ignoreBukkit) {
+                    return format.replaceAll("%message%", "%s");
+                } else {
+                    return format.replaceAll("%message%", message);
+                }
             } else {
                 return format.replaceAll("%message%", message);
             }
@@ -223,6 +266,12 @@ public class ChatFormat {
         }
     }
 
+    /**
+     * Replaces the faction tag variable with the name of the sender's faction tag.
+     * @param format The current format of the message.
+     * @param sender The sender of the message.
+     * @return The message's format with the faction tag variable replaced.
+     */
     public static String replaceFactionTagVariable(String format, Player sender) {
         if (format.contains("%factionTitle%") && Main.plugin.hasFactions()) {
             MPlayer mSender = MPlayer.get(sender.getUniqueId());
