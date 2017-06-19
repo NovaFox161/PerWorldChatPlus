@@ -6,5 +6,5 @@ package com.cloudcraftgaming.perworldchatplus.privatemessage;
  * For Project: PerWorldChatPlus
  */
 public enum PmRecipientType {
-    REAL_SENDER, REAL_RECIPIENT, SPY
+	REAL_SENDER, REAL_RECIPIENT, SPY
 }

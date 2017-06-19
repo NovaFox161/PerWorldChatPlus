@@ -13,29 +13,29 @@ import org.bukkit.entity.Player;
  * For Project: PerWorldChatPlus
  */
 public class SocialSpyCommand implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if (command.getName().equalsIgnoreCase("SocialSpy")) {
-            if (sender instanceof Player) {
-                Player player = (Player)sender;
-                if (player.hasPermission("pwcp.socialspy")) {
-                    if (PlayerDataManager.hasSocialSpyEnabled(player)) {
-                        //Disable social spy
-                        PlayerDataManager.setSocialSpy(player, false);
-                        player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Disabled"));
-                    } else {
-                        //Enable social spy
-                        PlayerDataManager.setSocialSpy(player, true);
-                        player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Enabled"));
-                    }
-                } else {
-                    player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
-                }
-            } else {
-                //Player only
-                sender.sendMessage(MessageManager.getPrefix() + MessageManager.getPlayerOnlyMessage());
-            }
-        }
-        return false;
-    }
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
+		if (command.getName().equalsIgnoreCase("SocialSpy")) {
+			if (sender instanceof Player) {
+				Player player = (Player) sender;
+				if (player.hasPermission("pwcp.socialspy")) {
+					if (PlayerDataManager.hasSocialSpyEnabled(player)) {
+						//Disable social spy
+						PlayerDataManager.setSocialSpy(player, false);
+						player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Disabled"));
+					} else {
+						//Enable social spy
+						PlayerDataManager.setSocialSpy(player, true);
+						player.sendMessage(MessageManager.getPrefix() + MessageManager.getMessage("Command.SocialSpy.Enabled"));
+					}
+				} else {
+					player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
+				}
+			} else {
+				//Player only
+				sender.sendMessage(MessageManager.getPrefix() + MessageManager.getPlayerOnlyMessage());
+			}
+		}
+		return false;
+	}
 }

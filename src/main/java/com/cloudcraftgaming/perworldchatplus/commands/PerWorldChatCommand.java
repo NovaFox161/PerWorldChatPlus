@@ -15,7 +15,7 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  * Created by: NovaFox161
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
- *
+ * <p>
  * Just the base command. Nothing else to see here.
  */
 public class PerWorldChatCommand implements CommandExecutor {
@@ -140,7 +140,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 									try {
 										Integer time = Integer.valueOf(timeString);
 										TimedGlobalChatManager.getManager().turnOnTimedGlobal(player, time);
-
+										
 									} catch (NumberFormatException e) {
 										String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
 										player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
@@ -178,7 +178,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 					}
-				} else if (args.length  > 4) {
+				} else if (args.length > 4) {
 					String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 					player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 				}
@@ -242,7 +242,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 									try {
 										Integer time = Integer.valueOf(timeString);
 										TimedGlobalChatManager.getManager().turnOnTimedGlobal(sender, time);
-
+										
 									} catch (NumberFormatException e) {
 										String msg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TimeNotNumber");
 										sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));

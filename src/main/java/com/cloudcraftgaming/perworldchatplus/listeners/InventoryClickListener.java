@@ -16,23 +16,23 @@ import org.bukkit.inventory.ItemStack;
  * For Project: PerWorldChatPlus
  */
 public class InventoryClickListener implements Listener {
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (ChatColorInventory.isChatColorInventory(event.getInventory())) {
-            Player player = (Player) event.getWhoClicked();
-            ItemStack clicked = event.getCurrentItem();
-            if (clicked != null && !clicked.getType().equals(Material.AIR)) {
-                if (player.hasPermission("pwcp.chat.color")) {
-                    player.closeInventory();
-                    ChatColorInventory.setChatColor(player, clicked);
-                    event.setCancelled(true);
-                } else {
-                    player.closeInventory();
-                    player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onInventoryClick(InventoryClickEvent event) {
+		if (ChatColorInventory.isChatColorInventory(event.getInventory())) {
+			Player player = (Player) event.getWhoClicked();
+			ItemStack clicked = event.getCurrentItem();
+			if (clicked != null && !clicked.getType().equals(Material.AIR)) {
+				if (player.hasPermission("pwcp.chat.color")) {
+					player.closeInventory();
+					ChatColorInventory.setChatColor(player, clicked);
+					event.setCancelled(true);
+				} else {
+					player.closeInventory();
+					player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
 }

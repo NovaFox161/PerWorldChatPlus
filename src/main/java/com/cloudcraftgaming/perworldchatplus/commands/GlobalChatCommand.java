@@ -15,7 +15,7 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  * Created by: NovaFox161
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
- *
+ * <p>
  * Just the global chat command class. Nothing important here.
  */
 public class GlobalChatCommand implements CommandExecutor {
@@ -29,8 +29,7 @@ public class GlobalChatCommand implements CommandExecutor {
 					if (args.length < 1) {
 						String msgOr = MessageManager.getMessageYml().getString("Command.Global.AddMessage");
 						player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', msgOr));
-					}
-					else if (args.length == 1 || args.length > 1) {
+					} else if (args.length == 1 || args.length > 1) {
 						String gPrefix = plugin.getConfig().getString("Global.Prefix");
 						String msg1 = "";
 						for (String arg : args) {
@@ -38,16 +37,14 @@ public class GlobalChatCommand implements CommandExecutor {
 							msg1 = msg1 + arg;
 						}
 						String format = ChatFormat.determineMessageFormat(gPrefix, msg1, player, true, true);
-
+						
 						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());
 					}
-				}
-				else {
+				} else {
 					sender.sendMessage(prefix + MessageManager.getNoPermMessage());
 					return false;
 				}
-			}
-			else {
+			} else {
 				sender.sendMessage(prefix + MessageManager.getPlayerOnlyMessage());
 				return false;
 			}

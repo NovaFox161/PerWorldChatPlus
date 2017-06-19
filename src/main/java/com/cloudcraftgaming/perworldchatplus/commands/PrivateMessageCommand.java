@@ -16,10 +16,10 @@ import org.bukkit.entity.Player;
  */
 @SuppressWarnings("deprecation")
 public class PrivateMessageCommand implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("privateMessage") || command.getName().equalsIgnoreCase("pm")
-            || command.getName().equalsIgnoreCase("message") || command.getName().equalsIgnoreCase("msg")
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (command.getName().equalsIgnoreCase("privateMessage") || command.getName().equalsIgnoreCase("pm")
+				|| command.getName().equalsIgnoreCase("message") || command.getName().equalsIgnoreCase("msg")
 				|| command.getName().equalsIgnoreCase("whisper")) {
 			if (Main.plugin.getConfig().getString("PM.Enabled").equalsIgnoreCase("True")) {
 				if (sender instanceof Player) {
@@ -33,7 +33,7 @@ public class PrivateMessageCommand implements CommandExecutor {
 						} else {
 							String playerToSendToName = args[0];
 							Player playerToSendTo = Bukkit.getPlayer(playerToSendToName);
-
+							
 							if (playerToSendTo != null) {
 								//Get message together.
 								String msg = "";
@@ -57,6 +57,6 @@ public class PrivateMessageCommand implements CommandExecutor {
 				}
 			}
 		}
-        return false;
-    }
+		return false;
+	}
 }

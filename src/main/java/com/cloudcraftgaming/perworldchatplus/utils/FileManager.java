@@ -15,14 +15,15 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  * Created by: NovaFox161
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
- *
+ * <p>
  * This class handles several file related functions and methods.
  */
 public class FileManager {
 	private static String conVersion = "6.0";
 	static Double messageVersion = 2.2;
-
+	
 	//Functionals
+	
 	/**
 	 * Creates the default config.yml file (Really only used on startup by PerWorldChatPlus).
 	 */
@@ -38,7 +39,7 @@ public class FileManager {
 			plugin.getConfig().addDefault("Lang", "En");
 			plugin.getConfig().addDefault("Announce Dev Join", true);
 			plugin.getConfig().addDefault("Prefix", "&5[PerWorldChat]");
-
+			
 			plugin.getConfig().addDefault("Global.Prefix", "&4[Global]");
 			plugin.getConfig().addDefault("Global.Override", "!wc");
 			plugin.getConfig().addDefault("Global.Always Global", false);
@@ -51,19 +52,19 @@ public class FileManager {
 			plugin.getConfig().addDefault("Alert.Mention.RequireAtSymbol", false);
 			plugin.getConfig().addDefault("Alert.Mention.SendNotice", false);
 			plugin.getConfig().addDefault("Alert.Mention.Sound", Sound.ENTITY_PLAYER_LEVELUP.name());
-
+			
 			plugin.getConfig().addDefault("Format.Enabled", true);
 			plugin.getConfig().addDefault("Format.PerWorld", true);
 			plugin.getConfig().addDefault("Format.Format.Default", "[%world%] %player% :&r %message%");
 			plugin.getConfig().addDefault("Format.Format.Global", "&4[Global] [%world%] %player% :&r %message%");
-			plugin.getConfig().addDefault("Format.Format.ExampleWorld","This is a a format for 'ExampleWorld'");
-
+			plugin.getConfig().addDefault("Format.Format.ExampleWorld", "This is a a format for 'ExampleWorld'");
+			
 			plugin.getConfig().addDefault("Chat.Color.Translate", true);
 			plugin.getConfig().addDefault("Chat.Color.Auto", true);
 			plugin.getConfig().addDefault("Chat.Color.Default", ChatColor.WHITE.name());
 			plugin.getConfig().addDefault("Chat.Color.RequirePermission", true);
 			plugin.getConfig().addDefault("Chat.Color.StripWithoutPermission", true);
-
+			
 			plugin.getConfig().addDefault("Chat.Swear.Block.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Swear.Block.EntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Swear.Replace", "***");
@@ -86,19 +87,19 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Percent", 75.0);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.ToLower", true);
-
+			
 			plugin.getConfig().addDefault("PM.Enabled", true);
 			plugin.getConfig().addDefault("PM.Format.Spy", "&4[SPY][&sendername%] &6-> &4[%receivername%]:&r %message%");
 			plugin.getConfig().addDefault("PM.Format.Default.From", "&4[You] &6-> [&4%receiver%]:&r %message%");
 			plugin.getConfig().addDefault("PM.Format.Default.To", "&4[%sender%] &6-> [&4You]:&r %message%");
-			plugin.getConfig().addDefault("PM.Format.ExampleWorld.From","This is a a format for 'ExampleWorld' for the sender");
-			plugin.getConfig().addDefault("PM.Format.ExampleWorld.To","This is a a format for 'ExampleWorld' for the receiver");
-
-
+			plugin.getConfig().addDefault("PM.Format.ExampleWorld.From", "This is a a format for 'ExampleWorld' for the sender");
+			plugin.getConfig().addDefault("PM.Format.ExampleWorld.To", "This is a a format for 'ExampleWorld' for the receiver");
+			
+			
 			List<String> sharesList = plugin.getConfig().getStringList("SharesList");
 			sharesList.add("world");
 			plugin.getConfig().set("SharesList", sharesList);
-
+			
 			plugin.getConfig().options().copyDefaults(true);
 			plugin.saveConfig();
 			
@@ -106,7 +107,7 @@ public class FileManager {
 			plugin.saveConfig();
 		}
 	}
-
+	
 	/**
 	 * This is a massive utility function that generates the default files used by PerWorldChatPlus (utility only, used on startup).
 	 */
@@ -120,16 +121,17 @@ public class FileManager {
 			shares.set("world", list1);
 			shares.options().copyDefaults(true);
 			saveShares(shares);
-
+			
 			shares.options().copyDefaults(true);
 			saveShares(shares);
 		}
 	}
-
+	
 	/**
 	 * Saves the shares files.
+	 *
 	 * @param shares The instance of the shares yml to save.
-     */
+	 */
 	private static void saveShares(YamlConfiguration shares) {
 		try {
 			shares.save(getSharesFile());
@@ -137,7 +139,7 @@ public class FileManager {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * A nice little function that compares the currently existing file versions with the new ones.
 	 * If they are out of date, this will automatically disable the plugin.
@@ -155,20 +157,23 @@ public class FileManager {
 			plugin.getServer().getPluginManager().disablePlugin(plugin);
 		}
 	}
-
+	
 	//Getters
+	
 	/**
 	 * Gets the world shares File.
+	 *
 	 * @return The world shares file.
-     */
+	 */
 	private static File getSharesFile() {
 		return new File(Main.plugin.getDataFolder() + "/shares.yml");
 	}
-
+	
 	/**
 	 * Gets the world shares YML.
+	 *
 	 * @return The world shares YML.
-     */
+	 */
 	public static YamlConfiguration getSharesYml() {
 		return YamlConfiguration.loadConfiguration(getSharesFile());
 	}

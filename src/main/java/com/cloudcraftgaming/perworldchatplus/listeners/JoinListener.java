@@ -19,7 +19,9 @@ public class JoinListener implements Listener {
 	public JoinListener(Main instance) {
 		plugin = instance;
 	}
+	
 	private Main plugin;
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoinUpdateFiles(PlayerJoinEvent event) {
 		if (PlayerDataManager.hasDataFile(event.getPlayer())) {
@@ -28,7 +30,7 @@ public class JoinListener implements Listener {
 			PlayerDataManager.createPlayerDataFile(event.getPlayer());
 		}
 	}
-
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void updateCheckOnJoin(PlayerJoinEvent event) {
 		if (plugin.getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
@@ -38,7 +40,7 @@ public class JoinListener implements Listener {
 			}
 		}
 	}
-
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void devJoinCheck(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
@@ -48,7 +50,7 @@ public class JoinListener implements Listener {
 			}
 		}
 	}
-
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void checkWorldFilesOnJoin(PlayerJoinEvent event) {
 		for (World world : Bukkit.getWorlds()) {

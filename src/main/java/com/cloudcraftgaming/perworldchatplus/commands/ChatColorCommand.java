@@ -14,24 +14,24 @@ import org.bukkit.entity.Player;
  * For Project: PerWorldChatPlus
  */
 public class ChatColorCommand implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equalsIgnoreCase("ChatColor")) {
-            if (sender.hasPermission("pwcp.chat.color")) {
-                if (sender instanceof Player) {
-                    Player player = (Player)sender;
-                    player.openInventory(ChatColorInventory.getChatColorInventory());
-                    String msg = MessageManager.getMessageYml().getString("Command.ChatColor.Open");
-                    player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
-                } else {
-                    sender.sendMessage(MessageManager.getPrefix() + MessageManager.getPlayerOnlyMessage());
-                    return false;
-                }
-            } else {
-                sender.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
-                return false;
-            }
-        }
-        return false;
-    }
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (command.getName().equalsIgnoreCase("ChatColor")) {
+			if (sender.hasPermission("pwcp.chat.color")) {
+				if (sender instanceof Player) {
+					Player player = (Player) sender;
+					player.openInventory(ChatColorInventory.getChatColorInventory());
+					String msg = MessageManager.getMessageYml().getString("Command.ChatColor.Open");
+					player.sendMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', msg));
+				} else {
+					sender.sendMessage(MessageManager.getPrefix() + MessageManager.getPlayerOnlyMessage());
+					return false;
+				}
+			} else {
+				sender.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
+				return false;
+			}
+		}
+		return false;
+	}
 }

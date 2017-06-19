@@ -21,11 +21,11 @@ public class ChatListener implements Listener {
 			Set<Player> receivers = ChatRecipients.determineChatRecipients(event.getRecipients(), event.getMessage(), sender);
 			String message = ChatMessage.determineMessageContents(event.getMessage(), sender);
 			String format = ChatFormat.determineMessageFormat(event.getFormat(), event.getMessage(), sender);
-
+			
 			for (Player p : receivers) {
 				event.getRecipients().add(p);
 			}
-
+			
 			//Send message
 			event.setFormat(format);
 			event.setMessage(message);
