@@ -137,14 +137,13 @@ public class ChatMessage {
 				if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.Enabled").equalsIgnoreCase("True")) {
 					Double percentLimit = Main.plugin.getConfig().getDouble("Chat.Spam.Caps.Limit.Percent");
 					int caps = 0;
-					char[] chars = newMessage.toCharArray();
-					for (char aChar : chars) {
-						if (Character.isUpperCase(aChar)) {
+					for (int i = 1; i < _message.length(); i++) {
+						if (Character.isUpperCase(_message.charAt(i))) {
 							caps++;
 						}
 					}
 					//Check percent
-					double percentCaps = (caps / chars.length) * 100;
+					double percentCaps = (caps / _message.length()) * 100;
 					if (percentCaps >= percentLimit) {
 						hasSpammed = true;
 						if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.ToLower").equalsIgnoreCase("True")) {
