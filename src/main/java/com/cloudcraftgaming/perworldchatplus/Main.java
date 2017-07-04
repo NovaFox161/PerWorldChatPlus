@@ -2,9 +2,10 @@ package com.cloudcraftgaming.perworldchatplus;
 
 import com.cloudcraftgaming.perworldchatplus.commands.*;
 import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
-import com.cloudcraftgaming.perworldchatplus.listeners.ChatListener;
-import com.cloudcraftgaming.perworldchatplus.listeners.InventoryClickListener;
-import com.cloudcraftgaming.perworldchatplus.listeners.JoinListener;
+import com.cloudcraftgaming.perworldchatplus.internal.listeners.ChatListener;
+import com.cloudcraftgaming.perworldchatplus.internal.listeners.InventoryClickListener;
+import com.cloudcraftgaming.perworldchatplus.internal.listeners.JoinListener;
+import com.cloudcraftgaming.perworldchatplus.internal.listeners.QuitListener;
 import com.cloudcraftgaming.perworldchatplus.utils.ChatColorInventory;
 import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
 import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
@@ -38,6 +39,7 @@ public class Main extends JavaPlugin {
 		//Register things
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+		getServer().getPluginManager().registerEvents(new QuitListener(), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 		
 		getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand());

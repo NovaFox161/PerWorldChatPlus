@@ -1,4 +1,4 @@
-package com.cloudcraftgaming.perworldchatplus.listeners;
+package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.chat.ChatFormat;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatMessage;
