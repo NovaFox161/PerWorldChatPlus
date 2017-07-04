@@ -88,10 +88,9 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Percent", 75.0);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.ToLower", true);
 			plugin.getConfig().addDefault("Chat.Spam.Time.Limit.Enabled", false);
-			plugin.getConfig().addDefault("Chat.Spam.Time.Limit.MS", 100);
-			plugin.getConfig().addDefault("Chat.Spam.Time.Limit.Block", true);
+			plugin.getConfig().addDefault("Chat.Spam.Time.Limit.MS", 1000);
+			plugin.getConfig().addDefault("Chat.Spam.Time.Limit.Warn", true);
 			plugin.getConfig().addDefault("Chat.Spam.Same.Limit.Enabled", false);
-			plugin.getConfig().addDefault("Chat.Spam.Same.Limit.Block", true);
 			
 			plugin.getConfig().addDefault("PM.Enabled", true);
 			plugin.getConfig().addDefault("PM.Format.Spy", "&4[SPY][&sendername%] &6-> &4[%receivername%]:&r %message%");

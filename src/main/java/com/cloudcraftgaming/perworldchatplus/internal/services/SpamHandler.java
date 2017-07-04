@@ -49,4 +49,31 @@ public class SpamHandler {
             messageContents.remove(player.getUniqueId());
         }
     }
+
+    /**
+     * Checks if the player has sent a message within the time limit.
+     * @param player The player to check.
+     * @return <code>true</code> if within time limit, else <code>false</code>.
+     */
+    public boolean withinTimeLimit(Player player) {
+        if (messageTime.containsKey(player.getUniqueId())) {
+            long now = System.currentTimeMillis();
+            long limit = Main.plugin.getConfig().getLong("Chat.Spam.Time.Limit.MS");
+
+            if (now - messageTime.get(player.getUniqueId()) <= limit) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the player has sent the same message again.
+     * @param player The player to check.
+     * @param message The message to compare
+     * @return <code>true</code> if the message is the same, else <code>False</code>.
+     */
+    public boolean isSame(Player player, String message) {
+        return messageContents.containsKey(player.getUniqueId()) && messageContents.get(player.getUniqueId()).equals(message);
+    }
 }

@@ -2,6 +2,8 @@ package com.cloudcraftgaming.perworldchatplus.chat;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
 import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
+import com.cloudcraftgaming.perworldchatplus.internal.services.SpamHandler;
+import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
 import com.cloudcraftgaming.perworldchatplus.utils.PlayerHandler;
 import com.cloudcraftgaming.perworldchatplus.utils.Validator;
 import org.bukkit.ChatColor;
@@ -126,13 +128,42 @@ public class ChatMessage {
 		}
 		return newMessage;
 	}
-	
+
+    /**
+     * Filters all spam out of a message. This includes the following spam types:
+     * <br>
+     *     Messages sent too often. </br>
+     *     Same messages <br>
+     *     Capital letter spam.
+     * @param _message The original message.
+     * @param sender The sender of the message
+     * @return The edited message.
+     */
 	public static String filterSpam(String _message, Player sender) {
 		String newMessage = _message;
 		boolean hasSpammed = false;
 		
 		if (Main.plugin.getConfig().getString("Chat.Spam.Block.Enabled").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.bypass.spam")) {
+			    //Check if messages are sent too often.
+			    if (Main.plugin.getConfig().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
+			        if (SpamHandler.getHandler().withinTimeLimit(sender)) {
+			            //Within time limit
+                        hasSpammed = true;
+                        if (Main.plugin.getConfig().getString("Chat.Spam.Time.Limit.Warn").equalsIgnoreCase("True")) {
+                            //Warn
+                            sender.sendMessage(MessageManager.getMessage("Chat.Spam.Time.Warn"));
+                        }
+                    }
+                }
+
+                //Check if the same message is being sent.
+                if (Main.plugin.getConfig().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
+			        if (SpamHandler.getHandler().isSame(sender, _message)) {
+			            hasSpammed = true;
+                    }
+                }
+
 				//Check if more caps than allowed
 				if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.Enabled").equalsIgnoreCase("True")) {
 					Double percentLimit = Main.plugin.getConfig().getDouble("Chat.Spam.Caps.Limit.Percent");

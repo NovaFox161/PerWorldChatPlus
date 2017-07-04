@@ -3,6 +3,7 @@ package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatFormat;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatMessage;
 import com.cloudcraftgaming.perworldchatplus.chat.ChatRecipients;
+import com.cloudcraftgaming.perworldchatplus.internal.services.SpamHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,6 +30,9 @@ public class ChatListener implements Listener {
 			//Send message
 			event.setFormat(format);
 			event.setMessage(message);
+
+			//Add to spam handler
+			SpamHandler.getHandler().addMessage(sender, message);
 		}
 	}
 }
