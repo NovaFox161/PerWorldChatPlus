@@ -18,7 +18,7 @@ import java.util.List;
  * <p>
  * This class is used to set a chat message's content and other related tasks.
  */
-@SuppressWarnings("Duplicates")
+@SuppressWarnings({"Duplicates", "WeakerAccess"})
 public class ChatMessage {
 	/**
 	 * Determines the message contents before it is sent based on settings and what the original message contained.
@@ -185,7 +185,7 @@ public class ChatMessage {
 			}
 		}
 		if (hasSpammed) {
-			//PlayerHandler.doStuffOnSpam(sender);
+			PlayerHandler.doStuffOnSpam(sender);
 		}
 		return newMessage;
 	}

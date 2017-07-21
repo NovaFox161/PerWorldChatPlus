@@ -21,15 +21,16 @@ public class PlayerHandler {
 	 */
 	public static void doStuffOnSwear(final Player player) {
 		if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Enabled").equalsIgnoreCase("True")) {
-			final String msgOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.PLayer");
-
-			Bukkit.getScheduler().runTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
 				@Override
 				public void run() {
+					final String msgOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.PLayer");
+					
 					player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
+					
 					if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Announce").equalsIgnoreCase("True")) {
 						String anOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.Announcement");
-						String announcement = anOr.replaceAll("%player%", player.getDisplayName());
+						String announcement = anOr.replaceAll("%player%", player.getName());
 						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
 					}
 				}
@@ -44,15 +45,32 @@ public class PlayerHandler {
 	 */
 	public static void doStuffOnAdvertise(final Player player) {
 		if (Main.plugin.getConfig().getString("Chat.Ad.Kick.Enabled").equalsIgnoreCase("True")) {
-			final String msgOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick.Player");
-
-			Bukkit.getScheduler().runTask(Main.plugin, new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
 				@Override
 				public void run() {
-					player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
+					player.kickPlayer(MessageManager.getMessage("Chat.Ad.Kick.Player"));
+					
 					if (Main.plugin.getConfig().getString("Chat.Swear.Ad.Announce").equalsIgnoreCase("True")) {
 						String anOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick.Announcement");
-						String announcement = anOr.replaceAll("%player%", player.getDisplayName());
+						String announcement = anOr.replaceAll("%player%", player.getName());
+						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
+					}
+				}
+			});
+		}
+	}
+	
+	public static void doStuffOnSpam(final Player player) {
+		if (Main.plugin.getConfig().getString("Chat.Spam.Kick.Enabled").equalsIgnoreCase("True")) {
+			
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+				@Override
+				public void run() {
+					player.kickPlayer(MessageManager.getMessage("Chat.Spam.Kick.Player"));
+					
+					if (Main.plugin.getConfig().getString("Chat.Spam.Kick.Announce").equalsIgnoreCase("True")) {
+						String anOr = MessageManager.getMessageYml().getString("Chat.Spam.Kick.Announcement");
+						String announcement = anOr.replaceAll("%player%", player.getName());
 						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
 					}
 				}

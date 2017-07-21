@@ -93,6 +93,8 @@ public class MessageManager {
 			en.addDefault("Chat.Ad.Kick.Player", "&4Kicked automatically for advertising!");
 			en.addDefault("Chat.Ad.Kick.Announcement", "&6%player% &6was automatically kicked for advertising!");
 			en.addDefault("Chat.Spam.Time.Warn", "&4You are sending messages too often!");
+			en.addDefault("Chat.Spam.Kick.Player", "&4Kicked automatically for spamming!");
+			en.addDefault("Chat.Spam.Kick.Announcement", "&6%player% &6was automatically kicked for spamming!");
 			
 			en.addDefault("Command.Global.AddMessage", "&4You need to add in the message you want to broadcast!");
 			en.addDefault("Command.Spy.Enabled", "&2Global Chat Spy enabled! You can now see all messages!");

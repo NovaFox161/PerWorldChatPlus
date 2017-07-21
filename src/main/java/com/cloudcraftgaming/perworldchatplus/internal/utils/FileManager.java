@@ -20,7 +20,7 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  */
 public class FileManager {
 	private static String conVersion = "6.0";
-	public final static Double messageVersion = 2.2;
+	static Double messageVersion = 2.2;
 	
 	//Functionals
 	
@@ -84,6 +84,8 @@ public class FileManager {
 			plugin.getConfig().addDefault("Chat.Spam.Block.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Spam.Block.EntireMessage", false);
 			plugin.getConfig().addDefault("Chat.Spam.Replace", "***");
+			plugin.getConfig().addDefault("Chat.Spam.Kick.Enabled", false);
+			plugin.getConfig().addDefault("Chat.Spam.Kick.Announce", true);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Enabled", true);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.Percent", 75.0);
 			plugin.getConfig().addDefault("Chat.Spam.Caps.Limit.ToLower", true);
