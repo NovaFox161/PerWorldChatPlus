@@ -1,15 +1,15 @@
 package com.cloudcraftgaming.perworldchatplus;
 
-import com.cloudcraftgaming.perworldchatplus.commands.*;
-import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
+import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
+import com.cloudcraftgaming.perworldchatplus.internal.commands.*;
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.ChatListener;
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.InventoryClickListener;
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.JoinListener;
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.QuitListener;
-import com.cloudcraftgaming.perworldchatplus.utils.ChatColorInventory;
-import com.cloudcraftgaming.perworldchatplus.utils.FileManager;
-import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.ChatColorInventory;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.FileManager;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.UpdateChecker;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.World;

@@ -1,8 +1,8 @@
 package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 
-import com.cloudcraftgaming.perworldchatplus.chat.ChatFormat;
-import com.cloudcraftgaming.perworldchatplus.chat.ChatMessage;
-import com.cloudcraftgaming.perworldchatplus.chat.ChatRecipients;
+import com.cloudcraftgaming.perworldchatplus.api.chat.ChatFormat;
+import com.cloudcraftgaming.perworldchatplus.api.chat.ChatMessage;
+import com.cloudcraftgaming.perworldchatplus.api.chat.ChatRecipients;
 import com.cloudcraftgaming.perworldchatplus.internal.services.SpamHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

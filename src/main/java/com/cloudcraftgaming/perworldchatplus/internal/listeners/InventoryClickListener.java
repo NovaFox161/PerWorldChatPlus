@@ -1,7 +1,7 @@
 package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 
-import com.cloudcraftgaming.perworldchatplus.utils.ChatColorInventory;
-import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.ChatColorInventory;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

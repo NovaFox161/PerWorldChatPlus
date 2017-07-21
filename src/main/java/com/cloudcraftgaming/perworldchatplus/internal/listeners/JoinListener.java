@@ -1,10 +1,10 @@
 package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 
 import com.cloudcraftgaming.perworldchatplus.Main;
-import com.cloudcraftgaming.perworldchatplus.data.PlayerDataManager;
-import com.cloudcraftgaming.perworldchatplus.data.WorldDataManager;
-import com.cloudcraftgaming.perworldchatplus.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.utils.UpdateChecker;
+import com.cloudcraftgaming.perworldchatplus.api.data.PlayerDataManager;
+import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
+import com.cloudcraftgaming.perworldchatplus.internal.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
