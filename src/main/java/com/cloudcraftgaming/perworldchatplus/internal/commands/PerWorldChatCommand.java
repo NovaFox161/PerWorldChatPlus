@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
+import static com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin.plugin;
 
 /**
  * Created by: NovaFox161
@@ -18,6 +18,7 @@ import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
  * <p>
  * Just the base command. Nothing else to see here.
  */
+@SuppressWarnings("Duplicates")
 public class PerWorldChatCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -178,7 +179,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 						String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 						player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 					}
-				} else if (args.length > 4) {
+                } else {
 					String msg = MessageManager.getMessageYml().getString("Notification.Args.Invalid");
 					player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 				}

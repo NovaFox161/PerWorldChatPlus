@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.utils;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -20,15 +20,15 @@ public class PlayerHandler {
 	 * @param player The player who is being checked.
 	 */
 	public static void doStuffOnSwear(final Player player) {
-		if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Enabled").equalsIgnoreCase("True")) {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Kick.Enabled").equalsIgnoreCase("True")) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PerWorldChatPlusPlugin.plugin, new Runnable() {
 				@Override
 				public void run() {
 					final String msgOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.PLayer");
 					
 					player.kickPlayer(ChatColor.translateAlternateColorCodes('&', msgOr));
-					
-					if (Main.plugin.getConfig().getString("Chat.Swear.Kick.Announce").equalsIgnoreCase("True")) {
+
+                    if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Kick.Announce").equalsIgnoreCase("True")) {
 						String anOr = MessageManager.getMessageYml().getString("Chat.Swear.Kick.Announcement");
 						String announcement = anOr.replaceAll("%player%", player.getName());
 						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
@@ -44,13 +44,13 @@ public class PlayerHandler {
 	 * @param player The player who is being checked.
 	 */
 	public static void doStuffOnAdvertise(final Player player) {
-		if (Main.plugin.getConfig().getString("Chat.Ad.Kick.Enabled").equalsIgnoreCase("True")) {
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Kick.Enabled").equalsIgnoreCase("True")) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PerWorldChatPlusPlugin.plugin, new Runnable() {
 				@Override
 				public void run() {
 					player.kickPlayer(MessageManager.getMessage("Chat.Ad.Kick.Player"));
-					
-					if (Main.plugin.getConfig().getString("Chat.Swear.Ad.Announce").equalsIgnoreCase("True")) {
+
+                    if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Ad.Announce").equalsIgnoreCase("True")) {
 						String anOr = MessageManager.getMessageYml().getString("Chat.Ad.Kick.Announcement");
 						String announcement = anOr.replaceAll("%player%", player.getName());
 						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));
@@ -61,14 +61,14 @@ public class PlayerHandler {
 	}
 	
 	public static void doStuffOnSpam(final Player player) {
-		if (Main.plugin.getConfig().getString("Chat.Spam.Kick.Enabled").equalsIgnoreCase("True")) {
-			
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Kick.Enabled").equalsIgnoreCase("True")) {
+
+            Bukkit.getScheduler().scheduleSyncDelayedTask(PerWorldChatPlusPlugin.plugin, new Runnable() {
 				@Override
 				public void run() {
 					player.kickPlayer(MessageManager.getMessage("Chat.Spam.Kick.Player"));
-					
-					if (Main.plugin.getConfig().getString("Chat.Spam.Kick.Announce").equalsIgnoreCase("True")) {
+
+                    if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Kick.Announce").equalsIgnoreCase("True")) {
 						String anOr = MessageManager.getMessageYml().getString("Chat.Spam.Kick.Announcement");
 						String announcement = anOr.replaceAll("%player%", player.getName());
 						Bukkit.broadcastMessage(MessageManager.getPrefix() + ChatColor.translateAlternateColorCodes('&', announcement));

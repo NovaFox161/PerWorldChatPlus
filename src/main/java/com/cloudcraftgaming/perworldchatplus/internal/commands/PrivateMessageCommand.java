@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.internal.commands;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.privatemessage.PmHandler;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
 import org.bukkit.Bukkit;
@@ -21,7 +21,7 @@ public class PrivateMessageCommand implements CommandExecutor {
 		if (command.getName().equalsIgnoreCase("privateMessage") || command.getName().equalsIgnoreCase("pm")
 				|| command.getName().equalsIgnoreCase("message") || command.getName().equalsIgnoreCase("msg")
 				|| command.getName().equalsIgnoreCase("whisper")) {
-			if (Main.plugin.getConfig().getString("PM.Enabled").equalsIgnoreCase("True")) {
+            if (PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Enabled").equalsIgnoreCase("True")) {
 				if (sender instanceof Player) {
 					if (sender.hasPermission("pwcp.pm")) {
 						if (args.length < 1) {
@@ -36,12 +36,12 @@ public class PrivateMessageCommand implements CommandExecutor {
 							
 							if (playerToSendTo != null) {
 								//Get message together.
-								String msg = "";
+                                StringBuilder msg = new StringBuilder();
 								for (int i = 1; i < args.length; i++) {
 									String arg = args[i] + " ";
-									msg = msg + arg;
+                                    msg.append(arg);
 								}
-								PmHandler.sendPrivateMessage((Player) sender, playerToSendTo, msg);
+                                PmHandler.sendPrivateMessage((Player) sender, playerToSendTo, msg.toString());
 								return true;
 							} else {
 								//Player is offline or does not exist.

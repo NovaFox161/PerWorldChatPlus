@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.internal.utils;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -22,7 +22,7 @@ public class MessageManager {
 	 * @return the prefix defined in the config.yml file.
 	 */
 	public static String getPrefix() {
-		String prefix1 = Main.plugin.getConfig().getString("Prefix");
+        String prefix1 = PerWorldChatPlusPlugin.plugin.getConfig().getString("Prefix");
 		return ChatColor.translateAlternateColorCodes('&', prefix1) + " " + ChatColor.RESET;
 	}
 	
@@ -52,8 +52,8 @@ public class MessageManager {
 	 * @return the file in which messages are stored depending on the language set in the config.
 	 */
 	private static File getMessageFile() {
-		String fileName = Main.plugin.getConfig().getString("Lang");
-		return new File(Main.plugin.getDataFolder() + "/Messages/" + fileName + ".yml");
+        String fileName = PerWorldChatPlusPlugin.plugin.getConfig().getString("Lang");
+        return new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Messages/" + fileName + ".yml");
 	}
 	
 	/**
@@ -81,9 +81,9 @@ public class MessageManager {
 	 * Creates the English Messages File. (Generally only used on startup).
 	 */
 	public static void createEnglishMessagesFile() {
-		File enFile = new File(Main.plugin.getDataFolder() + "/Messages/En.yml");
+        File enFile = new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Messages/En.yml");
 		if (!(enFile.exists())) {
-			Main.plugin.getLogger().info("Generating En.yml messages file...");
+            PerWorldChatPlusPlugin.plugin.getLogger().info("Generating En.yml messages file...");
 			YamlConfiguration en = YamlConfiguration.loadConfiguration(enFile);
 			en.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
 			en.addDefault("Messages Version", FileManager.messageVersion);

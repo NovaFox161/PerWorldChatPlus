@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.internal.utils;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
+import static com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin.plugin;
 
 /**
  * Created by: NovaFox161
@@ -172,7 +172,7 @@ public class FileManager {
 	 * @return The world shares file.
 	 */
 	private static File getSharesFile() {
-		return new File(Main.plugin.getDataFolder() + "/shares.yml");
+        return new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/shares.yml");
 	}
 	
 	/**

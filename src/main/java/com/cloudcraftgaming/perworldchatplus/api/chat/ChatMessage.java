@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.chat;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.api.utils.PlayerHandler;
 import com.cloudcraftgaming.perworldchatplus.api.utils.Validator;
@@ -51,14 +51,14 @@ public class ChatMessage {
 	public static String filterSwears(String message, Player sender) {
 		String newMessage = message;
 		boolean hasSworn = false;
-		
-		if (Main.plugin.getConfig().getString("Chat.Swear.Block.Enabled").equalsIgnoreCase("True")) {
+
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Block.Enabled").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.bypass.swear")) {
-				String replacer = Main.plugin.getConfig().getString("Chat.Swear.Replace");
-				List<String> blockedWords = Main.plugin.getConfig().getStringList("Chat.Swear.Blocked");
+                String replacer = PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Replace");
+                List<String> blockedWords = PerWorldChatPlusPlugin.plugin.getConfig().getStringList("Chat.Swear.Blocked");
 				for (String blockedWord : blockedWords) {
 					if (newMessage.toLowerCase().contains(blockedWord.toLowerCase())) {
-						if (Main.plugin.getConfig().getString("Chat.Swear.Block.EntireMessage").equalsIgnoreCase("True")) {
+                        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Swear.Block.EntireMessage").equalsIgnoreCase("True")) {
 							newMessage = replacer;
 							hasSworn = true;
 							break;
@@ -87,15 +87,15 @@ public class ChatMessage {
 	public static String filterAds(String message, Player sender) {
 		String newMessage = message;
 		boolean hasAdvertised = false;
-		
-		if (Main.plugin.getConfig().getString("Chat.Ad.Block.Enabled").equalsIgnoreCase("True")) {
+
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Block.Enabled").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.bypass.ad")) {
-				String replacer = Main.plugin.getConfig().getString("Chat.Ad.Replace");
-				if (Main.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
+                String replacer = PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Replace");
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Block.Ip-Addresses").equalsIgnoreCase("True")) {
 					String[] words = newMessage.split(" ");
 					for (String word : words) {
 						if (Validator.isIpAddress(word)) {
-							if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
+                            if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
 								newMessage = replacer;
 								hasAdvertised = true;
 								break;
@@ -106,11 +106,11 @@ public class ChatMessage {
 						}
 					}
 				}
-				if (Main.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Block.Websites").equalsIgnoreCase("True")) {
 					String[] words = newMessage.split(" ");
 					for (String word : words) {
 						if (Validator.isURL(word)) {
-							if (Main.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
+                            if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Ad.Block.EntireMessage").equalsIgnoreCase("True")) {
 								newMessage = replacer;
 								hasAdvertised = true;
 								break;
@@ -142,15 +142,15 @@ public class ChatMessage {
 	public static String filterSpam(String _message, Player sender) {
 		String newMessage = _message;
 		boolean hasSpammed = false;
-		
-		if (Main.plugin.getConfig().getString("Chat.Spam.Block.Enabled").equalsIgnoreCase("True")) {
+
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Block.Enabled").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.bypass.spam")) {
 			    //Check if messages are sent too often.
-			    if (Main.plugin.getConfig().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
 			        if (SpamHandler.getHandler().withinTimeLimit(sender)) {
 			            //Within time limit
                         hasSpammed = true;
-                        if (Main.plugin.getConfig().getString("Chat.Spam.Time.Limit.Warn").equalsIgnoreCase("True")) {
+                        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Time.Limit.Warn").equalsIgnoreCase("True")) {
                             //Warn
                             sender.sendMessage(MessageManager.getMessage("Chat.Spam.Time.Warn"));
                         }
@@ -158,15 +158,15 @@ public class ChatMessage {
                 }
 
                 //Check if the same message is being sent.
-                if (Main.plugin.getConfig().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
 			        if (SpamHandler.getHandler().isSame(sender, _message)) {
 			            hasSpammed = true;
                     }
                 }
 
 				//Check if more caps than allowed
-				if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.Enabled").equalsIgnoreCase("True")) {
-					Double percentLimit = Main.plugin.getConfig().getDouble("Chat.Spam.Caps.Limit.Percent");
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Caps.Limit.Enabled").equalsIgnoreCase("True")) {
+                    Double percentLimit = PerWorldChatPlusPlugin.plugin.getConfig().getDouble("Chat.Spam.Caps.Limit.Percent");
 					int caps = 0;
 					for (int i = 1; i < _message.length(); i++) {
 						if (Character.isUpperCase(_message.charAt(i))) {
@@ -177,7 +177,7 @@ public class ChatMessage {
 					double percentCaps = (caps / _message.length()) * 100;
 					if (percentCaps >= percentLimit) {
 						hasSpammed = true;
-						if (Main.plugin.getConfig().getString("Chat.Spam.Caps.Limit.ToLower").equalsIgnoreCase("True")) {
+                        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Caps.Limit.ToLower").equalsIgnoreCase("True")) {
 							newMessage = newMessage.toLowerCase();
 						}
 					}
@@ -197,8 +197,8 @@ public class ChatMessage {
 	 * @return A new message that does not contain  the Global Override String.
 	 */
 	public static String removeGlobalBypassString(String message) {
-		if (message.contains(Main.plugin.getConfig().getString("Global.Override"))) {
-			String override = Main.plugin.getConfig().getString("Global.Override");
+        if (message.contains(PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.Override"))) {
+            String override = PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.Override");
 			message = message.replaceAll(override, "").trim();
 		}
 		return message;
@@ -213,19 +213,19 @@ public class ChatMessage {
 	 * @return A new message with colors.
 	 */
 	public static String makeMessageColorful(String message, Player sender) {
-		if (Main.plugin.getConfig().getString("Chat.Color.RequirePermission").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Color.RequirePermission").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.chat.color")) {
-				if (Main.plugin.getConfig().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True")) {
 					return ChatColor.stripColor(message);
 				} else {
 					return message;
 				}
 			}
 		}
-		if (Main.plugin.getConfig().getString("Chat.Color.Auto").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Color.Auto").equalsIgnoreCase("True")) {
 			message = PlayerDataManager.getChatColor(sender) + message;
 		}
-		if (Main.plugin.getConfig().getString("Chat.Color.Translate").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Color.Translate").equalsIgnoreCase("True")) {
 			message = ChatColor.translateAlternateColorCodes('&', message);
 		}
 		return message;
@@ -241,10 +241,10 @@ public class ChatMessage {
 	 * @return True if the chat message should be global, else false.
 	 */
 	public static boolean shouldBeGlobal(String message, Player sender) {
-		return Main.plugin.getConfig().getString("Global.Always Global").equalsIgnoreCase("True")
-				|| Main.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.Always Global").equalsIgnoreCase("True")
+                || PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")
 				|| PlayerDataManager.hasGlobalBypassEnabled(sender)
-				|| (message.contains(Main.plugin.getConfig().getString("Global.Override")) && sender.hasPermission("pwcp.bypass"));
+                || (message.contains(PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.Override")) && sender.hasPermission("pwcp.bypass"));
 	}
 	
 	/**
@@ -255,28 +255,20 @@ public class ChatMessage {
 	 * @return True if the player was mentioned in the message, else false.
 	 */
 	public static boolean wasMentioned(Player player, String message) {
-		if (Main.plugin.getConfig().getString("Alert.Mention.OnName").equalsIgnoreCase("True")) {
-			if (Main.plugin.getConfig().getString("Alert.Mention.RequirePermission").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.OnName").equalsIgnoreCase("True")) {
+            if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.RequirePermission").equalsIgnoreCase("True")) {
 				if (player.hasPermission("pwcp.alert.mention")) {
-					if (Main.plugin.getConfig().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
-						if (message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName())) {
-							return true;
-						}
+                    if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
+                        return message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName());
 					} else {
-						if (message.contains(player.getName()) || message.contains(player.getDisplayName())) {
-							return true;
-						}
+                        return message.contains(player.getName()) || message.contains(player.getDisplayName());
 					}
 				}
 			} else {
-				if (Main.plugin.getConfig().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
-					if (message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName())) {
-						return true;
-					}
+                if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
+                    return message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName());
 				} else {
-					if (message.contains(player.getName()) || message.contains(player.getDisplayName())) {
-						return true;
-					}
+                    return message.contains(player.getName()) || message.contains(player.getDisplayName());
 				}
 			}
 		}

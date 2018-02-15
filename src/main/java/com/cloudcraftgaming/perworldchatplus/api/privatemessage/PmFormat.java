@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.privatemessage;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
 import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.Bukkit;
@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("WeakerAccess")
 public class PmFormat {
 	/**
 	 * Determines the private message format for the sender. This combines all formatting methods.
@@ -135,12 +136,12 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForSender(Player sender) {
-		if (Main.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
-			if (Main.plugin.getConfig().contains("PM.Format.Format." + sender.getWorld().getName() + ".From")) {
-				return Main.plugin.getConfig().getString("PM.Format." + sender.getWorld().getName() + ".From");
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+            if (PerWorldChatPlusPlugin.plugin.getConfig().contains("PM.Format.Format." + sender.getWorld().getName() + ".From")) {
+                return PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Format." + sender.getWorld().getName() + ".From");
 			}
 		}
-		return Main.plugin.getConfig().getString("PM.Format.Default.From");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Format.Default.From");
 	}
 	
 	/**
@@ -149,12 +150,12 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForReceiver(Player receiver) {
-		if (Main.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
-			if (Main.plugin.getConfig().contains("PM.Format.Format." + receiver.getWorld().getName() + ".To")) {
-				return Main.plugin.getConfig().getString("PM.Format." + receiver.getWorld().getName() + ".To");
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+            if (PerWorldChatPlusPlugin.plugin.getConfig().contains("PM.Format.Format." + receiver.getWorld().getName() + ".To")) {
+                return PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Format." + receiver.getWorld().getName() + ".To");
 			}
 		}
-		return Main.plugin.getConfig().getString("PM.Format.Default.To");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Format.Default.To");
 	}
 	
 	/**
@@ -163,7 +164,7 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForSocialSpy() {
-		return Main.plugin.getConfig().getString("PM.Format.Spy");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("PM.Format.Spy");
 	}
 	
 	//Variable replacers - General
@@ -177,7 +178,8 @@ public class PmFormat {
 	 * @param replaceWith The string to replace the specified variable with.
 	 * @return The message's format with the specified variable replaced with the specified text.
 	 */
-	public static String replaceVariable(String format, String _var, String replaceWith) {
+    @SuppressWarnings("unused")
+    public static String replaceVariable(String format, String _var, String replaceWith) {
 		if (format.contains(_var)) {
 			return format.replaceAll(_var, replaceWith);
 		} else {
@@ -238,8 +240,8 @@ public class PmFormat {
 	 * @return The message's format with the sender prefix variable replaced.
 	 */
 	public static String replaceSenderPrefixVariable(String format, Player sender) {
-		if (format.contains("%senderprefix%") && Main.plugin.getChat() != null) {
-			String prefix = Main.plugin.getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+        if (format.contains("%senderprefix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String prefix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
 			return format.replaceAll("%senderprefix%", prefix);
 		} else {
 			return format;
@@ -254,8 +256,8 @@ public class PmFormat {
 	 * @return The message's format with the sender suffix variable replaced.
 	 */
 	public static String replaceSenderSuffixVariable(String format, Player sender) {
-		if (format.contains("%sendersuffix%") && Main.plugin.getChat() != null) {
-			String suffix = Main.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+        if (format.contains("%sendersuffix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String suffix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
 			return format.replaceAll("%sendersuffix%", suffix);
 		} else {
 			return format;
@@ -285,7 +287,7 @@ public class PmFormat {
 	 * @return The message's format with the sender faction name variable replaced.
 	 */
 	public static String replaceSenderFactionNameVariable(String format, Player sender) {
-		if (format.contains("%senderFactionName%") && Main.plugin.hasFactions()) {
+        if (format.contains("%senderFactionName%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mSender = MPlayer.get(sender.getUniqueId());
 			return format.replaceAll("%senderFactionName%", mSender.getFaction().getName());
 		} else {
@@ -301,7 +303,7 @@ public class PmFormat {
 	 * @return The message's format with the sender faction title variable replaced.
 	 */
 	public static String replaceSenderFactionTitleVariable(String format, Player sender) {
-		if (format.contains("%senderFactionTitle%") && Main.plugin.hasFactions()) {
+        if (format.contains("%senderFactionTitle%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mSender = MPlayer.get(sender.getUniqueId());
 			return format.replaceAll("%senderFactionTitle%", mSender.getTitle());
 		} else {
@@ -349,8 +351,8 @@ public class PmFormat {
 	 * @return The message's format with the receiver prefix variable replaced.
 	 */
 	public static String replaceReceiverPrefixVariable(String format, Player receiver) {
-		if (format.contains("%receiverprefix%") && Main.plugin.getChat() != null) {
-			String prefix = Main.plugin.getChat().getPlayerPrefix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
+        if (format.contains("%receiverprefix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String prefix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerPrefix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
 			return format.replaceAll("%recieverprefix%", prefix);
 		} else {
 			return format;
@@ -365,8 +367,8 @@ public class PmFormat {
 	 * @return The message's format with the receiver suffix variable replaced.
 	 */
 	public static String replaceReceiverSuffixVariable(String format, Player receiver) {
-		if (format.contains("%receiversuffix%") && Main.plugin.getChat() != null) {
-			String suffix = Main.plugin.getChat().getPlayerSuffix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
+        if (format.contains("%receiversuffix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String suffix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerSuffix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
 			return format.replaceAll("%receiversuffix%", suffix);
 		} else {
 			return format;
@@ -396,7 +398,7 @@ public class PmFormat {
 	 * @return The message's format with the receiver faction name variable replaced.
 	 */
 	public static String replaceReceiverFactionNameVariable(String format, Player receiver) {
-		if (format.contains("%receiverFactionName%") && Main.plugin.hasFactions()) {
+        if (format.contains("%receiverFactionName%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mReceiver = MPlayer.get(receiver.getUniqueId());
 			return format.replaceAll("%receiverFactionName%", mReceiver.getFaction().getName());
 		} else {
@@ -412,7 +414,7 @@ public class PmFormat {
 	 * @return The message's format with the receiver faction title variable replaced.
 	 */
 	public static String replaceReceiverFactionTitleVariable(String format, Player receiver) {
-		if (format.contains("%receiverFactionTitle%") && Main.plugin.hasFactions()) {
+        if (format.contains("%receiverFactionTitle%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mReceiver = MPlayer.get(receiver.getUniqueId());
 			return format.replaceAll("%receiverFactionTitle%", mReceiver.getTitle());
 		} else {

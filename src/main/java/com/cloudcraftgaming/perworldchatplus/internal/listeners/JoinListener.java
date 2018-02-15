@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.internal.listeners;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
@@ -16,11 +16,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 @SuppressWarnings("unused")
 public class JoinListener implements Listener {
-	public JoinListener(Main instance) {
+    public JoinListener(PerWorldChatPlusPlugin instance) {
 		plugin = instance;
 	}
-	
-	private Main plugin;
+
+    private PerWorldChatPlusPlugin plugin;
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onJoinUpdateFiles(PlayerJoinEvent event) {

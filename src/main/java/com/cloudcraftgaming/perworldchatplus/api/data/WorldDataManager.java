@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.data;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -14,6 +14,7 @@ import java.io.IOException;
  * <p>
  * This class contains everything regarding world specific data for chat.
  */
+@SuppressWarnings("WeakerAccess")
 public class WorldDataManager {
 	
 	//File stuffs
@@ -24,9 +25,9 @@ public class WorldDataManager {
 	 * @param worldName The world to create a data file for.
 	 */
 	public static void createWorldDataFile(String worldName) {
-		File file = new File(Main.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
+        File file = new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
 		if (!file.exists()) {
-			Main.plugin.getLogger().info("Generating world data for world: " + worldName);
+            PerWorldChatPlusPlugin.plugin.getLogger().info("Generating world data for world: " + worldName);
 			
 			YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
 			data.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
@@ -47,7 +48,7 @@ public class WorldDataManager {
 	 * @return True if the world has a data file, else false.
 	 */
 	public static boolean hasWorldData(String worldName) {
-		File file = new File(Main.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
+        File file = new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
 		return file.exists();
 	}
 	
@@ -58,7 +59,7 @@ public class WorldDataManager {
 	 * @return The world data file for the world.
 	 */
 	public static File getWorldDataFile(String worldName) {
-		return new File(Main.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
+        return new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
 	}
 	
 	/**

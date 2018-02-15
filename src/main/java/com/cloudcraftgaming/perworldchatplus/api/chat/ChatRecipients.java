@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.chat;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.api.utils.ListManager;
 import com.cloudcraftgaming.perworldchatplus.api.utils.PlayerHandler;
@@ -31,42 +31,29 @@ public class ChatRecipients {
 	public static Set<Player> determineChatRecipients(Set<Player> recipients, String message, Player sender) {
 		recipients.add(sender);
 		Set<Player> mentionReceivers = getAllMentionReceivers(recipients, message, sender);
-		for (Player p : mentionReceivers) {
-			recipients.add(p);
-		}
+        recipients.addAll(mentionReceivers);
 		Set<Player> alertReceivers = getAllAlertReceivers(recipients, message);
-		for (Player p : alertReceivers) {
-			recipients.add(p);
-		}
+        recipients.addAll(alertReceivers);
 		Set<Player> spyReceivers = getAllSpyReceivers(recipients, sender);
-		for (Player p : spyReceivers) {
-			recipients.add(p);
-		}
+        recipients.addAll(spyReceivers);
 		Set<Player> sharesReceivers = getAllSharesReceivers(recipients, sender);
-		for (Player p : sharesReceivers) {
-			recipients.add(p);
-		}
+        recipients.addAll(sharesReceivers);
 		Set<Player> globalReceivers = getAllGlobalReceivers(recipients, message, sender);
-		for (Player p : globalReceivers) {
-			recipients.add(p);
-		}
+        recipients.addAll(globalReceivers);
 		List<Player> removeMuted = getMutedReceivers();
 		for (Player p : removeMuted) {
-			if (recipients.contains(p)) {
-				recipients.remove(p);
-			}
+            if (!recipients.contains(p)) {
+                continue;
+            }
+            recipients.remove(p);
 		}
 		List<Player> removeIgnoring = getIgnoredReceivers(sender);
 		for (Player p : removeIgnoring) {
-			if (recipients.contains(p)) {
-				recipients.remove(p);
-			}
-		}
-		
-		
-		if (!recipients.contains(sender)) {
-			recipients.add(sender);
-		}
+            recipients.remove(p);
+        }
+
+
+        recipients.add(sender);
 		
 		return recipients;
 	}
@@ -84,10 +71,8 @@ public class ChatRecipients {
 	public static Set<Player> getAllMentionReceivers(Set<Player> recipients, String message, Player sender) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (ChatMessage.wasMentioned(p, message)) {
-				if (!recipients.contains(p)) {
-					recipients.add(p);
-				}
-				String soundName = Main.plugin.getConfig().getString("Alert.Mention.Sound");
+                recipients.add(p);
+                String soundName = PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.Sound");
 				Sound sound = Sound.valueOf(soundName);
 				p.playSound(p.getLocation(), sound, 1f, 0f);
 				if (shouldSendMentionNotice()) {
@@ -110,9 +95,7 @@ public class ChatRecipients {
 			if (PlayerDataManager.getPlayerDataYml(p).contains("Alerts")) {
 				for (String word : PlayerDataManager.getPlayerDataYml(p).getStringList("Alerts")) {
 					if (message.contains(word)) {
-						if (!(recipients.contains(p))) {
-							recipients.add(p);
-						}
+                        recipients.add(p);
 						p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 0f);
 					}
 				}
@@ -131,14 +114,10 @@ public class ChatRecipients {
 	public static Set<Player> getAllSpyReceivers(Set<Player> recipients, Player sender) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (PlayerDataManager.hasGlobalChatSpyEnabled(p)) {
-				if (!recipients.contains(p)) {
-					recipients.add(p);
-				}
+                recipients.add(p);
 			} else if (PlayerDataManager.hasWorldChatSpyEnabled(p)) {
 				if (PlayerDataManager.isSpyingOnWorld(p, sender.getWorld().getName())) {
-					if (!(recipients.contains(p))) {
-						recipients.add(p);
-					}
+                    recipients.add(p);
 				}
 			}
 		}
@@ -174,11 +153,7 @@ public class ChatRecipients {
 	 */
 	public static Set<Player> getAllGlobalReceivers(Set<Player> recipients, String message, Player sender) {
 		if (ChatMessage.shouldBeGlobal(message, sender)) {
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				if (!(recipients.contains(p))) {
-					recipients.add(p);
-				}
-			}
+            recipients.addAll(Bukkit.getOnlinePlayers());
 		}
 		return recipients;
 	}
@@ -234,9 +209,7 @@ public class ChatRecipients {
 		String sharesListName = ListManager.getWorldShareListName(worldFrom);
 		List<String> sharesList = ListManager.getWorldShareList(worldFrom);
 		if (sharesList != null && sharesListName != null) {
-			if (sharesListName.equalsIgnoreCase(worldTo) || sharesList.contains(worldTo)) {
-				return true;
-			}
+            return sharesListName.equalsIgnoreCase(worldTo) || sharesList.contains(worldTo);
 		}
 		return false;
 	}
@@ -247,6 +220,6 @@ public class ChatRecipients {
 	 * @return True if the player should be notified, else false.
 	 */
 	public static boolean shouldSendMentionNotice() {
-		return Main.plugin.getConfig().getString("Alert.Mention.SendNotice").equalsIgnoreCase("True");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("Alert.Mention.SendNotice").equalsIgnoreCase("True");
 	}
 }

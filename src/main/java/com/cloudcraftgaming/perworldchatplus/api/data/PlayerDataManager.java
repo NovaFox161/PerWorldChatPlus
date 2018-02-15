@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.data;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -17,6 +17,7 @@ import java.util.UUID;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus.
  */
+@SuppressWarnings("WeakerAccess")
 public class PlayerDataManager {
 	/**
 	 * Creates a default data file for the specified player if one does not exist.
@@ -25,9 +26,9 @@ public class PlayerDataManager {
 	 */
 	public static void createPlayerDataFile(Player player) {
 		UUID uuid = player.getUniqueId();
-		File file = new File(Main.plugin.getDataFolder() + "/Data/PlayerData/" + uuid + ".yml");
+        File file = new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/PlayerData/" + uuid + ".yml");
 		if (!file.exists()) {
-			Main.plugin.getLogger().info("Generating player data file for player: " + player.getName());
+            PerWorldChatPlusPlugin.plugin.getLogger().info("Generating player data file for player: " + player.getName());
 			
 			YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
 			data.addDefault("DO NOT DElETE", "PerWorldChatPlus is developed and managed by Shades161");
@@ -37,7 +38,7 @@ public class PlayerDataManager {
 			data.addDefault("WorldSpy", false);
 			data.addDefault("ChatMute", false);
 			data.addDefault("SocialSpy", false);
-			String chatColorString = Main.plugin.getConfig().getString("Chat.Color.Default");
+            String chatColorString = PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Color.Default");
 			data.addDefault("ChatColor", ChatColor.valueOf(chatColorString).name());
 			
 			
@@ -79,7 +80,7 @@ public class PlayerDataManager {
 	 */
 	public static File getPlayerDataFile(Player player) {
 		UUID uuid = player.getUniqueId();
-		return new File(Main.plugin.getDataFolder() + "/Data/PlayerData/" + uuid + ".yml");
+        return new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/PlayerData/" + uuid + ".yml");
 	}
 	
 	/**
@@ -115,7 +116,7 @@ public class PlayerDataManager {
 	 * @return True if the player has a data file, else false.
 	 */
 	public static boolean hasDataFile(Player player) {
-		File file = new File(Main.plugin.getDataFolder() + "/Data/PlayerData/" + player.getUniqueId() + ".yml");
+        File file = new File(PerWorldChatPlusPlugin.plugin.getDataFolder() + "/Data/PlayerData/" + player.getUniqueId() + ".yml");
 		return file.exists();
 	}
 	

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("WeakerAccess")
 public class PmMessage {
 	/**
 	 * Determines the message contents before it is sent based on settings and what the original message contained.

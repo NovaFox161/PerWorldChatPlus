@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static com.cloudcraftgaming.perworldchatplus.Main.plugin;
+import static com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin.plugin;
 
 /**
  * Created by: NovaFox161
@@ -29,16 +29,16 @@ public class GlobalChatCommand implements CommandExecutor {
 					if (args.length < 1) {
 						String msgOr = MessageManager.getMessageYml().getString("Command.Global.AddMessage");
 						player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', msgOr));
-					} else if (args.length == 1 || args.length > 1) {
+                    } else {
 						String gPrefix = plugin.getConfig().getString("Global.Prefix");
-						String msg1 = "";
+                        StringBuilder msg1 = new StringBuilder();
 						for (String arg : args) {
 							arg = arg + " ";
-							msg1 = msg1 + arg;
+                            msg1.append(arg);
 						}
-						String format = ChatFormat.determineMessageFormat(gPrefix, msg1, player, true, true);
-						
-						Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1).trim());
+                        String format = ChatFormat.determineMessageFormat(gPrefix, msg1.toString(), player, true, true);
+
+                        Bukkit.broadcastMessage(format + " " + ChatColor.translateAlternateColorCodes('&', msg1.toString()).trim());
 					}
 				} else {
 					sender.sendMessage(prefix + MessageManager.getNoPermMessage());

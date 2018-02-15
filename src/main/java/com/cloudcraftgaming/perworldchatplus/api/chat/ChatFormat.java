@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.chat;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
 import com.massivecraft.factions.entity.MPlayer;
 import org.bukkit.Bukkit;
@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
  * <p>
  * This class is to be used to set the chat message's format and to do other format related tasks.
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ChatFormat {
 	
 	/**
@@ -25,7 +26,7 @@ public class ChatFormat {
 	 * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
 	 */
 	public static String determineMessageFormat(String originalFormat, String message, Player sender) {
-		if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
 			String format = getFormatTemplate(sender);
 			if (ChatMessage.shouldBeGlobal(message, sender)) {
 				format = getGlobalTemplate();
@@ -58,7 +59,7 @@ public class ChatFormat {
 	 * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
 	 */
 	public static String determineMessageFormat(String originalFormat, String message, Player sender, Boolean global) {
-		if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
 			String format = getFormatTemplate(sender);
 			if (global) {
 				format = getGlobalTemplate();
@@ -92,7 +93,7 @@ public class ChatFormat {
 	 * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
 	 */
 	public static String determineMessageFormat(String originalFormat, String message, Player sender, Boolean global, Boolean ignoreBukkit) {
-		if (Main.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Enabled").equalsIgnoreCase("True")) {
 			String format = getFormatTemplate(sender);
 			if (global) {
 				format = getGlobalTemplate();
@@ -123,12 +124,12 @@ public class ChatFormat {
 	 * @return The default chat format template.
 	 */
 	public static String getFormatTemplate(Player sender) {
-		if (Main.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
-			if (Main.plugin.getConfig().contains("Format.Format." + sender.getWorld().getName())) {
-				return Main.plugin.getConfig().getString("Format.Format." + sender.getWorld().getName());
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+            if (PerWorldChatPlusPlugin.plugin.getConfig().contains("Format.Format." + sender.getWorld().getName())) {
+                return PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Format." + sender.getWorld().getName());
 			}
 		}
-		return Main.plugin.getConfig().getString("Format.Format.Default");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Format.Default");
 	}
 	
 	/**
@@ -137,7 +138,7 @@ public class ChatFormat {
 	 * @return The global chat format template.
 	 */
 	public static String getGlobalTemplate() {
-		return Main.plugin.getConfig().getString("Format.Format.Global");
+        return PerWorldChatPlusPlugin.plugin.getConfig().getString("Format.Format.Global");
 	}
 	
 	//Format variable replacers
@@ -240,8 +241,8 @@ public class ChatFormat {
 	 * @return The message's format with the prefix variable replaced.
 	 */
 	public static String replacePrefixVariable(String format, Player sender) {
-		if (format.contains("%prefix%") && Main.plugin.getChat() != null) {
-			String prefix = Main.plugin.getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+        if (format.contains("%prefix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String prefix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
 			return format.replaceAll("%prefix%", prefix);
 		} else {
 			return format;
@@ -256,8 +257,8 @@ public class ChatFormat {
 	 * @return The message's format with the suffix variable replaced.
 	 */
 	public static String replaceSuffixVariable(String format, Player sender) {
-		if (format.contains("%suffix%") && Main.plugin.getChat() != null) {
-			String suffix = Main.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
+        if (format.contains("%suffix%") && PerWorldChatPlusPlugin.plugin.getChat() != null) {
+            String suffix = PerWorldChatPlusPlugin.plugin.getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
 			return format.replaceAll("%suffix%", suffix);
 		} else {
 			return format;
@@ -272,7 +273,7 @@ public class ChatFormat {
 	 * @return The message's format with the faction name variable replaced.
 	 */
 	public static String replaceFactionNameVariable(String format, Player sender) {
-		if (format.contains("%factionName%") && Main.plugin.hasFactions()) {
+        if (format.contains("%factionName%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mSender = MPlayer.get(sender.getUniqueId());
 			return format.replaceAll("%factionName%", mSender.getFaction().getName());
 		} else {
@@ -288,7 +289,7 @@ public class ChatFormat {
 	 * @return The message's format with the faction tag variable replaced.
 	 */
 	public static String replaceFactionTagVariable(String format, Player sender) {
-		if (format.contains("%factionTitle%") && Main.plugin.hasFactions()) {
+        if (format.contains("%factionTitle%") && PerWorldChatPlusPlugin.plugin.hasFactions()) {
 			MPlayer mSender = MPlayer.get(sender.getUniqueId());
 			return format.replaceAll("%factionTitle%", mSender.getTitle());
 		} else {

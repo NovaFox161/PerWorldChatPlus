@@ -12,13 +12,14 @@ import java.util.Hashtable;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("WeakerAccess")
 public class PmRecipients {
 	/**
 	 * Determines all of the players that are to receive the private message.
 	 *
 	 * @param sender   The sender of the private message.
 	 * @param receiver The player the private message is to.
-	 * @return A Hashtable of all private message receivers and the type they are.
+     * @return A HashTable of all private message receivers and the type they are.
 	 */
 	public static Hashtable<Player, PmRecipientType> determineMessageRecipients(Player sender, Player receiver) {
 		Hashtable<Player, PmRecipientType> recipients = new Hashtable<>();
@@ -36,7 +37,7 @@ public class PmRecipients {
 	/**
 	 * Gets an ArrayList of players with social spy enabled that are to receive the pm.
 	 *
-	 * @param currentReceivers The current Hashtable of players this message is going to.
+     * @param currentReceivers The current HashTable of players this message is going to.
 	 * @return An ArrayList of players with social spy enabled that are to receive the pm.
 	 */
 	public static ArrayList<Player> getSpies(Hashtable<Player, PmRecipientType> currentReceivers) {

@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.internal.services;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -27,27 +27,19 @@ public class SpamHandler {
     }
 
     public void addMessage(Player player, String message) {
-        if (Main.plugin.getConfig().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
-            if (messageTime.containsKey(player.getUniqueId())) {
-                messageTime.remove(player.getUniqueId());
-            }
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
+            messageTime.remove(player.getUniqueId());
             messageTime.put(player.getUniqueId(), System.currentTimeMillis());
         }
-        if (Main.plugin.getConfig().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
-            if (messageContents.containsKey(player.getUniqueId())) {
-                messageContents.remove(player.getUniqueId());
-            }
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
+            messageContents.remove(player.getUniqueId());
             messageContents.put(player.getUniqueId(), message);
         }
     }
 
     public void removeMessage(Player player) {
-        if (messageTime.containsKey(player.getUniqueId())) {
-            messageTime.remove(player.getUniqueId());
-        }
-        if (messageContents.containsKey(player.getUniqueId())) {
-            messageContents.remove(player.getUniqueId());
-        }
+        messageTime.remove(player.getUniqueId());
+        messageContents.remove(player.getUniqueId());
     }
 
     /**
@@ -58,11 +50,9 @@ public class SpamHandler {
     public boolean withinTimeLimit(Player player) {
         if (messageTime.containsKey(player.getUniqueId())) {
             long now = System.currentTimeMillis();
-            long limit = Main.plugin.getConfig().getLong("Chat.Spam.Time.Limit.MS");
+            long limit = PerWorldChatPlusPlugin.plugin.getConfig().getLong("Chat.Spam.Time.Limit.MS");
 
-            if (now - messageTime.get(player.getUniqueId()) <= limit) {
-                return true;
-            }
+            return now - messageTime.get(player.getUniqueId()) <= limit;
         }
         return false;
     }

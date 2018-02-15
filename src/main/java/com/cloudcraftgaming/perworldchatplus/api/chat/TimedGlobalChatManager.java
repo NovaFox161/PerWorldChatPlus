@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.chat;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -45,32 +45,32 @@ public class TimedGlobalChatManager {
 	 */
 	public void turnOnTimedGlobal(final CommandSender sender, Integer time) {
 		final String prefix = MessageManager.getPrefix();
-		BukkitScheduler scheduler = Main.plugin.getServer().getScheduler();
-		Main.plugin.getConfig().set("Global.TimedGlobal.On", true);
-		Main.plugin.saveConfig();
+        BukkitScheduler scheduler = PerWorldChatPlusPlugin.plugin.getServer().getScheduler();
+        PerWorldChatPlusPlugin.plugin.getConfig().set("Global.TimedGlobal.On", true);
+        PerWorldChatPlusPlugin.plugin.saveConfig();
 		Random random = new Random(999999999);
 		final Integer requestNumber = random.nextInt();
 		timedRequest = requestNumber;
 		String turnedOnMsgOr = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurnedOn");
 		String turnedOnMsg = turnedOnMsgOr.replaceAll("%time%", time.toString());
 		sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', turnedOnMsg));
-		if (Main.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
 			String announceMsgOr = MessageManager.getMessageYml().getString("Command.TimedGlobal.Announce.On");
 			String announceMsg = announceMsgOr.replaceAll("%time%", time.toString());
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				p.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', announceMsg));
 			}
 		}
-		scheduler.scheduleSyncDelayedTask(Main.plugin, new Runnable() {
+        scheduler.scheduleSyncDelayedTask(PerWorldChatPlusPlugin.plugin, new Runnable() {
 			@Override
 			public void run() {
 				if (timedRequest == requestNumber) {
-					Main.plugin.getConfig().set("Global.TimedGlobal.On", false);
-					Main.plugin.saveConfig();
+                    PerWorldChatPlusPlugin.plugin.getConfig().set("Global.TimedGlobal.On", false);
+                    PerWorldChatPlusPlugin.plugin.saveConfig();
 					timedRequest = 0;
 					String offMsg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurningOff");
 					sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', offMsg));
-					if (Main.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
+                    if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
 						String announceOff = MessageManager.getMessageYml().getString("Command.TimedGlobal.Announce.Off");
 						for (Player p : Bukkit.getOnlinePlayers()) {
 							p.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', announceOff));
@@ -88,12 +88,12 @@ public class TimedGlobalChatManager {
 	 */
 	public void turnOffTimedGlobal(CommandSender sender) {
 		String prefix = MessageManager.getPrefix();
-		Main.plugin.getConfig().set("Global.TimedGlobal.On", false);
-		Main.plugin.saveConfig();
+        PerWorldChatPlusPlugin.plugin.getConfig().set("Global.TimedGlobal.On", false);
+        PerWorldChatPlusPlugin.plugin.saveConfig();
 		timedRequest = 0;
 		String offMsg = MessageManager.getMessageYml().getString("Command.TimedGlobal.TurnedOff");
 		sender.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', offMsg));
-		if (Main.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Announce").equalsIgnoreCase("True")) {
 			String announceOff = MessageManager.getMessageYml().getString("Command.TimedGlobal.Announce.Off");
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				p.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', announceOff));

@@ -1,6 +1,6 @@
 package com.cloudcraftgaming.perworldchatplus.api.utils;
 
-import com.cloudcraftgaming.perworldchatplus.Main;
+import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.FileManager;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ListManager {
 	 * @return returns a string list of worlds that have shared chats.
 	 */
 	public static String getWorldShareListName(String worldName) {
-		for (String list : Main.plugin.getConfig().getStringList("SharesList")) {
+        for (String list : PerWorldChatPlusPlugin.plugin.getConfig().getStringList("SharesList")) {
 			if (list.equalsIgnoreCase(worldName)) {
 				return list;
 			} else if (FileManager.getSharesYml().getStringList(list).contains(worldName)) {
