@@ -152,13 +152,11 @@ public class FileManager {
 	 */
 	public static void checkFileVersion() {
 		if (!(plugin.getConfig().getString("Config Version").equalsIgnoreCase(conVersion))) {
-			plugin.getLogger().severe("Config.yml outdated! Plugin will not work properly! "
-					+ "Delete the file and restart the server to update it!");
+            plugin.getLogger().severe("Config.yml outdated! Plugin will not work properly! Delete the file and restart the server to update it!");
 			plugin.getLogger().info("Shutting down plugin to prevent further errors....");
 			plugin.getServer().getPluginManager().disablePlugin(plugin);
 		} else if (!(MessageManager.getMessageYml().getDouble("Messages Version") == messageVersion)) {
-			plugin.getLogger().severe("Your messages files are outdated! Plugin will not work properly! "
-					+ "Delete the messages folder and restart the server to update it!");
+            plugin.getLogger().severe("Your messages files are outdated! Plugin will not work properly! Delete the messages folder and restart the server to update it!");
 			plugin.getLogger().info("Shutting down plugin to prevent further errors....");
 			plugin.getServer().getPluginManager().disablePlugin(plugin);
 		}

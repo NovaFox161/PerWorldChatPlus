@@ -106,14 +106,12 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
             RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
             if (rsp == null) {
                 //No chat provider registered.
-                getServer().getLogger().warning("Vault installed BUT a chat provider is missing! Some of PerWorldChatPlus's functions may not work!" +
-                        " Sorry, this will be fixed in a future update!");
+                getServer().getLogger().warning("Vault installed BUT a chat provider is missing! Some of PerWorldChatPlus's functions may not work! Sorry, this will be fixed in a future update!");
                 return;
             }
             chat = rsp.getProvider();
         } else {
-            getServer().getLogger().warning("Vault not installed/found! Some of PerWorldChatPlus's functions may not work!" +
-                    " Download Vault at: https://dev.bukkit.org/bukkit-plugins/vault/");
+            getServer().getLogger().warning("Vault not installed/found! Some of PerWorldChatPlus's functions may not work! Download Vault at: https://dev.bukkit.org/bukkit-plugins/vault/");
         }
     }
 
