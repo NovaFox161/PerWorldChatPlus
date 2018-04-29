@@ -9,7 +9,6 @@ import com.cloudcraftgaming.perworldchatplus.internal.listeners.QuitListener;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.ChatColorInventory;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.FileManager;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.internal.utils.UpdateChecker;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -85,7 +84,7 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
             @Override
             public void run() {
-                UpdateChecker.checkForUpdates();
+                //TODO: Use my custom update API
             }
         }, 20L);
     }

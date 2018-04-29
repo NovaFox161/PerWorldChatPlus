@@ -4,7 +4,6 @@ import com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin;
 import com.cloudcraftgaming.perworldchatplus.api.data.PlayerDataManager;
 import com.cloudcraftgaming.perworldchatplus.api.data.WorldDataManager;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.MessageManager;
-import com.cloudcraftgaming.perworldchatplus.internal.utils.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -36,7 +35,7 @@ public class JoinListener implements Listener {
 		if (plugin.getConfig().getString("Check for Updates").equalsIgnoreCase("True")) {
 			Player player = event.getPlayer();
 			if (player.hasPermission("pwcp.notify.update")) {
-				UpdateChecker.checkForUpdates(player);
+                //TODO: Use my custom update API
 			}
 		}
 	}
