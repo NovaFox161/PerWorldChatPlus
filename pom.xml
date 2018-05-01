@@ -27,6 +27,11 @@
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
+        <!--Private Repo for factions/massive-->
+        <repository>
+            <id>maven-private</id>
+            <url>https://repo.novamaday.com/repository/maven-private/</url>
+        </repository>
     </repositories>
     <dependencies>
         <!--Bukkit API-->
@@ -43,6 +48,22 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.6</version>
             <scope>provided</scope>
+        </dependency>
+        <!--Factions API-->
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>factions</artifactId>
+            <version>2.13.7</version>
+            <scope>provided</scope>
+            <type>jar</type>
+        </dependency>
+        <!--MassiveCore-->
+        <dependency>
+            <groupId>com.massivecraft</groupId>
+            <artifactId>massivecore</artifactId>
+            <version>2.13.7</version>
+            <scope>provided</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
 </project>
