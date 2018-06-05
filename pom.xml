@@ -30,7 +30,7 @@
         <!--Private Repo for factions/massive-->
         <repository>
             <id>maven-private</id>
-            <url>https://repo.novamaday.com/repository/maven-private/</url>
+            <url>http://repo.novafox161.com/repository/maven-private/</url>
         </repository>
     </repositories>
     <dependencies>
