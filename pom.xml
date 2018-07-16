@@ -29,8 +29,8 @@
         </repository>
         <!--Private Repo for factions/massive-->
         <repository>
-            <id>maven-private</id>
-            <url>http://repo.novafox161.com/repository/maven-private/</url>
+            <id>nova-private</id>
+            <url>http://repo.novafox161.com/repository/nova-private/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>com.massivecraft</groupId>
             <artifactId>factions</artifactId>
-            <version>2.13.7</version>
+            <version>2.14.0</version>
             <scope>provided</scope>
             <type>jar</type>
         </dependency>
@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.massivecraft</groupId>
             <artifactId>massivecore</artifactId>
-            <version>2.13.7</version>
+            <version>2.14.0</version>
             <scope>provided</scope>
             <type>jar</type>
         </dependency>
