@@ -78,7 +78,6 @@ local.properties
 .idea/dataSources.local.xml
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
-.idea/uiDesigner.xml
 
 # Gradle:
 .idea/gradle.xml
@@ -106,9 +105,9 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-.idea/artifacts/
-.idea/encodings.xml
 src/test/
 target/
-/PerWorldChatPlus.iml
 /.idea/
+**/*.iml
+**/target/
+**/dependency-reduced-pom.xml

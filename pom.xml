@@ -1,21 +1,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
+    </properties>
+
     <groupId>com.cloudcraftgaming</groupId>
     <artifactId>PerWorldChatPlus</artifactId>
-    <version>5.1.1</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <version>6.0.0-SNAPSHOT</version>
+
+    <modules>
+        <module>API</module>
+        <module>Plugin-Bukkit</module>
+    </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>nova-release-pub</id>
+            <name>Releases</name>
+            <url>http://repo.novafox161.com/repository/nova-release-pub/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nova-snapshots-pub</id>
+            <name>Snapshots</name>
+            <url>http://repo.novafox161.com/repository/nova-snapshots-pub/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <repositories>
         <!--Bukkit Repo-->
         <repository>
@@ -33,7 +51,17 @@
             <url>http://repo.novafox161.com/repository/nova-private/</url>
         </repository>
     </repositories>
+
     <dependencies>
+        <!--NovaLib API-->
+        <dependency>
+            <groupId>com.novamaday.novalib</groupId>
+            <artifactId>API</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
         <!--Bukkit API-->
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -41,6 +69,7 @@
             <version>1.9-R0.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <!--Vault API-->
         <dependency>
@@ -48,6 +77,7 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.6</version>
             <scope>provided</scope>
+            <optional>true</optional>
         </dependency>
         <!--Factions API-->
         <dependency>
@@ -56,6 +86,7 @@
             <version>2.14.0</version>
             <scope>provided</scope>
             <type>jar</type>
+            <optional>true</optional>
         </dependency>
         <!--MassiveCore-->
         <dependency>
@@ -64,6 +95,21 @@
             <version>2.14.0</version>
             <scope>provided</scope>
             <type>jar</type>
+            <optional>true</optional>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
