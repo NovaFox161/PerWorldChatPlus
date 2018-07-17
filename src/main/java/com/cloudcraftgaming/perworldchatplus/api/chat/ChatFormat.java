@@ -19,7 +19,7 @@ public class ChatFormat {
 	
 	/**
 	 * Determines the chat message format. This combines all formatting methods.
-     * Use {@link ChatFormat#determineMessageFormat(String, String, Player, Boolean)} to manually control use of the global prefix.
+	 * Use ChatFormat#determineMessageFormat(String, String, Player, Boolean) to manually control use of the global prefix.
 	 *
 	 * @param message The message to format.
 	 * @param sender  The sender of the message.
@@ -50,7 +50,7 @@ public class ChatFormat {
 	
 	/**
 	 * Determines the chat message format. This combines all formatting methods. This method allows direct control of using global formatting or not.
-     * Use {@link ChatFormat#determineMessageFormat(String, String, Player)} to automatically allow PWCP to determine which format to use.
+	 * Use ChatFormat#determineMessageFormat(String, String, Player) to automatically allow PWCP to determine which format to use.
 	 *
 	 * @param originalFormat The message to format.
 	 * @param message        The sender of the message.
@@ -83,7 +83,7 @@ public class ChatFormat {
 	
 	/**
 	 * Determines the chat message format. This combines all formatting methods. This method allows direct control of using global formatting or not.
-     * Use {@link ChatFormat#determineMessageFormat(String, String, Player)} to automatically allow PWCP to determine which format to use.
+	 * Use ChatFormat#determineMessageFormat(String, String, Player) to automatically allow PWCP to determine which format to use.
 	 *
 	 * @param originalFormat The message to format.
 	 * @param message        The sender of the message.
