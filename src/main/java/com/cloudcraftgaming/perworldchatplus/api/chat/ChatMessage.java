@@ -131,9 +131,8 @@ public class ChatMessage {
 
     /**
      * Filters all spam out of a message. This includes the following spam types:
-     * <br>
-     *     Messages sent too often. </br>
-     *     Same messages <br>
+	 *     Messages sent too often.
+	 *     Same messages
      *     Capital letter spam.
      * @param _message The original message.
      * @param sender The sender of the message

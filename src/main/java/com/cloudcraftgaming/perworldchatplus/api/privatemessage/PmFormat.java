@@ -218,7 +218,7 @@ public class PmFormat {
 	}
 	
 	/**
-	 * Replaces the sender name variable with the sender's username Use {@link #replaceSenderVariable(String, Player)} to replace with display name.
+	 * Replaces the sender name variable with the sender's username Use {@link PmFormat##replaceSenderVariable(String, Player)} to replace with display name.
 	 *
 	 * @param format The current format of the message.
 	 * @param sender The sender of the message.
@@ -329,7 +329,7 @@ public class PmFormat {
 	}
 	
 	/**
-	 * Replaces the receiver name variable with the receiver's username Use {@link #replaceReceiverVariable(String, Player)} to replace with display name.
+	 * Replaces the receiver name variable with the receiver's username Use {@link PmFormat#replaceReceiverVariable(String, Player)} (String, Player)} (String, Player)} to replace with display name.
 	 *
 	 * @param format   The current format of the message.
 	 * @param receiver The sender of the message.
