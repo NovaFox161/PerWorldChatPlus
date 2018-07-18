@@ -39,34 +39,20 @@ To use this API within your own Bukkit plugin, please follow the directions belo
 1. In your pom.xml insert the following repository and depend, where version is the target version (API only exists in 5.0.0 and higher):
 ```xml
 <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>nova-public</id>
+        <url>http://repo.novafox161.com/repository/nova-public/</url>
     </repository>
 ```
 ```xml
     <dependency>
-        <groupId>com.github.NovaFox161</groupId>
-        <artifactId>PerWorldChatPlus</artifactId>
-        <version>VERSION</version>
+        <groupId>com.cloudcraftgaming</groupId>
+        <artifactId>PerWorldChatPlus-API</artifactId>
+        <version>6.0.0-SNAPSHOT</version>
     </dependency>
 ```
-2. Use the javadoc provided here: http://novafox161.github.io/PerWorldChatPlus/
-3. In your main class, in `#OnEnable` add this code (extra code shown for extra help):
-```java
-   public class Main extends JavaPlugin {
-       public void onEnable() {
-           //Do stuff...
-           
-           //Add this code:
-           Plugin pwcp = plugin.getServer().getPluginManager().getPlugin("PerWorldChatPlus");
-           if (pwcp != null) {
-               //Check version and do anything else here
-           }
-           //Do stuff...
-       }
-   }
-```
-4. And now you can start using PWCP in your plugin. Just check the Javadoc for extra help!
+2. Use the javadoc provided here: https://docs.novamaday.com/plugins/perworldchatplus/
+
+3. And now you can start using PWCP in your plugin. Just check the Javadoc or wiki for extra help!
 
 ## Contributing
 1. Fork this repo and make changes in your own copy

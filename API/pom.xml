@@ -22,15 +22,6 @@
     <packaging>jar</packaging>
 
     <dependencies>
-        <!--Latest Bukkit version to compile against-->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.12.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-            <type>jar</type>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 
     <build>

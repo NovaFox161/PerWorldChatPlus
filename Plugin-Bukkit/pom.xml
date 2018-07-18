@@ -30,22 +30,7 @@
             <scope>compile</scope>
             <optional>false</optional>
         </dependency>
-
-        <!--Latest Bukkit release to build upon-->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.12.1-R0.1-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>provided</scope> <!-- The 'provided' scope will NOT get shaded in -->
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>VaultAPI</artifactId>
-            <version>1.6</version>
-            <scope>compile</scope>
-        </dependency>
+        <!--Vault API-->
     </dependencies>
 
     <build>

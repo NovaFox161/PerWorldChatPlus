@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class ChatColorInventory {
 	private static Inventory chatColorInv;
-	
-	//Functionals
+
+	//Functional
 	
 	/**
 	 * Creates the ChatColor Inventory GUI. To be used on startup if enabled.
@@ -38,8 +38,8 @@ public class ChatColorInventory {
 		resetMeta.setLore(resetLore);
 		reset.setItemMeta(resetMeta);
 		inv.setItem(0, reset);
-		
-		ItemStack black = new ItemStack(Material.WOOL, 1, Short.valueOf("15"));
+
+		ItemStack black = new ItemStack(Material.BLACK_WOOL, 1);
 		ItemMeta blackMeta = black.getItemMeta();
 		blackMeta.setDisplayName("BLACK");
 		List<String> blackLore = new ArrayList<>();
@@ -48,8 +48,8 @@ public class ChatColorInventory {
 		blackMeta.setLore(blackLore);
 		black.setItemMeta(blackMeta);
 		inv.setItem(1, black);
-		
-		ItemStack darkBlue = new ItemStack(Material.WOOL, 1, Short.valueOf("11"));
+
+		ItemStack darkBlue = new ItemStack(Material.BLUE_WOOL, 1);
 		ItemMeta darkBlueMeta = darkBlue.getItemMeta();
 		darkBlueMeta.setDisplayName("DARK_BLUE");
 		List<String> darkBlueLore = new ArrayList<>();
@@ -58,8 +58,8 @@ public class ChatColorInventory {
 		darkBlueMeta.setLore(darkBlueLore);
 		darkBlue.setItemMeta(darkBlueMeta);
 		inv.setItem(2, darkBlue);
-		
-		ItemStack darkGreen = new ItemStack(Material.WOOL, 1, Short.valueOf("13"));
+
+		ItemStack darkGreen = new ItemStack(Material.GREEN_WOOL, 1);
 		ItemMeta darkGreenMeta = darkGreen.getItemMeta();
 		darkGreenMeta.setDisplayName("DARK_GREEN");
 		List<String> darkGreenLore = new ArrayList<>();
@@ -68,8 +68,8 @@ public class ChatColorInventory {
 		darkGreenMeta.setLore(darkGreenLore);
 		darkGreen.setItemMeta(darkGreenMeta);
 		inv.setItem(3, darkGreen);
-		
-		ItemStack darkAqua = new ItemStack(Material.WOOL, 1, Short.valueOf("9"));
+
+		ItemStack darkAqua = new ItemStack(Material.CYAN_WOOL, 1);
 		ItemMeta darkAquaMeta = darkAqua.getItemMeta();
 		darkAquaMeta.setDisplayName("DARK_AQUA");
 		List<String> darkAquaLore = new ArrayList<>();
@@ -78,8 +78,8 @@ public class ChatColorInventory {
 		darkAquaMeta.setLore(darkAquaLore);
 		darkAqua.setItemMeta(darkAquaMeta);
 		inv.setItem(4, darkAqua);
-		
-		ItemStack darkRed = new ItemStack(Material.WOOL, 1, Short.valueOf("14"));
+
+		ItemStack darkRed = new ItemStack(Material.RED_WOOL, 1);
 		ItemMeta darkRedMeta = darkRed.getItemMeta();
 		darkRedMeta.setDisplayName("DARK_RED");
 		List<String> darkRedLore = new ArrayList<>();
@@ -88,8 +88,8 @@ public class ChatColorInventory {
 		darkRedMeta.setLore(darkRedLore);
 		darkRed.setItemMeta(darkRedMeta);
 		inv.setItem(5, darkRed);
-		
-		ItemStack darkPurple = new ItemStack(Material.WOOL, 1, Short.valueOf("10"));
+
+		ItemStack darkPurple = new ItemStack(Material.PURPLE_WOOL, 1);
 		ItemMeta darkPurpleMeta = darkPurple.getItemMeta();
 		darkPurpleMeta.setDisplayName("DARK_PURPLE");
 		List<String> darkPurpleLore = new ArrayList<>();
@@ -98,8 +98,8 @@ public class ChatColorInventory {
 		darkPurpleMeta.setLore(darkPurpleLore);
 		darkPurple.setItemMeta(darkPurpleMeta);
 		inv.setItem(6, darkPurple);
-		
-		ItemStack gold = new ItemStack(Material.WOOL, 1, Short.valueOf("1"));
+
+		ItemStack gold = new ItemStack(Material.YELLOW_WOOL, 1);
 		ItemMeta goldMeta = gold.getItemMeta();
 		goldMeta.setDisplayName("GOLD");
 		List<String> goldLore = new ArrayList<>();
@@ -108,8 +108,8 @@ public class ChatColorInventory {
 		goldMeta.setLore(goldLore);
 		gold.setItemMeta(goldMeta);
 		inv.setItem(7, gold);
-		
-		ItemStack gray = new ItemStack(Material.WOOL, 1, Short.valueOf("8"));
+
+		ItemStack gray = new ItemStack(Material.LIGHT_GRAY_WOOL, 1);
 		ItemMeta grayMeta = gray.getItemMeta();
 		grayMeta.setDisplayName("GRAY");
 		List<String> grayLore = new ArrayList<>();
@@ -118,8 +118,8 @@ public class ChatColorInventory {
 		grayMeta.setLore(grayLore);
 		gray.setItemMeta(grayMeta);
 		inv.setItem(8, gray);
-		
-		ItemStack darkGray = new ItemStack(Material.WOOL, 1, Short.valueOf("7"));
+
+		ItemStack darkGray = new ItemStack(Material.GRAY_WOOL, 1);
 		ItemMeta darkGrayMeta = darkGray.getItemMeta();
 		darkGrayMeta.setDisplayName("DARK_GRAY");
 		List<String> darkGrayLore = new ArrayList<>();
@@ -128,8 +128,8 @@ public class ChatColorInventory {
 		darkGrayMeta.setLore(darkGrayLore);
 		darkGray.setItemMeta(darkGrayMeta);
 		inv.setItem(9, darkGray);
-		
-		ItemStack blue = new ItemStack(Material.WOOL, 1, Short.valueOf("3"));
+
+		ItemStack blue = new ItemStack(Material.LIGHT_BLUE_WOOL, 1);
 		ItemMeta blueMeta = blue.getItemMeta();
 		blueMeta.setDisplayName("BLUE");
 		List<String> blueLore = new ArrayList<>();
@@ -138,8 +138,8 @@ public class ChatColorInventory {
 		blueMeta.setLore(blueLore);
 		blue.setItemMeta(blueMeta);
 		inv.setItem(10, blue);
-		
-		ItemStack green = new ItemStack(Material.WOOL, 1, Short.valueOf("5"));
+
+		ItemStack green = new ItemStack(Material.LIME_WOOL, 1);
 		ItemMeta greenMeta = green.getItemMeta();
 		greenMeta.setDisplayName("GREEN");
 		List<String> greenLore = new ArrayList<>();
@@ -148,8 +148,8 @@ public class ChatColorInventory {
 		greenMeta.setLore(greenLore);
 		green.setItemMeta(greenMeta);
 		inv.setItem(11, green);
-		
-		ItemStack aqua = new ItemStack(Material.STAINED_GLASS, 1, Short.valueOf("3"));
+
+		ItemStack aqua = new ItemStack(Material.CYAN_STAINED_GLASS, 1);
 		ItemMeta aquaMeta = aqua.getItemMeta();
 		aquaMeta.setDisplayName("AQUA");
 		List<String> aquaLore = new ArrayList<>();
@@ -158,8 +158,8 @@ public class ChatColorInventory {
 		aquaMeta.setLore(aquaLore);
 		aqua.setItemMeta(aquaMeta);
 		inv.setItem(12, aqua);
-		
-		ItemStack red = new ItemStack(Material.WOOL, 1, Short.valueOf("6"));
+
+		ItemStack red = new ItemStack(Material.RED_WOOL, 1);
 		ItemMeta redMeta = red.getItemMeta();
 		redMeta.setDisplayName("RED");
 		List<String> redLore = new ArrayList<>();
@@ -168,8 +168,8 @@ public class ChatColorInventory {
 		redMeta.setLore(redLore);
 		red.setItemMeta(redMeta);
 		inv.setItem(13, red);
-		
-		ItemStack lightPurple = new ItemStack(Material.WOOL, 1, Short.valueOf("2"));
+
+		ItemStack lightPurple = new ItemStack(Material.PINK_WOOL, 1);
 		ItemMeta lightPurpleMeta = lightPurple.getItemMeta();
 		lightPurpleMeta.setDisplayName("LIGHT_PURPLE");
 		List<String> lightPurpleLore = new ArrayList<>();
@@ -178,8 +178,8 @@ public class ChatColorInventory {
 		lightPurpleMeta.setLore(lightPurpleLore);
 		lightPurple.setItemMeta(lightPurpleMeta);
 		inv.setItem(14, lightPurple);
-		
-		ItemStack yellow = new ItemStack(Material.WOOL, 1, Short.valueOf("4"));
+
+		ItemStack yellow = new ItemStack(Material.YELLOW_WOOL, 1);
 		ItemMeta yellowMeta = yellow.getItemMeta();
 		yellowMeta.setDisplayName("YELLOW");
 		List<String> yellowLore = new ArrayList<>();
@@ -188,8 +188,8 @@ public class ChatColorInventory {
 		yellowMeta.setLore(yellowLore);
 		yellow.setItemMeta(yellowMeta);
 		inv.setItem(15, yellow);
-		
-		ItemStack white = new ItemStack(Material.WOOL, 1);
+
+		ItemStack white = new ItemStack(Material.WHITE_WOOL, 1);
 		ItemMeta whiteMeta = white.getItemMeta();
 		whiteMeta.setDisplayName("WHITE");
 		List<String> whiteLore = new ArrayList<>();
@@ -228,8 +228,8 @@ public class ChatColorInventory {
 		strikethroughMeta.setLore(strikethroughLore);
 		strikethrough.setItemMeta(strikethroughMeta);
 		inv.setItem(19, strikethrough);
-		
-		ItemStack underline = new ItemStack(Material.STONE_SLAB2, 1);
+
+		ItemStack underline = new ItemStack(Material.STONE_SLAB, 1);
 		ItemMeta underlineMeta = underline.getItemMeta();
 		underlineMeta.setDisplayName("UNDERLINE");
 		List<String> underlineLore = new ArrayList<>();
