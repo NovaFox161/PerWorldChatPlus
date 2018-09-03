@@ -45,12 +45,17 @@
             <id>nova-private</id>
             <url>http://repo.novafox161.com/repository/nova-private/</url>
         </repository>
+        <!--Public DE Repo-->
+        <repository>
+            <id>nova-public</id>
+            <url>http://repo.novafox161.com/repository/nova-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <!--NovaLib API-->
         <dependency>
-            <groupId>com.novamaday.novalib</groupId>
+            <groupId>org.dreamexposure.novalib</groupId>
             <artifactId>API</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <type>jar</type>

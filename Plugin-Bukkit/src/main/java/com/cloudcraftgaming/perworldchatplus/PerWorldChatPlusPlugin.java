@@ -9,10 +9,10 @@ import com.cloudcraftgaming.perworldchatplus.internal.listeners.InventoryClickLi
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.JoinListener;
 import com.cloudcraftgaming.perworldchatplus.internal.listeners.QuitListener;
 import com.cloudcraftgaming.perworldchatplus.internal.utils.ChatColorInventory;
-import com.novamaday.novalib.api.NovaLibAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.dreamexposure.novalib.api.NovaLibAPI;
 
 /**
  * Create by: NovaFox161

@@ -1,8 +1,8 @@
 package com.cloudcraftgaming.perworldchatplus.api.utils;
 
 import com.cloudcraftgaming.perworldchatplus.api.PerWorldChatPlusAPI;
-import com.novamaday.novalib.api.bukkit.file.CustomConfig;
 import org.bukkit.ChatColor;
+import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
 
 import java.util.LinkedHashMap;
 

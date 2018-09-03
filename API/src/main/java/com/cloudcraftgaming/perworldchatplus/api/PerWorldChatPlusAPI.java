@@ -1,14 +1,14 @@
 package com.cloudcraftgaming.perworldchatplus.api;
 
 import com.cloudcraftgaming.perworldchatplus.api.utils.MessageManager;
-import com.novamaday.novalib.api.bukkit.file.CustomConfig;
-import com.novamaday.novalib.api.packets.PacketManager;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
+import org.dreamexposure.novalib.api.bukkit.packets.PacketManager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
