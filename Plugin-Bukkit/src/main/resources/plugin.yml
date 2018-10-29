@@ -5,12 +5,12 @@ description: Makes chat per world and handles other chat related things. Also se
 author: DreamExposure
 authors: [NovaFox161]
 
-website: http://dev.bukkit.org/bukkit-plugins/per-world-chat-plus/
+website: https://www.dreamexposure.org/plugins/perworldchatplus
 
-main: com.cloudcraftgaming.perworldchatplus.PerWorldChatPlusPlugin
+main: org.dreamexposure.perworldchatplus.plugin.bukkit.PerWorldChatPlusPlugin
 
 depend: [NovaLib]
-softdepend: [Vault, Factions]
+softdepend: [Vault, Factions, PlaceholderAPI]
 
 api-version: 1.13
 

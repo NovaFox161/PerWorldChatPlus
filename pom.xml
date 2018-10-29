@@ -12,7 +12,7 @@
         <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
     </properties>
 
-    <groupId>com.cloudcraftgaming</groupId>
+    <groupId>org.dreamexposure</groupId>
     <artifactId>PerWorldChatPlus</artifactId>
     <version>6.0.0-SNAPSHOT</version>
 
@@ -50,6 +50,11 @@
             <id>nova-public</id>
             <url>http://repo.novafox161.com/repository/nova-public/</url>
         </repository>
+        <!--PlaceHolder API Repo-->
+        <repository>
+            <id>placeholderapi</id>
+            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -77,6 +82,15 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.6</version>
             <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <!--PlaceHolderAPI-->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.9.2</version>
+            <scope>provided</scope>
+            <type>jar</type>
             <optional>true</optional>
         </dependency>
         <!--Factions API-->
