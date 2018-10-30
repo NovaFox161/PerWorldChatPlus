@@ -5,10 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.dreamexposure.perworldchatplus.api.chat.TimedGlobalChatManager;
 import org.dreamexposure.perworldchatplus.api.data.PlayerDataManager;
 import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
-import org.dreamexposure.perworldchatplus.plugin.bukkit.PerWorldChatPlusPlugin;
 
 /**
  * Created by: NovaFox161
@@ -66,22 +64,6 @@ public class PerWorldChatCommand implements CommandExecutor {
                             String msg = MessageManager.getMessages().get().getString("Notification.Args.TooFew");
 							player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
 						}
-					} else if (type.equalsIgnoreCase("timedGlobal")) {
-						if (player.hasPermission("pwcp.timedglobal")) {
-							if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-								if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-									TimedGlobalChatManager.getManager().turnOffTimedGlobal(player);
-								} else {
-                                    String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.AlreadyOff");
-									player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-								}
-							} else {
-                                String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.Disabled");
-								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-							}
-						} else {
-							player.sendMessage(pr + MessageManager.getNoPermMessage());
-						}
 					} else if (type.equalsIgnoreCase("help")) {
 						HelpCommand.helpCommand(player, "1");
 					} else if (type.equalsIgnoreCase("worldSpy")) {
@@ -131,30 +113,6 @@ public class PerWorldChatCommand implements CommandExecutor {
 							WorldSpy.worldSpy(player, args[1]);
 						} else {
 							player.sendMessage(MessageManager.getPrefix() + MessageManager.getNoPermMessage());
-						}
-					} else if (type.equalsIgnoreCase("timedGlobal")) {
-						if (player.hasPermission("pwcp.timedglobal")) {
-							if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-								if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("False")) {
-									String timeString = args[1];
-									try {
-										Integer time = Integer.valueOf(timeString);
-										TimedGlobalChatManager.getManager().turnOnTimedGlobal(player, time);
-										
-									} catch (NumberFormatException e) {
-                                        String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.TimeNotNumber");
-										player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-									}
-								} else {
-                                    String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.AlreadyOn");
-									player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-								}
-							} else {
-                                String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.Disabled");
-								player.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-							}
-						} else {
-							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						}
 					} else if (type.equalsIgnoreCase("help")) {
 						HelpCommand.helpCommand(sender, args[1]);
@@ -208,22 +166,6 @@ public class PerWorldChatCommand implements CommandExecutor {
 						} else {
 							sender.sendMessage(pr + MessageManager.getNoPermMessage());
 						}
-					} else if (type.equalsIgnoreCase("timedGlobal")) {
-						if (sender.hasPermission("pwcp.timedglobal")) {
-							if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-								if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")) {
-									TimedGlobalChatManager.getManager().turnOffTimedGlobal(sender);
-								} else {
-                                    String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.AlreadyOff");
-									sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-								}
-							} else {
-                                String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.Disabled");
-								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-							}
-						} else {
-							sender.sendMessage(pr + MessageManager.getNoPermMessage());
-						}
 					} else if (type.equalsIgnoreCase("help")) {
 						HelpCommand.helpCommand(sender, "1");
 					} else if (type.equalsIgnoreCase("set")) {
@@ -234,31 +176,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 					}
 				} else if (args.length == 2) {
 					String type = args[0];
-					if (type.equalsIgnoreCase("timedGlobal")) {
-						if (sender.hasPermission("pwcp.timedglobal")) {
-							if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.Allow").equalsIgnoreCase("True")) {
-								if (PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.TimedGlobal.On").equalsIgnoreCase("False")) {
-									String timeString = args[1];
-									try {
-										Integer time = Integer.valueOf(timeString);
-										TimedGlobalChatManager.getManager().turnOnTimedGlobal(sender, time);
-										
-									} catch (NumberFormatException e) {
-                                        String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.TimeNotNumber");
-										sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-									}
-								} else {
-                                    String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.AlreadyOn");
-									sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-								}
-							} else {
-                                String msg = MessageManager.getMessages().get().getString("Command.TimedGlobal.Disabled");
-								sender.sendMessage(pr + ChatColor.translateAlternateColorCodes('&', msg));
-							}
-						} else {
-							sender.sendMessage(pr + MessageManager.getNoPermMessage());
-						}
-					} else if (type.equalsIgnoreCase("help")) {
+					if (type.equalsIgnoreCase("help")) {
 						HelpCommand.helpCommand(sender, args[1]);
 					} else if (type.equalsIgnoreCase("set")) {
 						SetCommand.setCommand(sender, args);

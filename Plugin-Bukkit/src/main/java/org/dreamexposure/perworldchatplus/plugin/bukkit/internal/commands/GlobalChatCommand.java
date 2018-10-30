@@ -29,7 +29,7 @@ public class GlobalChatCommand implements CommandExecutor {
 						String msgOr = MessageManager.getMessages().get().getString("Command.Global.AddMessage");
 						player.sendMessage(prefix + ChatColor.translateAlternateColorCodes('&', msgOr));
                     } else {
-						String gPrefix = PerWorldChatPlusPlugin.plugin.getConfig().getString("Global.Prefix");
+						String gPrefix = PerWorldChatPlusPlugin.get().config.get().getString("Global.Prefix");
                         StringBuilder msg1 = new StringBuilder();
 						for (String arg : args) {
 							arg = arg + " ";

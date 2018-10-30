@@ -5,7 +5,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
 import org.dreamexposure.perworldchatplus.api.data.PlayerDataManager;
-import org.dreamexposure.perworldchatplus.api.utils.ListManager;
+import org.dreamexposure.perworldchatplus.api.data.WorldShares;
 import org.dreamexposure.perworldchatplus.api.utils.PlayerHandler;
 
 import java.util.ArrayList;
@@ -42,9 +42,8 @@ public class ChatRecipients {
         recipients.addAll(globalReceivers);
 		List<Player> removeMuted = getMutedReceivers();
 		for (Player p : removeMuted) {
-            if (!recipients.contains(p)) {
+			if (!recipients.contains(p))
                 continue;
-            }
             recipients.remove(p);
 		}
 		List<Player> removeIgnoring = getIgnoredReceivers(sender);
@@ -72,12 +71,11 @@ public class ChatRecipients {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (ChatMessage.wasMentioned(p, message)) {
                 recipients.add(p);
-				String soundName = PerWorldChatPlusAPI.getApi().getConfig().get().getString("Alert.Mention.Sound");
+				String soundName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.Sound");
 				Sound sound = Sound.valueOf(soundName);
 				p.playSound(p.getLocation(), sound, 1f, 0f);
-				if (shouldSendMentionNotice()) {
+				if (shouldSendMentionNotice())
 					PlayerHandler.sendMentionNotice(p, sender);
-				}
 			}
 		}
 		return recipients;
@@ -116,9 +114,8 @@ public class ChatRecipients {
 			if (PlayerDataManager.hasGlobalChatSpyEnabled(p)) {
                 recipients.add(p);
 			} else if (PlayerDataManager.hasWorldChatSpyEnabled(p)) {
-				if (PlayerDataManager.isSpyingOnWorld(p, sender.getWorld().getName())) {
+				if (PlayerDataManager.isSpyingOnWorld(p, sender.getWorld().getName()))
                     recipients.add(p);
-				}
 			}
 		}
 		return recipients;
@@ -135,9 +132,8 @@ public class ChatRecipients {
 		String worldFrom = sender.getWorld().getName();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (!recipients.contains(p)) {
-				if (isShared(worldFrom, p.getWorld().getName())) {
+				if (WorldShares.get().isShared(worldFrom, p.getWorld().getName()))
 					recipients.add(p);
-				}
 			}
 		}
 		return recipients;
@@ -152,9 +148,8 @@ public class ChatRecipients {
 	 * @return A set of all players that will receive the message if chat is supposed to be global.
 	 */
 	public static Set<Player> getAllGlobalReceivers(Set<Player> recipients, String message, Player sender) {
-		if (ChatMessage.shouldBeGlobal(message, sender)) {
+		if (ChatMessage.shouldBeGlobal(message, sender))
             recipients.addAll(Bukkit.getOnlinePlayers());
-		}
 		return recipients;
 	}
 	
@@ -167,9 +162,8 @@ public class ChatRecipients {
 		List<Player> muted = new ArrayList<>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (PlayerDataManager.hasChatMuted(p)) {
-				if (!muted.contains(p)) {
+				if (!muted.contains(p))
 					muted.add(p);
-				}
 			}
 		}
 		return muted;
@@ -185,41 +179,20 @@ public class ChatRecipients {
 		List<Player> ignored = new ArrayList<>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (PlayerDataManager.isIgnoringPlayer(p, sender)) {
-				if (!ignored.contains(p)) {
+				if (!ignored.contains(p))
 					ignored.add(p);
-				}
 			}
 		}
 		return ignored;
 	}
 	
 	//Checkers/Booleans
-	
-	/**
-	 * Checks to see if the chat message should be shared to players in the world.
-	 *
-	 * @param worldFrom The world the chat message came from.
-	 * @param worldTo   The world the possible recipient is in.
-	 * @return True if the message should be shared to the possible receiver, else false.
-	 */
-	public static boolean isShared(String worldFrom, String worldTo) {
-		if (worldFrom.equals(worldTo)) {
-			return true;
-		}
-		String sharesListName = ListManager.getWorldShareListName(worldFrom);
-		List<String> sharesList = ListManager.getWorldShareList(worldFrom);
-		if (sharesList != null && sharesListName != null) {
-            return sharesListName.equalsIgnoreCase(worldTo) || sharesList.contains(worldTo);
-		}
-		return false;
-	}
-	
 	/**
 	 * Checks if the plugin should send a notice to the player that was mentioned.
 	 *
 	 * @return True if the player should be notified, else false.
 	 */
 	public static boolean shouldSendMentionNotice() {
-		return PerWorldChatPlusAPI.getApi().getConfig().get().getString("Alert.Mention.SendNotice").equalsIgnoreCase("True");
+		return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getBoolean("Alert.Mention.SendNotice");
 	}
 }

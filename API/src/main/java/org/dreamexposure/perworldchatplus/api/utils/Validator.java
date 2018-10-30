@@ -22,8 +22,7 @@ public class Validator {
 			VALID_IPV4_PATTERN = Pattern.compile(ipv4Pattern, Pattern.CASE_INSENSITIVE);
 			VALID_IPV6_PATTERN = Pattern.compile(ipv6Pattern, Pattern.CASE_INSENSITIVE);
 			VALID_URL_PATTERN = Pattern.compile(urlPattern, Pattern.CASE_INSENSITIVE);
-		} catch (PatternSyntaxException e) {
-			//logger.severe("Unable to compile pattern", e);
+		} catch (PatternSyntaxException ignore) {
 		}
 	}
 
@@ -39,25 +38,21 @@ public class Validator {
 	public static boolean isIpAddress(String ipAddress) {
 		try {
 			Matcher m1 = Validator.VALID_IPV4_PATTERN.matcher(ipAddress);
-			if (m1.matches()) {
+			if (m1.matches())
 				return true;
-			}
 			Matcher m2 = Validator.VALID_IPV6_PATTERN.matcher(ipAddress);
 			if (m2.matches()) {
 				return true;
 			} else if (ipAddress.contains(":")) {
 				String[] ipAddressSplit = ipAddress.split(":");
 				Matcher m3 = Validator.VALID_IPV4_PATTERN.matcher(ipAddressSplit[0]);
-				if (m3.matches()) {
+				if (m3.matches())
 					return true;
-				}
 				Matcher m4 = Validator.VALID_IPV6_PATTERN.matcher(ipAddressSplit[0]);
-				if (m4.matches()) {
+				if (m4.matches())
 					return true;
-				}
 			}
-		} catch (Exception e) {
-			//Some issue, safe to ignore.
+		} catch (Exception ignore) {
 		}
 		return false;
 	}

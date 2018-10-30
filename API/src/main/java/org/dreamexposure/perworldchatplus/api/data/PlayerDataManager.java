@@ -38,7 +38,7 @@ public class PlayerDataManager {
 			data.addDefault("WorldSpy", false);
 			data.addDefault("ChatMute", false);
 			data.addDefault("SocialSpy", false);
-            String chatColorString = PerWorldChatPlusAPI.getApi().getConfig().get().getString("Chat.Color.Default");
+            String chatColorString = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Default");
 			data.addDefault("ChatColor", ChatColor.valueOf(chatColorString).name());
 			
 			

@@ -1,6 +1,6 @@
 package org.dreamexposure.perworldchatplus.api.privatemessage;
 
-import com.massivecraft.factions.entity.MPlayer;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "Duplicates"})
 public class PmFormat {
 	/**
 	 * Determines the private message format for the sender. This combines all formatting methods.
@@ -30,24 +30,19 @@ public class PmFormat {
 		
 		//Replace sender related vars
 		format = replaceSenderVariable(format, sender);
-		format = replaceSenderNameVariable(format, sender);
-		format = replaceSenderPrefixVariable(format, sender);
-		format = replaceSenderSuffixVariable(format, sender);
+		format = replaceSenderDisplayNameVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
-		
-		format = replaceSenderFactionNameVariable(format, sender);
-		format = replaceSenderFactionTitleVariable(format, sender);
 		
 		//Replace receiver related vars
 		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverNameVariable(format, receiver);
+		format = replaceReceiverDisplayNameVariable(format, receiver);
 		format = replaceReceiverPrefixVariable(format, receiver);
 		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
-		format = replaceReceiverFactionNameVariable(format, receiver);
-		format = replaceReceiverFactionTitleVariable(format, receiver);
 		
+		if (PerWorldChatPlusAPI.getApi().papiCheck())
+			format = PlaceholderAPI.setPlaceholders(receiver, format);
 		
 		return ChatColor.translateAlternateColorCodes('&', format);
 	}
@@ -68,24 +63,19 @@ public class PmFormat {
 		
 		//Replace sender related vars
 		format = replaceSenderVariable(format, sender);
-		format = replaceSenderNameVariable(format, sender);
-		format = replaceSenderPrefixVariable(format, sender);
-		format = replaceSenderSuffixVariable(format, sender);
+		format = replaceSenderDisplayNameVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
-		
-		format = replaceSenderFactionNameVariable(format, sender);
-		format = replaceSenderFactionTitleVariable(format, sender);
 		
 		//Replace receiver related vars
 		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverNameVariable(format, receiver);
+		format = replaceReceiverDisplayNameVariable(format, receiver);
 		format = replaceReceiverPrefixVariable(format, receiver);
 		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
-		format = replaceReceiverFactionNameVariable(format, receiver);
-		format = replaceReceiverFactionTitleVariable(format, receiver);
 		
+		if (PerWorldChatPlusAPI.getApi().papiCheck())
+			format = PlaceholderAPI.setPlaceholders(receiver, format);
 		
 		return ChatColor.translateAlternateColorCodes('&', format);
 	}
@@ -106,23 +96,20 @@ public class PmFormat {
 		
 		//Replace sender related vars
 		format = replaceSenderVariable(format, sender);
-		format = replaceSenderNameVariable(format, sender);
+		format = replaceSenderDisplayNameVariable(format, sender);
 		format = replaceSenderPrefixVariable(format, sender);
 		format = replaceSenderSuffixVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
 		
-		format = replaceSenderFactionNameVariable(format, sender);
-		format = replaceSenderFactionTitleVariable(format, sender);
-		
 		//Replace receiver related vars
 		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverNameVariable(format, receiver);
+		format = replaceReceiverDisplayNameVariable(format, receiver);
 		format = replaceReceiverPrefixVariable(format, receiver);
 		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
-		format = replaceReceiverFactionNameVariable(format, receiver);
-		format = replaceReceiverFactionTitleVariable(format, receiver);
+		if (PerWorldChatPlusAPI.getApi().papiCheck())
+			format = PlaceholderAPI.setPlaceholders(receiver, format);
 		
 		
 		return ChatColor.translateAlternateColorCodes('&', format);
@@ -136,12 +123,11 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForSender(Player sender) {
-		if (PerWorldChatPlusAPI.getApi().getConfig().get().getString("Format.PerWorld").equalsIgnoreCase("True")) {
-			if (PerWorldChatPlusAPI.getApi().getConfig().get().contains("PM.Format.Format." + sender.getWorld().getName() + ".From")) {
-				return PerWorldChatPlusAPI.getApi().getConfig().get().getString("PM.Format." + sender.getWorld().getName() + ".From");
-			}
+		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+			if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().contains("PM.Format.Format." + sender.getWorld().getName() + ".From"))
+				return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("PM.Format." + sender.getWorld().getName() + ".From");
 		}
-		return PerWorldChatPlusAPI.getApi().getConfig().get().getString("PM.Format.Default.From");
+		return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("PM.Format.Default.From");
 	}
 	
 	/**
@@ -150,12 +136,11 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForReceiver(Player receiver) {
-		if (PerWorldChatPlusAPI.getApi().getConfig().get().getString("Format.PerWorld").equalsIgnoreCase("True")) {
-			if (PerWorldChatPlusAPI.getApi().getConfig().get().contains("PM.Format.Format." + receiver.getWorld().getName() + ".To")) {
-				return PerWorldChatPlusAPI.getApi().getConfig().get().getString("PM.Format." + receiver.getWorld().getName() + ".To");
-			}
+		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Format.PerWorld").equalsIgnoreCase("True")) {
+			if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().contains("PM.Format.Format." + receiver.getWorld().getName() + ".To"))
+				return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("PM.Format." + receiver.getWorld().getName() + ".To");
 		}
-		return PerWorldChatPlusAPI.getApi().getConfig().get().getString("PM.Format.Default.To");
+		return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("PM.Format.Default.To");
 	}
 	
 	/**
@@ -164,7 +149,7 @@ public class PmFormat {
 	 * @return The default private message format template.
 	 */
 	public static String getFormatTemplateForSocialSpy() {
-		return PerWorldChatPlusAPI.getApi().getConfig().get().getString("PM.Format.Spy");
+		return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("PM.Format.Spy");
 	}
 	
 	//Variable replacers - General
@@ -180,11 +165,10 @@ public class PmFormat {
 	 */
     @SuppressWarnings("unused")
     public static String replaceVariable(String format, String _var, String replaceWith) {
-		if (format.contains(_var)) {
+		if (format.contains(_var))
 			return format.replaceAll(_var, replaceWith);
-		} else {
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -194,11 +178,10 @@ public class PmFormat {
 	 * @return The message's format with the message variable replaced.
 	 */
 	public static String replaceMessageVariable(String format, String message) {
-		if (format.contains("%message%")) {
+		if (format.contains("%message%"))
 			return format.replaceAll("%message%", message);
-		} else {
+		else
 			return format;
-		}
 	}
 	
 	//Variable replacers - Sender specific
@@ -210,11 +193,10 @@ public class PmFormat {
 	 * @return The message's format with the sender variable replaced.
 	 */
 	public static String replaceSenderVariable(String format, Player sender) {
-		if (format.contains("%sender%")) {
-			return format.replaceAll("%sender%", sender.getDisplayName());
-		} else {
+		if (format.contains("%sender%"))
+			return format.replaceAll("%sender%", sender.getName());
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -224,12 +206,11 @@ public class PmFormat {
 	 * @param sender The sender of the message.
 	 * @return The message's format with the sender name variable replaced.
 	 */
-	public static String replaceSenderNameVariable(String format, Player sender) {
-		if (format.contains("%sendername%")) {
-			return format.replaceAll("%sendername%", sender.getName());
-		} else {
+	public static String replaceSenderDisplayNameVariable(String format, Player sender) {
+		if (format.contains("%sender_display_name%"))
+			return format.replaceAll("%sender_name%", sender.getDisplayName());
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -240,12 +221,11 @@ public class PmFormat {
 	 * @return The message's format with the sender prefix variable replaced.
 	 */
 	public static String replaceSenderPrefixVariable(String format, Player sender) {
-		if (format.contains("%senderprefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
+		if (format.contains("%sender_prefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
 			String prefix = PerWorldChatPlusAPI.getApi().getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
-			return format.replaceAll("%senderprefix%", prefix);
-		} else {
+			return format.replaceAll("%sender_prefix%", prefix);
+		} else
 			return format;
-		}
 	}
 	
 	/**
@@ -256,12 +236,11 @@ public class PmFormat {
 	 * @return The message's format with the sender suffix variable replaced.
 	 */
 	public static String replaceSenderSuffixVariable(String format, Player sender) {
-		if (format.contains("%sendersuffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
+		if (format.contains("%sender_suffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
 			String suffix = PerWorldChatPlusAPI.getApi().getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
-			return format.replaceAll("%sendersuffix%", suffix);
-		} else {
+			return format.replaceAll("%sender_suffix%", suffix);
+		} else
 			return format;
-		}
 	}
 	
 	/**
@@ -272,43 +251,10 @@ public class PmFormat {
 	 * @return The message's format with the sender world variable replaced.
 	 */
 	public static String replaceSenderWorldVariable(String format, Player sender) {
-		if (format.contains("%senderworld%")) {
-			return format.replaceAll("%senderworld%", WorldDataManager.getAlias(sender.getWorld().getName()));
-		} else {
+		if (format.contains("%sender_world%"))
+			return format.replaceAll("%sender_world%", WorldDataManager.getAlias(sender.getWorld().getName()));
+		else
 			return format;
-		}
-	}
-	
-	/**
-	 * Replaces the sender faction name variable with the name of the sender's faction.
-	 *
-	 * @param format The current format of the message.
-	 * @param sender The sender of the message.
-	 * @return The message's format with the sender faction name variable replaced.
-	 */
-	public static String replaceSenderFactionNameVariable(String format, Player sender) {
-		if (format.contains("%senderFactionName%") && PerWorldChatPlusAPI.getApi().hasFactions()) {
-			MPlayer mSender = MPlayer.get(sender.getUniqueId());
-			return format.replaceAll("%senderFactionName%", mSender.getFaction().getName());
-		} else {
-			return format;
-		}
-	}
-	
-	/**
-	 * Replaces the sender faction title variable with the name of the sender's faction title.
-	 *
-	 * @param format The current format of the message.
-	 * @param sender The sender of the message.
-	 * @return The message's format with the sender faction title variable replaced.
-	 */
-	public static String replaceSenderFactionTitleVariable(String format, Player sender) {
-		if (format.contains("%senderFactionTitle%") && PerWorldChatPlusAPI.getApi().hasFactions()) {
-			MPlayer mSender = MPlayer.get(sender.getUniqueId());
-			return format.replaceAll("%senderFactionTitle%", mSender.getTitle());
-		} else {
-			return format;
-		}
 	}
 	
 	//Variable replacers - Receiver specific
@@ -321,11 +267,10 @@ public class PmFormat {
 	 * @return The message's format with the receiver variable replaced.
 	 */
 	public static String replaceReceiverVariable(String format, Player receiver) {
-		if (format.contains("%receiver%")) {
-			return format.replaceAll("%receiver%", receiver.getDisplayName());
-		} else {
+		if (format.contains("%receiver%"))
+			return format.replaceAll("%receiver%", receiver.getName());
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -335,12 +280,11 @@ public class PmFormat {
 	 * @param receiver The sender of the message.
 	 * @return The message's format with the sender name variable replaced.
 	 */
-	public static String replaceReceiverNameVariable(String format, Player receiver) {
-		if (format.contains("%receivername%")) {
-			return format.replaceAll("%receivername%", receiver.getName());
-		} else {
+	public static String replaceReceiverDisplayNameVariable(String format, Player receiver) {
+		if (format.contains("%receiver_display_name%"))
+			return format.replaceAll("%receivername%", receiver.getDisplayName());
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -351,12 +295,11 @@ public class PmFormat {
 	 * @return The message's format with the receiver prefix variable replaced.
 	 */
 	public static String replaceReceiverPrefixVariable(String format, Player receiver) {
-		if (format.contains("%receiverprefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
+		if (format.contains("%receiver_prefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
 			String prefix = PerWorldChatPlusAPI.getApi().getChat().getPlayerPrefix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
-			return format.replaceAll("%recieverprefix%", prefix);
-		} else {
+			return format.replaceAll("%receiver_prefix%", prefix);
+		} else
 			return format;
-		}
 	}
 	
 	/**
@@ -367,12 +310,11 @@ public class PmFormat {
 	 * @return The message's format with the receiver suffix variable replaced.
 	 */
 	public static String replaceReceiverSuffixVariable(String format, Player receiver) {
-		if (format.contains("%receiversuffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
+		if (format.contains("%receiver_suffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
 			String suffix = PerWorldChatPlusAPI.getApi().getChat().getPlayerSuffix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
-			return format.replaceAll("%receiversuffix%", suffix);
-		} else {
+			return format.replaceAll("%receiver_suffix%", suffix);
+		} else
 			return format;
-		}
 	}
 	
 	/**
@@ -383,42 +325,9 @@ public class PmFormat {
 	 * @return The message's format with the receiver world variable replaced.
 	 */
 	public static String replaceReceiverWorldVariable(String format, Player receiver) {
-		if (format.contains("%receiverworld%")) {
-			return format.replaceAll("%receiverworld%", WorldDataManager.getAlias(receiver.getWorld().getName()));
-		} else {
+		if (format.contains("%receiver_world%"))
+			return format.replaceAll("%world%", WorldDataManager.getAlias(receiver.getWorld().getName()));
+		else
 			return format;
-		}
-	}
-	
-	/**
-	 * Replaces the receiver faction name variable with the name of the receiver's faction.
-	 *
-	 * @param format   The current format of the message.
-	 * @param receiver The receiver of the message.
-	 * @return The message's format with the receiver faction name variable replaced.
-	 */
-	public static String replaceReceiverFactionNameVariable(String format, Player receiver) {
-		if (format.contains("%receiverFactionName%") && PerWorldChatPlusAPI.getApi().hasFactions()) {
-			MPlayer mReceiver = MPlayer.get(receiver.getUniqueId());
-			return format.replaceAll("%receiverFactionName%", mReceiver.getFaction().getName());
-		} else {
-			return format;
-		}
-	}
-	
-	/**
-	 * Replaces the receiver faction title variable with the name of the receiver's faction title.
-	 *
-	 * @param format   The current format of the message.
-	 * @param receiver The receiver of the message.
-	 * @return The message's format with the receiver faction title variable replaced.
-	 */
-	public static String replaceReceiverFactionTitleVariable(String format, Player receiver) {
-		if (format.contains("%receiverFactionTitle%") && PerWorldChatPlusAPI.getApi().hasFactions()) {
-			MPlayer mReceiver = MPlayer.get(receiver.getUniqueId());
-			return format.replaceAll("%receiverFactionTitle%", mReceiver.getTitle());
-		} else {
-			return format;
-		}
 	}
 }

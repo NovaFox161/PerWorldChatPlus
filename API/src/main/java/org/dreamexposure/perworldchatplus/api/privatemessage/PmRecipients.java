@@ -44,9 +44,8 @@ public class PmRecipients {
 		ArrayList<Player> spies = new ArrayList<>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (!currentReceivers.containsKey(p)) {
-				if (PlayerDataManager.hasSocialSpyEnabled(p)) {
+                if (PlayerDataManager.hasSocialSpyEnabled(p))
 					spies.add(p);
-				}
 			}
 		}
 		return spies;

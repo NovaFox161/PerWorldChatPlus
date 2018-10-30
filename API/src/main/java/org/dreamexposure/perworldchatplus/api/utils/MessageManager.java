@@ -20,7 +20,7 @@ public class MessageManager {
 	 * @return the prefix defined in the config.yml file.
 	 */
 	public static String getPrefix() {
-		String prefix1 = PerWorldChatPlusAPI.getApi().getConfig().get().getString("Prefix");
+		String prefix1 = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Prefix");
 		return ChatColor.translateAlternateColorCodes('&', prefix1) + " " + ChatColor.RESET;
 	}
 	
@@ -50,7 +50,7 @@ public class MessageManager {
 	 * @return the yml configuration of messages depending on the language.
 	 */
 	public static CustomConfig getMessages() {
-		String fileName = PerWorldChatPlusAPI.getApi().getConfig().get().getString("Lang");
+		String fileName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Lang");
 
 		return new CustomConfig(PerWorldChatPlusAPI.getApi().getPlugin(), PerWorldChatPlusAPI.getApi().getPlugin().getDataFolder() + "/Messages", fileName);
 	}

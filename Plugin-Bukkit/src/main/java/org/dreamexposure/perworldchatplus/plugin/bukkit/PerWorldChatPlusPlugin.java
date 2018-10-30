@@ -4,15 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dreamexposure.novalib.api.NovaLibAPI;
+import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
+import org.dreamexposure.novalib.api.bukkit.update.UpdateChecker;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
 import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
-import org.dreamexposure.perworldchatplus.api.utils.FileManager;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.commands.*;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.ChatListener;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.InventoryClickListener;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.JoinListener;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.QuitListener;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.ChatColorInventory;
+import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.FileManager;
 
 /**
  * Create by: NovaFox161
@@ -20,25 +22,41 @@ import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.ChatColor
  * For Project: PerWorldChatPlus
  */
 public class PerWorldChatPlusPlugin extends JavaPlugin {
-    public static PerWorldChatPlusPlugin plugin;
+    public static JavaPlugin plugin;
+    
+    private static PerWorldChatPlusPlugin pl;
+    
+    public CustomConfig config;
 
     @Override
     public void onDisable() {
+        getLogger().info("===== PerWorldChatPlus =====");
+        getLogger().info("Developed by DreamExposure");
+        getLogger().info("Status: Disabling");
+    
+        PerWorldChatPlusAPI.getApi().shutdownAPI();
+        getLogger().info("========================");
     }
 
     @Override
     public void onEnable() {
         plugin = this;
+        pl = this;
+    
+        getLogger().info("===== PerWorldChatPlus =====");
+        getLogger().info("Developed by DreamExposure");
+        getLogger().info("Status: Enabling");
 
         NovaLibAPI.getApi().hookBukkitPlugin(this);
         PerWorldChatPlusAPI.getApi().initAPIForBukkit(this);
-
-        //Register things
+    
+        getLogger().info("Registering event listeners...");
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         getServer().getPluginManager().registerEvents(new QuitListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
-
+    
+        getLogger().info("Registering commands...");
         getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand());
         getCommand("perworldchat").setExecutor(new PerWorldChatCommand());
         getCommand("pwcp").setExecutor(new PerWorldChatCommand());
@@ -57,23 +75,37 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         getCommand("ignore").setExecutor(new IgnoreCommand());
 
         //Do file stuff
-        FileManager.createSharesFile();
-
-        //Make sure timed global didn't stay on somehow.
-        PerWorldChatPlusAPI.getApi().getConfig().get().set("Global.TimedGlobal.On", false);
-        PerWorldChatPlusAPI.getApi().getConfig().save();
+        config = new CustomConfig(plugin, "", "config.yml");
+    
+        config.update(FileManager.getSettings());
 
         checkUpdatesOnStart();
 
         //Do some other stuff
         ChatColorInventory.createChatColorInventory();
         generateWorldDataFilesOnStart();
+    
+        getLogger().info("========================");
     }
 
     private void checkUpdatesOnStart() {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> {
-            //TODO: Use my custom update API
-        }, 20L);
+        if (config.get().getBoolean("Updates.Check")) {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this, () -> UpdateChecker.init(this, 26601).requestUpdateCheck().whenComplete((result, exception) -> {
+                if (result.requiresUpdate()) {
+                    this.getLogger().info(String.format("An update is available! PerWorldChatPlus %s may be downloaded on SpigotMC", result.getNewestVersion()));
+                    return;
+                }
+            
+                UpdateChecker.UpdateReason reason = result.getReason();
+                if (reason == UpdateChecker.UpdateReason.UP_TO_DATE) {
+                    getLogger().info(String.format("Your version of PerWorldChatPlus (%s) is up to date!", result.getNewestVersion()));
+                } else if (reason == UpdateChecker.UpdateReason.UNRELEASED_VERSION) {
+                    getLogger().info(String.format("Your version of PerWorldChatPlus (%s) is more recent than the one publicly available. Are you on a development build?", result.getNewestVersion()));
+                } else {
+                    getLogger().warning("Could not check for a new version of PerWorldChatPlus. Reason: " + reason);
+                }
+            }), 20L);
+        }
     }
 
     private void generateWorldDataFilesOnStart() {
@@ -83,16 +115,8 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
             }
         }, 20L * 2);
     }
-
-    /**
-     * A simple method for checking if the versions are compatible.
-     * This is to help reduce updates needed when a patch comes out.
-     *
-     * @param targetVersion The version you are specifically looking for.
-     * @return True if the versions are compatible, else false.
-     */
-    @SuppressWarnings("unused")
-    public static Boolean checkVersionCompatibility(String targetVersion) {
-        return targetVersion.equals(plugin.getDescription().getVersion()) || targetVersion.startsWith("6");
+    
+    public static PerWorldChatPlusPlugin get() {
+        return pl;
     }
 }

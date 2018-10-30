@@ -34,13 +34,12 @@ public class PmHandler {
 			String formatSpy = PmFormat.determineMessageFormatForSocialSpy(newMessage, sender, receiver);
 
 			for (Player p : recipients.keySet()) {
-				if (recipients.get(p).equals(PmRecipientType.REAL_SENDER)) {
+                if (recipients.get(p).equals(PmRecipientType.REAL_SENDER))
 					p.sendMessage(formatSender);
-				} else if (recipients.get(p).equals(PmRecipientType.REAL_RECIPIENT)) {
+                else if (recipients.get(p).equals(PmRecipientType.REAL_RECIPIENT))
 					p.sendMessage(formatReceiver);
-				} else if (recipients.get(p).equals(PmRecipientType.SPY)) {
+                else if (recipients.get(p).equals(PmRecipientType.SPY))
 					p.sendMessage(formatSpy);
-				}
 			}
 			return true;
 		}
@@ -71,13 +70,12 @@ public class PmHandler {
                 String formatSpy = PmFormat.determineMessageFormatForSocialSpy(newMessage, sender, receiver);
 
                 for (Player p : recipients.keySet()) {
-                    if (recipients.get(p).equals(PmRecipientType.REAL_SENDER)) {
+                    if (recipients.get(p).equals(PmRecipientType.REAL_SENDER))
                         p.sendMessage(formatSender);
-                    } else if (recipients.get(p).equals(PmRecipientType.REAL_RECIPIENT)) {
+                    else if (recipients.get(p).equals(PmRecipientType.REAL_RECIPIENT))
                         p.sendMessage(formatReceiver);
-                    } else if (recipients.get(p).equals(PmRecipientType.SPY)) {
+                    else if (recipients.get(p).equals(PmRecipientType.SPY))
                         p.sendMessage(formatSpy);
-                    }
                 }
                 return true;
             }

@@ -17,6 +17,7 @@ import java.util.List;
  * This is really only for that command and probably shouldn't be used for anything else.
  */
 class WorldSpy {
+	@SuppressWarnings("Duplicates")
 	static void worldSpy(Player player, String type) {
 		if (type.equalsIgnoreCase("on")) {
 			if (PlayerDataManager.getPlayerDataYml(player).getString("WorldSpy").equalsIgnoreCase("False")) {

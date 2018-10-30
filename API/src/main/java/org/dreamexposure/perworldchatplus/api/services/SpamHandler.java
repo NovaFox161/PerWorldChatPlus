@@ -20,18 +20,17 @@ public class SpamHandler {
     private SpamHandler() {} //Prevent initialization
 
     public static SpamHandler getHandler() {
-        if (instance == null) {
+        if (instance == null)
             instance = new SpamHandler();
-        }
         return instance;
     }
 
     public void addMessage(Player player, String message) {
-        if (PerWorldChatPlusAPI.getApi().getConfig().get().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Spam.Time.Limit.Enabled").equalsIgnoreCase("True")) {
             messageTime.remove(player.getUniqueId());
             messageTime.put(player.getUniqueId(), System.currentTimeMillis());
         }
-        if (PerWorldChatPlusAPI.getApi().getConfig().get().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
             messageContents.remove(player.getUniqueId());
             messageContents.put(player.getUniqueId(), message);
         }
@@ -50,7 +49,7 @@ public class SpamHandler {
     public boolean withinTimeLimit(Player player) {
         if (messageTime.containsKey(player.getUniqueId())) {
             long now = System.currentTimeMillis();
-            long limit = PerWorldChatPlusAPI.getApi().getConfig().get().getLong("Chat.Spam.Time.Limit.MS");
+            long limit = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getLong("Chat.Spam.Time.Limit.MS");
 
             return now - messageTime.get(player.getUniqueId()) <= limit;
         }
