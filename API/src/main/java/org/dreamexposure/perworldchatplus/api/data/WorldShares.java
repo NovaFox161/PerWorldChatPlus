@@ -38,14 +38,11 @@ public class WorldShares {
     }
     
     public boolean isShared(String worldFrom, String worldTo) {
-        if (worldFrom.equals(worldTo)) {
-            return true;
-        }
+        if (worldFrom.equals(worldTo)) return true;
         String sharesListName = WorldShares.get().getWorldShareListName(worldFrom);
         List<String> sharesList = WorldShares.get().getWorldShareList(worldFrom);
-        if (sharesList != null && sharesListName != null) {
+        if (sharesList != null && sharesListName != null)
             return sharesListName.equalsIgnoreCase(worldTo) || sharesList.contains(worldTo);
-        }
         return false;
     }
     
@@ -66,9 +63,8 @@ public class WorldShares {
      * @return The shares list for the world (List of world names that share chat together).
      */
     public List<String> getWorldShareList(String worldName) {
-        if (getWorldShareListName(worldName) != null) {
+        if (getWorldShareListName(worldName) != null)
             return shares.get().getStringList(getWorldShareListName(worldName));
-        }
         return null;
     }
     

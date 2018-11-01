@@ -123,9 +123,8 @@ public class ChatMessage {
 				}
 			}
 		}
-		if (hasAdvertised) {
+        if (hasAdvertised)
 			PlayerHandler.doStuffOnAdvertise(sender);
-		}
 		return newMessage;
 	}
 
@@ -138,7 +137,8 @@ public class ChatMessage {
      * @param sender The sender of the message
      * @return The edited message.
      */
-	public static String filterSpam(String _message, Player sender) {
+    @SuppressWarnings("IntegerDivisionInFloatingPointContext")
+    public static String filterSpam(String _message, Player sender) {
 		String newMessage = _message;
 		boolean hasSpammed = false;
 		
@@ -149,18 +149,15 @@ public class ChatMessage {
 			        if (SpamHandler.getHandler().withinTimeLimit(sender)) {
 			            //Within time limit
                         hasSpammed = true;
-						if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Spam.Time.Limit.Warn").equalsIgnoreCase("True")) {
-                            //Warn
-                            sender.sendMessage(MessageManager.getMessage("Chat.Spam.Time.Warn"));
-                        }
+                        if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Spam.Time.Limit.Warn").equalsIgnoreCase("True"))
+                            sender.sendMessage(MessageManager.getMessage("Chat.Spam.Time.Warn")); //Warn
                     }
                 }
 
                 //Check if the same message is being sent.
 				if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Spam.Same.Limit.Enabled").equalsIgnoreCase("True")) {
-			        if (SpamHandler.getHandler().isSame(sender, _message)) {
+                    if (SpamHandler.getHandler().isSame(sender, _message))
 			            hasSpammed = true;
-                    }
                 }
 
 				//Check if more caps than allowed
@@ -168,9 +165,8 @@ public class ChatMessage {
 					double percentLimit = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getDouble("Chat.Spam.Caps.Limit.Percent");
 					int caps = 0;
 					for (int i = 1; i < _message.length(); i++) {
-						if (Character.isUpperCase(_message.charAt(i))) {
+                        if (Character.isUpperCase(_message.charAt(i)))
 							caps++;
-						}
 					}
 					//Check percent
 					double percentCaps = (caps / _message.length()) * 100;
@@ -183,9 +179,8 @@ public class ChatMessage {
 				}
 			}
 		}
-		if (hasSpammed) {
+        if (hasSpammed)
 			PlayerHandler.doStuffOnSpam(sender);
-		}
 		return newMessage;
 	}
 	
@@ -214,19 +209,16 @@ public class ChatMessage {
 	public static String makeMessageColorful(String message, Player sender) {
 		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.RequirePermission").equalsIgnoreCase("True")) {
 			if (!sender.hasPermission("pwcp.chat.color")) {
-				if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True"))
 					return ChatColor.stripColor(message);
-				} else {
+                else
 					return message;
-				}
-			}
-		}
-		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Auto").equalsIgnoreCase("True")) {
+            }
+        }
+        if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Auto").equalsIgnoreCase("True"))
 			message = PlayerDataManager.getChatColor(sender) + message;
-		}
-		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Translate").equalsIgnoreCase("True")) {
+        if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Translate").equalsIgnoreCase("True"))
 			message = ChatColor.translateAlternateColorCodes('&', message);
-		}
 		return message;
 	}
 	
@@ -257,18 +249,16 @@ public class ChatMessage {
 		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.OnName").equalsIgnoreCase("True")) {
 			if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.RequirePermission").equalsIgnoreCase("True")) {
 				if (player.hasPermission("pwcp.alert.mention")) {
-					if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
+                    if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True"))
                         return message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName());
-					} else {
+                    else
                         return message.contains(player.getName()) || message.contains(player.getDisplayName());
-					}
 				}
 			} else {
-				if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True")) {
+                if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.RequireAtSymbol").equalsIgnoreCase("True"))
                     return message.contains("@" + player.getName()) || message.contains("@" + player.getDisplayName());
-				} else {
+                else
                     return message.contains(player.getName()) || message.contains(player.getDisplayName());
-				}
 			}
 		}
 		return false;

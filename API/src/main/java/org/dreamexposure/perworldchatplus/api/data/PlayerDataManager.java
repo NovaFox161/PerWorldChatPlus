@@ -57,18 +57,14 @@ public class PlayerDataManager {
 	 */
 	public static void updatePlayerDataFile(Player player) {
 		YamlConfiguration data = getPlayerDataYml(player);
-		if (!data.getString("Name").equals(player.getName())) {
+		if (!data.getString("Name").equals(player.getName()))
 			data.set("Name", player.getName());
-		}
-		if (!data.getString("ChatMute").equalsIgnoreCase("False")) {
+		if (!data.getString("ChatMute").equalsIgnoreCase("False"))
 			data.set("ChatMute", false);
-		}
-		if (!data.contains("SocialSpy")) {
+		if (!data.contains("SocialSpy"))
 			data.set("SocialSpy", false);
-		}
-		if (data.contains("Messaging")) {
+		if (data.contains("Messaging"))
 			data.set("Messaging", null);
-		}
 		savePlayerData(data, getPlayerDataFile(player));
 	}
 	
@@ -210,11 +206,10 @@ public class PlayerDataManager {
 		YamlConfiguration data = getPlayerDataYml(player);
 		if (data.contains("Messaging")) {
 			UUID mUUID = getMessagingWith(player);
-			if (Bukkit.getPlayer(mUUID) != null) {
+			if (Bukkit.getPlayer(mUUID) != null)
 				return true;
-			} else {
+			else
 				removeMessagingPlayer(player);
-			}
 		}
 		return false;
 	}

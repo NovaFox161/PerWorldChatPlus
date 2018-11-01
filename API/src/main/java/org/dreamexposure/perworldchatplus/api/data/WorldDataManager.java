@@ -98,9 +98,7 @@ public class WorldDataManager {
 		if (hasWorldData(worldName)) {
 			String alias = getWorldDataYml(worldName).getString("Alias");
 			return ChatColor.translateAlternateColorCodes('&', alias) + ChatColor.RESET;
-		} else {
-			return worldName;
-		}
+		} else return worldName;
 	}
 	
 	//Setters

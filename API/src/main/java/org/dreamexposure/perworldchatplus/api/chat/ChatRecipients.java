@@ -1,8 +1,8 @@
 package org.dreamexposure.perworldchatplus.api.chat;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.dreamexposure.novalib.api.bukkit.compatibility.NSound;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
 import org.dreamexposure.perworldchatplus.api.data.PlayerDataManager;
 import org.dreamexposure.perworldchatplus.api.data.WorldShares;
@@ -68,12 +68,12 @@ public class ChatRecipients {
 	 * @return A set of players that will receive the message based on its contents.
 	 */
 	public static Set<Player> getAllMentionReceivers(Set<Player> recipients, String message, Player sender) {
+		String soundName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.Sound");
+		NSound sound = NSound.find(soundName, NSound.LEVEL_UP);
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (ChatMessage.wasMentioned(p, message)) {
                 recipients.add(p);
-				String soundName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.Sound");
-				Sound sound = Sound.valueOf(soundName);
-				p.playSound(p.getLocation(), sound, 1f, 0f);
+				sound.playSound(p);
 				if (shouldSendMentionNotice())
 					PlayerHandler.sendMentionNotice(p, sender);
 			}
@@ -89,12 +89,15 @@ public class ChatRecipients {
 	 * @return A set of players that will receive the message based on its contents.
 	 */
 	public static Set<Player> getAllAlertReceivers(Set<Player> recipients, String message) {
+		String soundName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Alert.Mention.Sound");
+		NSound sound = NSound.find(soundName, NSound.LEVEL_UP);
+		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (PlayerDataManager.getPlayerDataYml(p).contains("Alerts")) {
 				for (String word : PlayerDataManager.getPlayerDataYml(p).getStringList("Alerts")) {
 					if (message.contains(word)) {
                         recipients.add(p);
-						p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1f, 0f);
+						sound.playSound(p);
 					}
 				}
 			}
