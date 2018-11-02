@@ -1,11 +1,11 @@
 package org.dreamexposure.perworldchatplus.api.data;
 
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.LinkedHashMap;
 
 /**
  * Created by Nova Fox on 6/5/2016.
@@ -25,20 +25,14 @@ public class WorldDataManager {
 	 * @param worldName The world to create a data file for.
 	 */
 	public static void createWorldDataFile(String worldName) {
-		File file = new File(PerWorldChatPlusAPI.getApi().getPlugin().getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
-		if (!file.exists()) {
-			PerWorldChatPlusAPI.getApi().getPlugin().getLogger().info("Generating world data for world: " + worldName);
-			
-			YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
-			data.addDefault("DO NOT DELETE", "PerWorldChatPlus is developed and managed by Shades161");
-			data.addDefault("Alias", worldName);
-			
-			data.options().copyDefaults(true);
-			saveWorldDataFile(data, file);
-			
-			data.options().copyDefaults(true);
-			saveWorldDataFile(data, file);
-		}
+		CustomConfig config = getWorldData(worldName);
+		
+		LinkedHashMap<String, Object> s = new LinkedHashMap<>();
+		
+		s.put("DO NOT DELETE", "PerWorldChatPlus is developed and managed by DreamExposure");
+		s.put("Alias", worldName);
+		
+		config.update(s);
 	}
 	
 	/**
@@ -53,37 +47,13 @@ public class WorldDataManager {
 	}
 	
 	/**
-	 * Gets the world data file for the specified world.
-	 *
-	 * @param worldName The world whose data file  you wish to get.
-	 * @return The world data file for the world.
-	 */
-	public static File getWorldDataFile(String worldName) {
-		return new File(PerWorldChatPlusAPI.getApi().getPlugin().getDataFolder() + "/Data/WorldData/" + worldName + ".yml");
-	}
-	
-	/**
 	 * Gets the world data yml for the specified world.
 	 *
 	 * @param worldName The world whose data yml you wish to get.
 	 * @return The world data yml for the world.
 	 */
-	public static YamlConfiguration getWorldDataYml(String worldName) {
-		return YamlConfiguration.loadConfiguration(getWorldDataFile(worldName));
-	}
-	
-	/**
-	 * Saves the specified data files.
-	 *
-	 * @param dataYml  The world data yml to save.
-	 * @param dataFile The world data file to save.
-	 */
-	public static void saveWorldDataFile(YamlConfiguration dataYml, File dataFile) {
-		try {
-			dataYml.save(dataFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static CustomConfig getWorldData(String worldName) {
+		return new CustomConfig(PerWorldChatPlusAPI.getApi().getPlugin(), "/Data/WorldData", worldName + ".yml");
 	}
 	
 	//Getters
@@ -96,7 +66,7 @@ public class WorldDataManager {
 	 */
 	public static String getAlias(String worldName) {
 		if (hasWorldData(worldName)) {
-			String alias = getWorldDataYml(worldName).getString("Alias");
+			String alias = getWorldData(worldName).get().getString("Alias");
 			return ChatColor.translateAlternateColorCodes('&', alias) + ChatColor.RESET;
 		} else return worldName;
 	}
@@ -110,16 +80,11 @@ public class WorldDataManager {
 	 * @param newAlias  The new alias (supports untranslated color codes).
 	 */
 	public static void setAlias(String worldName, String newAlias) {
-		if (hasWorldData(worldName)) {
-			YamlConfiguration data = getWorldDataYml(worldName);
-			data.set("Alias", newAlias);
-			saveWorldDataFile(data, getWorldDataFile(worldName));
-		} else {
+		if (!hasWorldData(worldName))
 			createWorldDataFile(worldName);
-			
-			YamlConfiguration data = getWorldDataYml(worldName);
-			data.set("Alias", newAlias);
-			saveWorldDataFile(data, getWorldDataFile(worldName));
-		}
+		
+		CustomConfig config = getWorldData(worldName);
+		config.get().set("Alias", newAlias);
+		config.save();
 	}
 }

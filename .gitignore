@@ -1,12 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-### Java template
-*.class
-
 # IntelliJ
 /out/
 
 src/test/
-target/
 /.idea/
 **/*.iml
 **/target/

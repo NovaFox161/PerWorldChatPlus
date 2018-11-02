@@ -40,7 +40,7 @@
             <id>bukkit-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
-        <!--Private Repo for factions/massive-->
+        <!--Private DE Repo-->
         <repository>
             <id>nova-private</id>
             <url>http://repo.novafox161.com/repository/nova-private/</url>
@@ -89,24 +89,6 @@
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.9.2</version>
-            <scope>provided</scope>
-            <type>jar</type>
-            <optional>true</optional>
-        </dependency>
-        <!--Factions API-->
-        <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>factions</artifactId>
-            <version>2.14.0</version>
-            <scope>provided</scope>
-            <type>jar</type>
-            <optional>true</optional>
-        </dependency>
-        <!--MassiveCore-->
-        <dependency>
-            <groupId>com.massivecraft</groupId>
-            <artifactId>massivecore</artifactId>
-            <version>2.14.0</version>
             <scope>provided</scope>
             <type>jar</type>
             <optional>true</optional>
