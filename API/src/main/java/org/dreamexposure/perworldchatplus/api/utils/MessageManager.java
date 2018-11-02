@@ -50,9 +50,9 @@ public class MessageManager {
 	 * @return the yml configuration of messages depending on the language.
 	 */
 	public static CustomConfig getMessages() {
-		String fileName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Lang");
-
-		return new CustomConfig(PerWorldChatPlusAPI.getApi().getPlugin(), PerWorldChatPlusAPI.getApi().getPlugin().getDataFolder() + "/Messages", fileName);
+        String fileName = PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Lang") + ".yml";
+        
+        return new CustomConfig(PerWorldChatPlusAPI.getApi().getPlugin(), "/Messages/", fileName);
 	}
 	
 	/**

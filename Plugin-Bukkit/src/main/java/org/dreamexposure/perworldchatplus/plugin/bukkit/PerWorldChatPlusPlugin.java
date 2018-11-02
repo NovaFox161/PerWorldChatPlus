@@ -46,7 +46,13 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         getLogger().info("===== PerWorldChatPlus =====");
         getLogger().info("Developed by DreamExposure");
         getLogger().info("Status: Enabling");
-
+    
+        //Do file stuff
+        config = new CustomConfig(plugin, "", "config.yml");
+    
+        config.update(FileManager.getSettings());
+    
+        //Start API
         NovaLibAPI.getApi().hookBukkitPlugin(this);
         PerWorldChatPlusAPI.getApi().initAPIForBukkit(this);
     
@@ -73,11 +79,6 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         getCommand("r").setExecutor(new PrivateReplyCommand());
         getCommand("socialspy").setExecutor(new SocialSpyCommand());
         getCommand("ignore").setExecutor(new IgnoreCommand());
-
-        //Do file stuff
-        config = new CustomConfig(plugin, "", "config.yml");
-    
-        config.update(FileManager.getSettings());
 
         checkUpdatesOnStart();
 

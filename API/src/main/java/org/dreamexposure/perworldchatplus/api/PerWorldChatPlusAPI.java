@@ -40,7 +40,7 @@ public class PerWorldChatPlusAPI {
     public void initAPIForBukkit(JavaPlugin _plugin) {
         plugin = _plugin;
     
-        apiConfig = new CustomConfig(plugin, "api", "config.yml");
+        apiConfig = new CustomConfig(plugin, "/api/", "config.yml");
         apiConfig.update(getAPISettings());
         pluginConfig = new CustomConfig(plugin, "", "config.yml");
     
