@@ -164,10 +164,8 @@ public class ChatRecipients {
 	public static List<Player> getMutedReceivers() {
 		List<Player> muted = new ArrayList<>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (PlayerDataManager.hasChatMuted(p)) {
-				if (!muted.contains(p))
-					muted.add(p);
-			}
+			if (PlayerDataManager.hasChatMuted(p) && !muted.contains(p))
+				muted.add(p);
 		}
 		return muted;
 	}
@@ -181,10 +179,8 @@ public class ChatRecipients {
 	public static List<Player> getIgnoredReceivers(Player sender) {
 		List<Player> ignored = new ArrayList<>();
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			if (PlayerDataManager.isIgnoringPlayer(p, sender)) {
-				if (!ignored.contains(p))
-					ignored.add(p);
-			}
+			if (PlayerDataManager.isIgnoringPlayer(p, sender) && !ignored.contains(p))
+				ignored.add(p);
 		}
 		return ignored;
 	}

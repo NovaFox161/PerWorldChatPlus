@@ -211,8 +211,7 @@ public class ChatMessage {
 			if (!sender.hasPermission("pwcp.chat.color")) {
                 if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.StripWithoutPermission").equalsIgnoreCase("True"))
 					return ChatColor.stripColor(message);
-                else
-					return message;
+				return message;
             }
         }
         if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Chat.Color.Auto").equalsIgnoreCase("True"))

@@ -67,8 +67,7 @@ public class ChatFormat {
 	public static String replaceVariable(String format, String _var, String replaceWith) {
 		if (format.contains(_var))
 			return format.replaceAll(_var, replaceWith);
-		else
-			return format;
+        return format;
 	}
 	
 	/**
@@ -82,17 +81,15 @@ public class ChatFormat {
 	public static String replaceMessageVariable(String format, String message, Boolean ignoreBukkit) {
 		if (format.contains("%message%")) {
 			if (format.contains("%s")) {
-				if (!ignoreBukkit) {
+                if (!ignoreBukkit)
 					return format.replaceAll("%message%", "%s");
-				} else {
+                else
 					return format.replaceAll("%message%", message);
-				}
 			} else {
 				return format.replaceAll("%message%", message);
 			}
-		} else {
+        }
 			return format;
-		}
 	}
 	
 	/**
@@ -105,7 +102,6 @@ public class ChatFormat {
 	public static String replaceWorldVariable(String format, Player sender) {
 		if (format.contains("%world%"))
 			return format.replaceAll("%world%", WorldDataManager.getAlias(sender.getWorld().getName()));
-		else
-			return format;
+        return format;
 	}
 }

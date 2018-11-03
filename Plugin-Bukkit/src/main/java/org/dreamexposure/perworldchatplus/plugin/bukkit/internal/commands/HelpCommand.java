@@ -29,11 +29,9 @@ class HelpCommand {
 			sender.sendMessage(ChatColor.GOLD + "Use: '/pwc help 2' for more commands");
 		} else if (page.equalsIgnoreCase("2")) {
 			sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 2/3" + ChatColor.GOLD + "-~-");
-			sender.sendMessage(ChatColor.GREEN + "/pwc timedglobal (time)" + ChatColor.LIGHT_PURPLE + " - Turns on/off Timed Global Chat.");
 			sender.sendMessage(ChatColor.GREEN + "/pwc set alias <world> <alias>" + ChatColor.LIGHT_PURPLE + " - Sets the alias for the world.");
 			sender.sendMessage(ChatColor.GREEN + "/pwc set color <COLOR> (player)" + ChatColor.LIGHT_PURPLE + " - Sets your default chat color.");
 			sender.sendMessage(ChatColor.GREEN + "/chatcolor" + ChatColor.LIGHT_PURPLE + " - Opens a GUI for selecting your default ChatColor.");
-			sender.sendMessage(ChatColor.GREEN + "/cc" + ChatColor.LIGHT_PURPLE + " - Opens a GUI for selecting your default ChatColor.");
 			sender.sendMessage(ChatColor.GOLD + "Use: '/pwc help 3' for more commands");
 		} else if (page.equalsIgnoreCase("3")) {
 			sender.sendMessage(ChatColor.GOLD + "-~-" + ChatColor.BLUE + " PerWorldChatPlus Help page 3/3" + ChatColor.GOLD + "-~-");

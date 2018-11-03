@@ -30,7 +30,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 				} else if (args.length == 1) {
 					String type = args[0];
 					if (type.equalsIgnoreCase("spy")) {
-						if (!(player.hasPermission("pwcp.spy"))) {
+						if (!player.hasPermission("pwcp.spy")) {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
 							if (PlayerDataManager.hasGlobalChatSpyEnabled(player)) {
@@ -44,7 +44,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 							}
 						}
 					} else if (type.equalsIgnoreCase("bypass")) {
-						if (!(player.hasPermission("pwcp.bypass"))) {
+						if (!player.hasPermission("pwcp.bypass")) {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
 							if (PlayerDataManager.hasGlobalBypassEnabled(player)) {
@@ -58,7 +58,7 @@ public class PerWorldChatCommand implements CommandExecutor {
 							}
 						}
 					} else if (type.equalsIgnoreCase("alert")) {
-						if (!(player.hasPermission("pwcp.alert"))) {
+						if (!player.hasPermission("pwcp.alert")) {
 							player.sendMessage(pr + MessageManager.getNoPermMessage());
 						} else {
                             String msg = MessageManager.getMessages().get().getString("Notification.Args.TooFew");
