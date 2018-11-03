@@ -32,6 +32,7 @@ public class FileManager {
         
         s.put("Global.Prefix", "&4[Global]");
         s.put("Global.Override", "!wc");
+        s.put("Global.Always Global", false);
         
         s.put("Alert.Mention.OnName", true);
         s.put("Alert.Mention.RequirePermission", false);
@@ -76,15 +77,15 @@ public class FileManager {
         s.put("Chat.Spam.Same.Limit.Enabled", false);
         
         s.put("Format.Enabled", true); //Only applies if PWCP is natively handling chat.
-        s.put("Format.PerWorld", true);
-        s.put("Format.Format.Default", "[%world%] %player% :&r %message%");
-        s.put("Format.Format.Global", "&4[Global] [%world%] %player% :&r %message%");
+        s.put("Format.PerWorld", false);
+        s.put("Format.Format.Default", "[%world%] %player_name% :&r %message%");
+        s.put("Format.Format.Global", "&4[Global] [%world%] %player_name% :&r %message%");
         s.put("Format.Format.ExampleWorld", "This is a a format for 'ExampleWorld'");
         
         s.put("PM.Enabled", true);
-        s.put("PM.Format.Spy", "&4[SPY] [%sender_display_name%] &6-> &4[%receiver_display_name%]:&r %message%");
-        s.put("PM.Format.Default.From", "&4[You] &6-> [&4%receiver_display_name%]:&r %message%");
-        s.put("PM.Format.Default.To", "&4[%sender_display_name%] &6-> [&4You]:&r %message%");
+        s.put("PM.Format.Spy", "&4[SPY] [%otherplayer_displayname_{sender}%&r&4] &6-> &6[%otherplayer_displayname_{receiver}%&r&6]&6:&r %message%");
+        s.put("PM.Format.Default.From", "&4[You&r&4] &6-> [&4%otherplayer_displayname_{receiver}%&r&6]:&r %message%");
+        s.put("PM.Format.Default.To", "&4[%otherplayer_displayname_{sender}%&r&4] &6-> [&4You&r&6]:&r %message%");
         s.put("PM.Format.ExampleWorld.From", "This is a a format for 'ExampleWorld' for the sender");
         s.put("PM.Format.ExampleWorld.To", "This is a a format for 'ExampleWorld' for the receiver");
         

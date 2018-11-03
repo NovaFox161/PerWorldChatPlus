@@ -25,16 +25,18 @@ public class ChatListener implements Listener {
 			
 			String format;
 			if (PerWorldChatPlusPlugin.get().config.get().getBoolean("Format.Enabled"))
-				format = ChatFormat.determineMessageFormat(event.getFormat(), event.getMessage(), sender);
+				format = PerWorldChatPlusPlugin.get().config.get().getString("Format.Format.Default");
 			else
 				format = event.getFormat();
+			
+			format = ChatFormat.determineMessageFormat(format, message, sender);
 			
 			for (Player p : receivers) {
 				event.getRecipients().add(p);
 			}
 			
 			//Send message
-			event.setFormat(format);
+			event.setFormat(format.replace("%", "^")); //Prevent errors if PAPI doesn't replace everything...
 			event.setMessage(message);
 
 			//Add to spam handler

@@ -45,12 +45,12 @@ To use this API within your own Bukkit plugin, please follow the directions belo
 ```
 ```xml
     <dependency>
-        <groupId>com.cloudcraftgaming</groupId>
+        <groupId>org.dreamexposure</groupId>
         <artifactId>PerWorldChatPlus-API</artifactId>
         <version>6.0.0-SNAPSHOT</version>
     </dependency>
 ```
-2. Use the javadoc provided here: https://docs.novamaday.com/plugins/perworldchatplus/
+2. Use the javadoc provided here: https://docs.dreamexposure.org/plugins/perworldchatplus/
 
 3. And now you can start using PWCP in your plugin. Just check the Javadoc or wiki for extra help!
 

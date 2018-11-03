@@ -38,6 +38,7 @@ public class PerWorldChatPlusAPI {
      * Initializes all parts of the API. This is automatically handled on server boot and SHOULD NOT be called by any plugins.
      */
     public void initAPIForBukkit(JavaPlugin _plugin) {
+        instance = this;
         plugin = _plugin;
     
         apiConfig = new CustomConfig(plugin, "/api/", "config.yml");

@@ -1,7 +1,6 @@
 package org.dreamexposure.perworldchatplus.api.privatemessage;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
@@ -25,19 +24,15 @@ public class PmFormat {
 	public static String determineMessageFormatForSender(String message, Player sender, Player receiver) {
 		String format = getFormatTemplateForSender(sender);
 		
+		format = format.replace("{receiver}", receiver.getName()).replace("{sender}", sender.getName());
+		
 		//Replace general vars
 		format = replaceMessageVariable(format, message);
 		
 		//Replace sender related vars
-		format = replaceSenderVariable(format, sender);
-		format = replaceSenderDisplayNameVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
 		
 		//Replace receiver related vars
-		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverDisplayNameVariable(format, receiver);
-		format = replaceReceiverPrefixVariable(format, receiver);
-		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
 		
@@ -58,19 +53,15 @@ public class PmFormat {
 	public static String determineMessageFormatForReceiver(String message, Player sender, Player receiver) {
 		String format = getFormatTemplateForReceiver(receiver);
 		
+		format = format.replace("{receiver}", receiver.getName()).replace("{sender}", sender.getName());
+		
 		//Replace general vars
 		format = replaceMessageVariable(format, message);
 		
 		//Replace sender related vars
-		format = replaceSenderVariable(format, sender);
-		format = replaceSenderDisplayNameVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
 		
 		//Replace receiver related vars
-		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverDisplayNameVariable(format, receiver);
-		format = replaceReceiverPrefixVariable(format, receiver);
-		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
 		
@@ -91,21 +82,15 @@ public class PmFormat {
 	public static String determineMessageFormatForSocialSpy(String message, Player sender, Player receiver) {
 		String format = getFormatTemplateForSocialSpy();
 		
+		format = format.replace("{receiver}", receiver.getName()).replace("{sender}", sender.getName());
+		
 		//Replace general vars
 		format = replaceMessageVariable(format, message);
 		
 		//Replace sender related vars
-		format = replaceSenderVariable(format, sender);
-		format = replaceSenderDisplayNameVariable(format, sender);
-		format = replaceSenderPrefixVariable(format, sender);
-		format = replaceSenderSuffixVariable(format, sender);
 		format = replaceSenderWorldVariable(format, sender);
 		
 		//Replace receiver related vars
-		format = replaceReceiverVariable(format, receiver);
-		format = replaceReceiverDisplayNameVariable(format, receiver);
-		format = replaceReceiverPrefixVariable(format, receiver);
-		format = replaceReceiverSuffixVariable(format, receiver);
 		format = replaceReceiverWorldVariable(format, receiver);
 		
 		if (PerWorldChatPlusAPI.getApi().papiCheck())
@@ -187,63 +172,6 @@ public class PmFormat {
 	//Variable replacers - Sender specific
 	
 	/**
-	 * Replaces the sender variable with the sender's display name.
-	 *
-	 * @param format The current format of the message.
-	 * @return The message's format with the sender variable replaced.
-	 */
-	public static String replaceSenderVariable(String format, Player sender) {
-		if (format.contains("%sender%"))
-			return format.replaceAll("%sender%", sender.getName());
-		else
-			return format;
-	}
-	
-	/**
-	 * Replaces the sender name variable with the sender's username Use PmFormat##replaceSenderVariable(String, Player) to replace with display name.
-	 *
-	 * @param format The current format of the message.
-	 * @param sender The sender of the message.
-	 * @return The message's format with the sender name variable replaced.
-	 */
-	public static String replaceSenderDisplayNameVariable(String format, Player sender) {
-		if (format.contains("%sender_display_name%"))
-			return format.replaceAll("%sender_name%", sender.getDisplayName());
-		else
-			return format;
-	}
-	
-	/**
-	 * Replaces the sender prefix variable with the sender's world specific prefix.
-	 *
-	 * @param format The current format of the message.
-	 * @param sender The sender of the message.
-	 * @return The message's format with the sender prefix variable replaced.
-	 */
-	public static String replaceSenderPrefixVariable(String format, Player sender) {
-		if (format.contains("%sender_prefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
-			String prefix = PerWorldChatPlusAPI.getApi().getChat().getPlayerPrefix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
-			return format.replaceAll("%sender_prefix%", prefix);
-		} else
-			return format;
-	}
-	
-	/**
-	 * Replaces the sender suffix variable with the sender's world specific suffix.
-	 *
-	 * @param format The current format of the message.
-	 * @param sender The sender of the message.
-	 * @return The message's format with the sender suffix variable replaced.
-	 */
-	public static String replaceSenderSuffixVariable(String format, Player sender) {
-		if (format.contains("%sender_suffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
-			String suffix = PerWorldChatPlusAPI.getApi().getChat().getPlayerSuffix(sender.getWorld().getName(), Bukkit.getOfflinePlayer(sender.getUniqueId()));
-			return format.replaceAll("%sender_suffix%", suffix);
-		} else
-			return format;
-	}
-	
-	/**
 	 * Replaces the sender world variable with the sender's world name or world alias.
 	 *
 	 * @param format The current format of the message.
@@ -258,64 +186,6 @@ public class PmFormat {
 	}
 	
 	//Variable replacers - Receiver specific
-	
-	/**
-	 * Replaces the receiver variable with the receiver's display name.
-	 *
-	 * @param receiver The receiver of the message.
-	 * @param format   The current format of the message.
-	 * @return The message's format with the receiver variable replaced.
-	 */
-	public static String replaceReceiverVariable(String format, Player receiver) {
-		if (format.contains("%receiver%"))
-			return format.replaceAll("%receiver%", receiver.getName());
-		else
-			return format;
-	}
-	
-	/**
-	 * Replaces the receiver name variable with the receiver's username Use PmFormat#replaceReceiverVariable(String, Player) (String, Player)} (String, Player)} to replace with display name.
-	 *
-	 * @param format   The current format of the message.
-	 * @param receiver The sender of the message.
-	 * @return The message's format with the sender name variable replaced.
-	 */
-	public static String replaceReceiverDisplayNameVariable(String format, Player receiver) {
-		if (format.contains("%receiver_display_name%"))
-			return format.replaceAll("%receivername%", receiver.getDisplayName());
-		else
-			return format;
-	}
-	
-	/**
-	 * Replaces the receiver prefix variable with the receiver's world specific prefix.
-	 *
-	 * @param format   The current format of the message.
-	 * @param receiver The receiver of the message.
-	 * @return The message's format with the receiver prefix variable replaced.
-	 */
-	public static String replaceReceiverPrefixVariable(String format, Player receiver) {
-		if (format.contains("%receiver_prefix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
-			String prefix = PerWorldChatPlusAPI.getApi().getChat().getPlayerPrefix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
-			return format.replaceAll("%receiver_prefix%", prefix);
-		} else
-			return format;
-	}
-	
-	/**
-	 * Replaces the receiver suffix variable with the receiver's world specific suffix.
-	 *
-	 * @param format   The current format of the message.
-	 * @param receiver The receiver of the message.
-	 * @return The message's format with the receiver suffix variable replaced.
-	 */
-	public static String replaceReceiverSuffixVariable(String format, Player receiver) {
-		if (format.contains("%receiver_suffix%") && PerWorldChatPlusAPI.getApi().getChat() != null) {
-			String suffix = PerWorldChatPlusAPI.getApi().getChat().getPlayerSuffix(receiver.getWorld().getName(), Bukkit.getOfflinePlayer(receiver.getUniqueId()));
-			return format.replaceAll("%receiver_suffix%", suffix);
-		} else
-			return format;
-	}
 	
 	/**
 	 * Replaces the receiver world variable with the receiver's world name or world alias.

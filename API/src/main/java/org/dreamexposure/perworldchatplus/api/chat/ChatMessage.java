@@ -233,7 +233,6 @@ public class ChatMessage {
 	 */
 	public static boolean shouldBeGlobal(String message, Player sender) {
 		return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Global.Always Global").equalsIgnoreCase("True")
-				|| PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Global.TimedGlobal.On").equalsIgnoreCase("True")
 				|| PlayerDataManager.hasGlobalBypassEnabled(sender)
 				|| (message.contains(PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Global.Override")) && sender.hasPermission("pwcp.bypass"));
 	}

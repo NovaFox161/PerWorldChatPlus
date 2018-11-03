@@ -13,7 +13,7 @@ import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
  * <p>
  * This class is to be used to set the chat message's format and to do other format related tasks.
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "Duplicates"})
 public class ChatFormat {
 	
 	/**
@@ -25,11 +25,11 @@ public class ChatFormat {
 	 * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
 	 */
 	public static String determineMessageFormat(String format, String message, Player sender) {
-		format = replaceMessageVariable(format, message, false);
-		format = replaceWorldVariable(format, sender);
-		
 		if (PerWorldChatPlusAPI.getApi().papiCheck())
 			format = PlaceholderAPI.setPlaceholders(sender, format);
+		
+		format = replaceMessageVariable(format, message, false);
+		format = replaceWorldVariable(format, sender);
 		
 		return ChatColor.translateAlternateColorCodes('&', format);
 	}
@@ -42,18 +42,16 @@ public class ChatFormat {
 	 * @param message        The message that was sent.
 	 * @param sender         The sender of the message.
 	 * @param global         Whether or not to use the global formatting.
-	 * @param ignoreBukkit   Whether or not to support Bukkit's '%s' vars.
 	 * @return The chat message's format. Can be used directly in chatEvent#setFormat(format)
 	 */
-	public static String determineMessageFormat(String format, String message, Player sender, Boolean global, Boolean ignoreBukkit) {
+	public static String determineMessageFormat(String format, String message, Player sender, boolean global, boolean ignoreBukkit) {
 			format = replaceMessageVariable(format, message, ignoreBukkit);
 			format = replaceWorldVariable(format, sender);
 		
 		if (PerWorldChatPlusAPI.getApi().papiCheck())
 			format = PlaceholderAPI.setPlaceholders(sender, format);
-				
-			
-			return ChatColor.translateAlternateColorCodes('&', format);
+		
+		return ChatColor.translateAlternateColorCodes('&', format);
 	}
 	
 	//Format variable replacers
@@ -67,11 +65,10 @@ public class ChatFormat {
 	 * @return The message's format with the specified variable replaced with the specified text.
 	 */
 	public static String replaceVariable(String format, String _var, String replaceWith) {
-		if (format.contains(_var)) {
+		if (format.contains(_var))
 			return format.replaceAll(_var, replaceWith);
-		} else {
+		else
 			return format;
-		}
 	}
 	
 	/**
@@ -84,7 +81,7 @@ public class ChatFormat {
 	 */
 	public static String replaceMessageVariable(String format, String message, Boolean ignoreBukkit) {
 		if (format.contains("%message%")) {
-			if (format.contains("%player%") || format.contains("%s")) {
+			if (format.contains("%s")) {
 				if (!ignoreBukkit) {
 					return format.replaceAll("%message%", "%s");
 				} else {
@@ -106,10 +103,9 @@ public class ChatFormat {
 	 * @return The message's format with the world variable replaced.
 	 */
 	public static String replaceWorldVariable(String format, Player sender) {
-		if (format.contains("%world%")) {
+		if (format.contains("%world%"))
 			return format.replaceAll("%world%", WorldDataManager.getAlias(sender.getWorld().getName()));
-		} else {
+		else
 			return format;
-		}
 	}
 }
