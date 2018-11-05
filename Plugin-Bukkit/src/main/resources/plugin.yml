@@ -88,9 +88,6 @@ permissions:
   pwcp.global:
     description: Allows use of the gc or GlobalChat command.
     default: op
-  pwcp.timedglobal:
-    description: Allows turning on and off Timed Global Chat.
-    default: op
   pwcp.mute:
     description: Allows use of muting your own chat as to reduce spam (also useful for recording videos).
     default: true
