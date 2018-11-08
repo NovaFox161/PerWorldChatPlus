@@ -87,4 +87,11 @@ public class WorldDataManager {
 		config.get().set("Alias", newAlias);
 		config.save();
 	}
+	
+	public static String getChatFormat(String worldName) {
+		if (PerWorldChatPlusAPI.getApi().getPluginConfig().get().contains("Format.Format." + worldName))
+			return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Format.Format." + worldName);
+		else
+			return PerWorldChatPlusAPI.getApi().getPluginConfig().get().getString("Format.Format.Default");
+	}
 }

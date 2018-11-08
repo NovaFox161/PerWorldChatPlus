@@ -8,6 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.dreamexposure.perworldchatplus.api.chat.ChatFormat;
 import org.dreamexposure.perworldchatplus.api.chat.ChatMessage;
 import org.dreamexposure.perworldchatplus.api.chat.ChatRecipients;
+import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
 import org.dreamexposure.perworldchatplus.api.services.SpamHandler;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.PerWorldChatPlusPlugin;
 
@@ -25,7 +26,7 @@ public class ChatListener implements Listener {
 			
 			String format;
 			if (PerWorldChatPlusPlugin.get().config.get().getBoolean("Format.Enabled"))
-				format = PerWorldChatPlusPlugin.get().config.get().getString("Format.Format.Default");
+				format = WorldDataManager.getChatFormat(sender.getWorld().getName());
 			else
 				format = event.getFormat();
 			
