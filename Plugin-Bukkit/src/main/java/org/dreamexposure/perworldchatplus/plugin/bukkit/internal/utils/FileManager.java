@@ -33,6 +33,8 @@ public class FileManager {
         s.put("Global.Prefix", "&4[Global]");
         s.put("Global.Override", "!wc");
         s.put("Global.Always Global", false);
+    
+        s.put("Network.CrossServerChat.Enabled", false);
         
         s.put("Alert.Mention.OnName", true);
         s.put("Alert.Mention.RequirePermission", false);

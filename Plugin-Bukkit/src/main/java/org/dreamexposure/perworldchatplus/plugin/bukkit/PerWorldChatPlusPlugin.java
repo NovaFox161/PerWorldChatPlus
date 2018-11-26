@@ -6,13 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.dreamexposure.novalib.api.NovaLibAPI;
 import org.dreamexposure.novalib.api.bukkit.file.CustomConfig;
 import org.dreamexposure.novalib.api.bukkit.update.UpdateChecker;
+import org.dreamexposure.novalib.api.network.pubsub.PubSubManager;
 import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
 import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.commands.*;
-import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.ChatListener;
-import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.InventoryClickListener;
-import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.JoinListener;
-import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.QuitListener;
+import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.listeners.*;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.ChatColorInventory;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.FileManager;
 
@@ -33,6 +31,8 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         getLogger().info("===== PerWorldChatPlus =====");
         getLogger().info("Developed by DreamExposure");
         getLogger().info("Status: Disabling");
+    
+        PubSubManager.get().unregisterAll(getName());
     
         PerWorldChatPlusAPI.getApi().shutdownAPI();
         getLogger().info("========================");
@@ -61,6 +61,7 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
         getServer().getPluginManager().registerEvents(new QuitListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
+        getServer().getPluginManager().registerEvents(new PubSubListener(), this);
     
         getLogger().info("Registering commands...");
         getCommand("perworldchatplus").setExecutor(new PerWorldChatCommand());
@@ -85,6 +86,10 @@ public class PerWorldChatPlusPlugin extends JavaPlugin {
         //Do some other stuff
         ChatColorInventory.createChatColorInventory();
         generateWorldDataFilesOnStart();
+    
+        //Check and hook into PubSub for network messaging.
+        if (config.get().getBoolean("Network.CrossServerChat.Enabled"))
+            PubSubManager.get().register(getName(), "PerWorldChatPlus.Internal.Chat");
     
         getLogger().info("========================");
     }
