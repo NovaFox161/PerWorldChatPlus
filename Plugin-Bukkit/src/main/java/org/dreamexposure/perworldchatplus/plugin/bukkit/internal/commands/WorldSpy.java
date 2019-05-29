@@ -16,6 +16,7 @@ import java.util.List;
  * This class handles worldSpy related functions because the base command class would be too messy with it there.
  * This is really only for that command and probably shouldn't be used for anything else.
  */
+@SuppressWarnings("ConstantConditions")
 class WorldSpy {
 	@SuppressWarnings("Duplicates")
 	static void worldSpy(Player player, String type) {

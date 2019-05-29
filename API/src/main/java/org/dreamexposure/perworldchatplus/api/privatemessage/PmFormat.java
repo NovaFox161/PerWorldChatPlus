@@ -11,7 +11,7 @@ import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
-@SuppressWarnings({"WeakerAccess", "Duplicates"})
+@SuppressWarnings({"WeakerAccess", "Duplicates", "ConstantConditions"})
 public class PmFormat {
 	/**
 	 * Determines the private message format for the sender. This combines all formatting methods.

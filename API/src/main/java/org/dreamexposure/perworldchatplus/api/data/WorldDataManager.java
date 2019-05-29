@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
  * <p>
  * This class contains everything regarding world specific data for chat.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "ConstantConditions"})
 public class WorldDataManager {
 	
 	//File stuffs

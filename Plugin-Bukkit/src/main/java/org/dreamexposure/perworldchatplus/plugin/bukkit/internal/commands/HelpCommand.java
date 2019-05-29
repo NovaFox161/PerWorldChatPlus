@@ -11,6 +11,7 @@ import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
  * <p>
  * This is just a util class that handles the help command and nothing more.
  */
+@SuppressWarnings("ConstantConditions")
 class HelpCommand {
 	/**
 	 * Sends the help command page to the sender.

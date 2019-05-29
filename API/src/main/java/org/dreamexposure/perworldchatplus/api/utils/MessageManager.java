@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
  * <p>
  * This class handles message related functions, such as creating the message files and retrieving messages.
  */
+@SuppressWarnings("ConstantConditions")
 public class MessageManager {
 	/**
 	 * Gets the prefix for messages send by PerWorldChatPlus.

@@ -55,6 +55,11 @@
             <id>placeholderapi</id>
             <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <!--VaultAPI Repo-->
+        <repository>
+            <id>vault-repo</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -62,7 +67,7 @@
         <dependency>
             <groupId>org.dreamexposure.novalib</groupId>
             <artifactId>API</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.1.0-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
             <optional>true</optional>
@@ -71,7 +76,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.13-R0.1-SNAPSHOT</version>
+            <version>1.14.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
             <type>jar</type>
             <optional>true</optional>
@@ -80,7 +85,7 @@
         <dependency>
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>VaultAPI</artifactId>
-            <version>1.6</version>
+            <version>1.7</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>

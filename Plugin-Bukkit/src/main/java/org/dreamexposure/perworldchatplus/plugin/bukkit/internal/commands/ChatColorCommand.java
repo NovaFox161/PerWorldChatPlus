@@ -13,6 +13,7 @@ import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.ChatColor
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("ConstantConditions")
 public class ChatColorCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

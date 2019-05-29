@@ -9,7 +9,7 @@ import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
 
 import java.util.LinkedHashMap;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class PerWorldChatPlusAPI {
     private static PerWorldChatPlusAPI instance;
 
@@ -133,15 +133,16 @@ public class PerWorldChatPlusAPI {
     public boolean vaultCheck() {
         return plugin.getServer().getPluginManager().getPlugin("Vault") != null;
     }
-    
+
+    @SuppressWarnings("ConstantConditions")
     public boolean chatCheck() {
         if (!vaultCheck())
             return false;
-        
+
         RegisteredServiceProvider<Chat> rsp = plugin.getServer().getServicesManager().getRegistration(Chat.class);
         if (rsp == null)
             return false;
-        
+
         chat = rsp.getProvider();
         return chat != null;
     }

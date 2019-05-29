@@ -19,7 +19,7 @@ public class InventoryClickListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInventoryClick(InventoryClickEvent event) {
-		if (ChatColorInventory.isChatColorInventory(event.getInventory())) {
+		if (ChatColorInventory.isChatColorInventory(event.getView())) {
 			Player player = (Player) event.getWhoClicked();
 			ItemStack clicked = event.getCurrentItem();
 			if (clicked != null && !clicked.getType().equals(Material.AIR)) {

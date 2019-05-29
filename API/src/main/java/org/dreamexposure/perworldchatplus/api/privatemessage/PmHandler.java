@@ -11,7 +11,7 @@ import java.util.Hashtable;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
-@SuppressWarnings({"UnusedReturnValue", "Duplicates", "unused"})
+@SuppressWarnings({"UnusedReturnValue", "Duplicates", "unused", "ConstantConditions"})
 public class PmHandler {
 	/**
 	 * Sends a Private Message to the specified receiver from the specified sender.

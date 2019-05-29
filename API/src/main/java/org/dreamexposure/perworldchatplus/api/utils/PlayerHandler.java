@@ -12,6 +12,7 @@ import org.dreamexposure.perworldchatplus.api.PerWorldChatPlusAPI;
  * <p>
  * This class handles different player related functions when needed.
  */
+@SuppressWarnings("ConstantConditions")
 public class PlayerHandler {
     /**
      * This function checks if the player should be kicked if they have sworn, among other things.

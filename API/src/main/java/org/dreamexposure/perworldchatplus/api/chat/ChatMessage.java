@@ -18,7 +18,7 @@ import java.util.List;
  * <p>
  * This class is used to set a chat message's content and other related tasks.
  */
-@SuppressWarnings({"Duplicates", "WeakerAccess"})
+@SuppressWarnings({"Duplicates", "WeakerAccess", "ConstantConditions"})
 public class ChatMessage {
 	/**
 	 * Determines the message contents before it is sent based on settings and what the original message contained.
@@ -137,7 +137,6 @@ public class ChatMessage {
      * @param sender The sender of the message
      * @return The edited message.
      */
-    @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     public static String filterSpam(String _message, Player sender) {
 		String newMessage = _message;
 		boolean hasSpammed = false;

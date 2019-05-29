@@ -19,6 +19,7 @@ import org.dreamexposure.perworldchatplus.plugin.bukkit.internal.utils.FileManag
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("ConstantConditions")
 public class PerWorldChatPlusPlugin extends JavaPlugin {
     public static JavaPlugin plugin;
     

@@ -17,7 +17,7 @@ import java.util.UUID;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "ConstantConditions"})
 public class PlayerDataManager {
 	/**
 	 * Creates a default data file for the specified player if one does not exist.

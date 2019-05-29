@@ -14,7 +14,7 @@ import org.dreamexposure.perworldchatplus.api.data.WorldDataManager;
 import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
 import org.dreamexposure.perworldchatplus.plugin.bukkit.PerWorldChatPlusPlugin;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ConstantConditions"})
 public class JoinListener implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR)

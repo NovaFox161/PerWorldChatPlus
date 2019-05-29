@@ -13,7 +13,7 @@ import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus.
  */
-@SuppressWarnings("Duplicates")
+@SuppressWarnings({"Duplicates", "ConstantConditions"})
 class SetCommand {
 	
 	@SuppressWarnings("deprecation")

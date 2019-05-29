@@ -17,6 +17,7 @@ import org.dreamexposure.perworldchatplus.plugin.bukkit.PerWorldChatPlusPlugin;
  * <p>
  * Just the global chat command class. Nothing important here.
  */
+@SuppressWarnings("ConstantConditions")
 public class GlobalChatCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

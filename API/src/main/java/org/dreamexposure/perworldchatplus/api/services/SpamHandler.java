@@ -11,6 +11,7 @@ import java.util.UUID;
  * Website: www.cloudcraftgaming.com
  * For Project: PerWorldChatPlus
  */
+@SuppressWarnings("ConstantConditions")
 public class SpamHandler {
     private static SpamHandler instance;
 

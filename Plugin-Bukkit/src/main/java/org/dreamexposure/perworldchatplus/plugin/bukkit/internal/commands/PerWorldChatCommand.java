@@ -15,7 +15,7 @@ import org.dreamexposure.perworldchatplus.api.utils.MessageManager;
  * <p>
  * Just the base command. Nothing else to see here.
  */
-@SuppressWarnings("Duplicates")
+@SuppressWarnings({"Duplicates", "ConstantConditions"})
 public class PerWorldChatCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
