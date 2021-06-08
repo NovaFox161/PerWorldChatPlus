@@ -23,14 +23,14 @@
 
     <distributionManagement>
         <repository>
-            <id>nova-release-pub</id>
+            <id>dreamexposure-public-release</id>
             <name>Releases</name>
-            <url>http://repo.novafox161.com/repository/nova-release-pub/</url>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-release/</url>
         </repository>
         <snapshotRepository>
-            <id>nova-snapshots-pub</id>
+            <id>nova-public-snapshot</id>
             <name>Snapshots</name>
-            <url>http://repo.novafox161.com/repository/nova-snapshots-pub/</url>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-release/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -42,23 +42,23 @@
         </repository>
         <!--Private DE Repo-->
         <repository>
-            <id>nova-private</id>
-            <url>http://repo.novafox161.com/repository/nova-private/</url>
+            <id>dreamexposure-private</id>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-private/</url>
         </repository>
         <!--Public DE Repo-->
         <repository>
-            <id>nova-public</id>
-            <url>http://repo.novafox161.com/repository/nova-public/</url>
+            <id>dreamexposure-public</id>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public/</url>
         </repository>
         <!--PlaceHolder API Repo-->
         <repository>
             <id>placeholderapi</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <!--VaultAPI Repo-->
         <repository>
             <id>vault-repo</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+            <url>https://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
     </repositories>
 
