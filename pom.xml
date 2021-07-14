@@ -5,6 +5,10 @@
     <packaging>pom</packaging>
 
     <properties>
+        <!--Project settings-->
+        <revision>6.0.0-SNAPSHOT</revision>
+
+        <!--Compiler Settings-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -12,9 +16,15 @@
         <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
     </properties>
 
-    <groupId>org.dreamexposure</groupId>
+    <parent>
+        <artifactId>DreamExposure-Parent</artifactId>
+        <groupId>org.dreamexposure</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.dreamexposure.perworldchatplus</groupId>
     <artifactId>PerWorldChatPlus</artifactId>
-    <version>6.0.0-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <modules>
         <module>API</module>
@@ -28,23 +38,13 @@
             <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-release/</url>
         </repository>
         <snapshotRepository>
-            <id>nova-public-snapshot</id>
+            <id>dreamexposure-public-snapshot</id>
             <name>Snapshots</name>
-            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-release/</url>
+            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-public-snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
 
     <repositories>
-        <!--Bukkit Repo-->
-        <repository>
-            <id>bukkit-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <!--Private DE Repo-->
-        <repository>
-            <id>dreamexposure-private</id>
-            <url>https://emily.dreamexposure.org/artifactory/dreamexposure-private/</url>
-        </repository>
         <!--Public DE Repo-->
         <repository>
             <id>dreamexposure-public</id>
@@ -58,7 +58,7 @@
         <!--VaultAPI Repo-->
         <repository>
             <id>vault-repo</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
+            <url>https://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
     </repositories>
 
@@ -105,7 +105,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven.plugin.compiler.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>

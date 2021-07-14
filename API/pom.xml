@@ -13,12 +13,12 @@
     </properties>
 
     <parent>
-        <groupId>org.dreamexposure</groupId>
+        <groupId>org.dreamexposure.perworldchatplus</groupId>
         <artifactId>PerWorldChatPlus</artifactId>
-        <version>6.0.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
-    <artifactId>PerWorldChatPlus-API</artifactId>
+    <artifactId>API</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -41,7 +41,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>${maven.plugin.shade.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -54,7 +54,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>${maven.plugin.jar.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
