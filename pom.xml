@@ -72,11 +72,11 @@
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
-        <!--Bukkit API-->
+        <!--Spigot API-->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.14.2-R0.1-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
             <type>jar</type>
             <optional>true</optional>
